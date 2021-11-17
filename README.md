@@ -7,9 +7,6 @@
 yshop-gin意象商城后台管理系统(目前版本v1.0)基于当前流行技术组合的前后端商城管理系统：Gin+Gorm+Casbin+Jwt+Redis+Mysql8+Vue
 的前后端分离电商管理系统，权限控制采用RBAC，支持商城多级分类，商品管理、商品sku、图片素材、数据字典与数据权限管理，支持动态路由等
 
-**体验地址：**  [https://go.yixiang.co](https://go.yixiang.co)
-
-**账号密码：** `admin / 123456`
 
 #### 项目文档（还在完善中...，小伙伴记得star）
 
