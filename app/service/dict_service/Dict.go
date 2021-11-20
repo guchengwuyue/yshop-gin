@@ -27,7 +27,6 @@ type Dict struct {
 
 func (d *Dict) GetAll() vo.ResultList {
 	maps := make(map[string]interface{})
-	maps["is_del"] = 0
 	if d.Enabled >= 0 {
 		maps["enabled"] = d.Enabled
 	}

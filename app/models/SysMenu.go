@@ -6,8 +6,6 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
-	"time"
 	"yixiang.co/go-mall/pkg/logging"
 	"yixiang.co/go-mall/pkg/util"
 )
@@ -34,6 +32,10 @@ type SysMenu struct {
 
 type RoleIdList struct {
 	Id int64
+}
+
+func (SysMenu) TableName() string  {
+	return "sys_menu"
 }
 
 
@@ -84,7 +86,7 @@ func UpdateByMenu(m *SysMenu) error {
 
 func DelByMenu(ids []int64) error {
 	var err error
-	err = db.Model(&SysMenu{}).Where("id in (?)",ids).Update("is_del",1).Error
+	err = db.Where("id in (?)",ids).Delete(&SysMenu{}).Error
 	if err != nil {
 		return err
 	}
@@ -92,18 +94,7 @@ func DelByMenu(ids []int64) error {
 
 	return err
 }
-//
-////获取权限string
-//func FindByRouterAndMethod(url string, method string) (permission string) {
-//	o := orm.NewOrm()
-//	var menu SysMenu
-//	err := o.QueryTable(new(SysMenu)).Filter("router", url).Filter("router_method", method).One(&menu)
-//	if err != nil {
-//		return ""
-//	}
-//	return menu.Permission
-//}
-//
+
 func FindMenuByRouterAndMethod(url string, method string) SysMenu {
 	var menu SysMenu
 	db.Where("router = ?", url).Where("router_method = ?", method).First(&menu)
@@ -137,13 +128,3 @@ func BuildMenus(uid int64) []SysMenu {
 
 }
 
-func (u *SysMenu) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
-
-func (u *SysMenu) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}

@@ -5,11 +5,6 @@
  */
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 type SysDictDetail struct {
 	Label string `json:"label" valid:"Required;"`
 	Value string `json:"value" valid:"Required;"`
@@ -19,10 +14,14 @@ type SysDictDetail struct {
 	BaseModel
 }
 
+func (SysDictDetail) TableName() string  {
+	return "sys_dict_detail"
+}
+
 // get all
-func GetAllDictDetail(pageNUm int,pageSize int,maps interface{}) (int,[]SysDictDetail)  {
+func GetAllDictDetail(pageNUm int,pageSize int,maps interface{}) (int64,[]SysDictDetail)  {
 	var (
-		total int
+		total int64
 		lists []SysDictDetail
 	)
 	db.Model(&SysDictDetail{}).Where(maps).Count(&total)
@@ -62,15 +61,5 @@ func DelByDictDetail(ids []int64) error {
 	return err
 }
 
-func (u *SysDictDetail) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
-
-func (u *SysDictDetail) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
 
 

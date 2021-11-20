@@ -1,7 +1,7 @@
 package runtime
 
 import (
-	"github.com/casbin/casbin"
+	"github.com/casbin/casbin/v2"
 	"github.com/robfig/cron/v3"
 	"sync"
 )

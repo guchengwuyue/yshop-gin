@@ -26,7 +26,6 @@ type Menu struct {
 
 func (m *Menu) GetTree() []models.SysMenu {
 	maps := make(map[string]interface{})
-	maps["is_del"] = 0
 	list := models.GetAllMenus(maps)
 	return list
 }

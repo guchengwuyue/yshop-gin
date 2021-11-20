@@ -30,7 +30,6 @@ type DictDetail struct {
 
 func (d *DictDetail) GetAll() vo.ResultList {
 	maps := make(map[string]interface{})
-	maps["is_del"] = 0
 	if d.DictId >= 0 {
 		maps["dict_id"] = d.DictId
 	}

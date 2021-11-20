@@ -5,11 +5,6 @@
  */
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 type SysRole struct {
 	Name  string        `json:"name" valid:"Required;"`
 	Remark string       `json:"remark"`
@@ -22,6 +17,9 @@ type SysRole struct {
 	BaseModel
 }
 
+func (SysRole) TableName() string  {
+	return "sys_role"
+}
 
 func GetOneRole(id int64) SysRole {
 	var role SysRole
@@ -30,9 +28,9 @@ func GetOneRole(id int64) SysRole {
 }
 
 // get all
-func GetAllRole(pageNUm int,pageSize int,maps interface{}) (int,[]SysRole)  {
+func GetAllRole(pageNUm int,pageSize int,maps interface{}) (int64,[]SysRole)  {
 	var (
-		total int
+		total int64
 		lists []SysRole
 	)
 
@@ -64,7 +62,7 @@ func UpdateByRole(m *SysRole) error {
 
 func DelByRole(ids []int64) error {
 	var err error
-	err = db.Model(&SysRole{}).Where("id in (?)",ids).Update("is_del",1).Error
+	err = db.Where("id in (?)",ids).Delete(&SysRole{}).Error
 	if err != nil {
 		return err
 	}
@@ -73,13 +71,3 @@ func DelByRole(ids []int64) error {
 	return err
 }
 
-func (u *SysRole) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
-
-func (u *SysRole) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}

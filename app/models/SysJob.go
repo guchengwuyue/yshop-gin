@@ -5,11 +5,6 @@
  */
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 type SysJob struct {
 	Name    string `json:"name" valid:"Required;"`
 	Enabled int8   `json:"enabled"`
@@ -19,10 +14,14 @@ type SysJob struct {
 	BaseModel
 }
 
+func (SysJob) TableName() string  {
+	return "sys_job"
+}
+
 // get all
-func GetAllJob(pageNUm int,pageSize int,maps interface{}) (int, []SysJob) {
+func GetAllJob(pageNUm int,pageSize int,maps interface{}) (int64, []SysJob) {
 	var (
-		total int
+		total int64
 		lists     []SysJob
 	)
 
@@ -54,7 +53,7 @@ func UpdateByJob(m *SysJob) error {
 
 func DelByJob(ids []int64) error {
 	var err error
-	err = db.Model(&SysJob{}).Where("id in (?)",ids).Update("is_del",1).Error
+	err = db.Where("id in (?)",ids).Delete(&SysJob{}).Error
 	if err != nil {
 		return err
 	}
@@ -63,13 +62,4 @@ func DelByJob(ids []int64) error {
 	return err
 }
 
-func (u *SysJob) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
 
-func (u *SysJob) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}

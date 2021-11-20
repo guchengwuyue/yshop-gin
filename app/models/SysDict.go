@@ -5,21 +5,20 @@
  */
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 type SysDict struct {
 	Name string `json:"name" valid:"Required;"`
 	Remark string `json:"remark" valid:"Required;"`
 	BaseModel
 }
 
+func (SysDict) TableName() string  {
+	return "sys_dict"
+}
+
 // get all
-func GetAllDict(pageNUm int,pageSize int,maps interface{}) (int,[]SysDict)  {
+func GetAllDict(pageNUm int,pageSize int,maps interface{}) (int64,[]SysDict)  {
 	var (
-		total int
+		total int64
 		dicts []SysDict
 	)
 
@@ -52,7 +51,7 @@ func UpdateByDict(m *SysDict) error {
 
 func DelByDict(ids []int64)  error {
 	var err error
-	err = db.Model(&SysDict{}).Where("id in (?)",ids).Update("is_del",1).Error
+	err = db.Where("id in (?)",ids).Delete(&SysDict{}).Error
 	if err != nil {
 		return err
 	}
@@ -61,13 +60,3 @@ func DelByDict(ids []int64)  error {
 	return err
 }
 
-func (u *SysDict) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
-
-func (u *SysDict) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}

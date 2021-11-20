@@ -6,8 +6,6 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
-	"time"
 	"yixiang.co/go-mall/pkg/logging"
 	"yixiang.co/go-mall/pkg/util"
 )
@@ -33,6 +31,10 @@ type SysUser struct {
 
 type RoleId struct {
 	Id int64 `json:"id"`
+}
+
+func (SysUser) TableName() string  {
+	return "sys_user"
 }
 
 
@@ -81,9 +83,9 @@ func GetUserById(id int64) (SysUser,error) {
 }
 
 // get all
-func GetAllUser(pageNUm int,pageSize int,maps interface{}) (int, []SysUser) {
+func GetAllUser(pageNUm int,pageSize int,maps interface{}) (int64, []SysUser) {
 	var (
-		total int
+		total int64
 		users     []SysUser
 	)
 
@@ -143,11 +145,11 @@ func DelByUser(ids []int64)  error {
 			tx.Commit()
 		}
 	}()
-	err = tx.Model(&SysUser{}).Where("id in (?)",ids).Update("is_del",1).Error
+	err = tx.Where("id in (?)",ids).Delete(&SysUser{}).Error
 	if err != nil {
 		return err
 	}
-	err = tx.Where("sys_user_id in (?)",ids).Delete(SysUsersRoles{}).Error
+	err = tx.Unscoped().Where("sys_user_id in (?)",ids).Delete(SysUsersRoles{}).Error
 	if err != nil {
 		return err
 	}
@@ -155,15 +157,5 @@ func DelByUser(ids []int64)  error {
 	return err
 }
 
-func (u *SysUser) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
 
-func (u *SysUser) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
 

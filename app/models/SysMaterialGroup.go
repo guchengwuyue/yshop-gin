@@ -5,15 +5,14 @@
  */
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 type SysMaterialGroup struct {
 	Name     string `json:"name" valid:"Required;"`
 	CreateId int64  `json:"create_id"`
 	BaseModel
+}
+
+func (SysMaterialGroup) TableName() string  {
+	return "sys_material_group"
 }
 
 //
@@ -45,7 +44,7 @@ func UpdateByMaterialGroup(m *SysMaterialGroup) error {
 
 func DelByMaterialGroup(ids []int64)  error {
 	var err error
-	err = db.Model(&SysMaterialGroup{}).Where("id in (?)",ids).Update("is_del",1).Error
+	err = db.Where("id in (?)",ids).Delete(&SysMaterialGroup{}).Error
 	if err != nil {
 		return err
 	}
@@ -54,13 +53,3 @@ func DelByMaterialGroup(ids []int64)  error {
 	return err
 }
 
-func (u *SysMaterialGroup) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
-
-func (u *SysMaterialGroup) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}

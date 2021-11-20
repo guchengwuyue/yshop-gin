@@ -62,8 +62,11 @@ func Jwt() gin.HandlerFunc {
 				break
 			}
 			logging.Info(roleName, url, method)
-			res := cb.Enforce(roleName, url, method)
-			logging.Info(res)
+			res, err := cb.Enforce(roleName, url, method)
+			if err != nil {
+				logging.Error(err)
+			}
+			//logging.Info(res)
 
 			if !res {
 				appG.Response(http.StatusForbidden,constant.ERROR_AUTH_CHECK_FAIL,data)

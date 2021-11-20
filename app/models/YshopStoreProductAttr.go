@@ -17,6 +17,9 @@ type YshopStoreProductAttr struct {
 	AttrValues string `json:"attrValues" valid:"Required;"`
 }
 
+func (YshopStoreProductAttr) TableName() string  {
+	return "yshop_store_product_attr"
+}
 
 
 func AddProductAttr(items []dto.FormatDetail, productId int64) error {
@@ -29,6 +32,8 @@ func AddProductAttr(items []dto.FormatDetail, productId int64) error {
 			tx.Commit()
 		}
 	}()
+
+	var attrGroup []YshopStoreProductAttr
 	for _, val := range items {
 		detailStr := strings.Join(val.Detail, ",")
 		var storeProductAttr = YshopStoreProductAttr{
@@ -36,12 +41,13 @@ func AddProductAttr(items []dto.FormatDetail, productId int64) error {
 			AttrName:   val.Value,
 			AttrValues: detailStr,
 		}
-		err = tx.Create(&storeProductAttr).Error
+		attrGroup = append(attrGroup, storeProductAttr)
+	}
+
+		err = tx.Create(&attrGroup).Error
 		if err != nil {
 			return err
 		}
-	}
-
 
 	return err
 }

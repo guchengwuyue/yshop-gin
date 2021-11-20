@@ -37,14 +37,10 @@ type YshopStoreProductAttrValue struct {
 	Integral     int     `json:"integral"`
 }
 
-//
-//func SelectAllProductAttrValues( productId int64) (data []*YshopStoreProductAttrValue){
-//	o := orm.NewOrm()
-//	o.QueryTable(new(YshopStoreProductAttrValue)).Filter("product_id", productId).All(data)
-//
-//	return data
-//}
-//
+func (YshopStoreProductAttrValue) TableName() string  {
+	return "yshop_store_product_attr_value"
+}
+
 func GetAttrValueByProductIdAndSku(productId int64, sku string) *YshopStoreProductAttrValue {
 	var attrValue YshopStoreProductAttrValue
 	db.Where("product_id = ?", productId).Where("sku = ?", sku).First(&attrValue)
@@ -62,7 +58,7 @@ func AddProductttrValue(attrs []dto.ProductFormat, productId int64) error {
 			tx.Commit()
 		}
 	}()
-
+	var valueGroup []YshopStoreProductAttrValue
 	for _, val := range attrs {
 		stringList := util.GetValues(val.Detail)
 		sort.Strings(stringList)
@@ -96,13 +92,14 @@ func AddProductttrValue(attrs []dto.ProductFormat, productId int64) error {
 			SeckillPrice: 0,
 		}
 
-		err = tx.Create(&storeProductAttrValue).Error
-		if err != nil {
-			return err
-		}
+		valueGroup = append(valueGroup, storeProductAttrValue)
+
 	}
 
-
+	err = tx.Create(&valueGroup).Error
+	if err != nil {
+		return err
+	}
 
 	return err
 }

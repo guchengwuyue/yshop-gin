@@ -36,7 +36,7 @@ func BatchRoleMenuAdd(menu dto.RoleMenu) error {
 		return err
 	}
 
-	//var roleMenus []SysRolesMenus
+	var roleMenus []SysRolesMenus
 	var roles = GetOneRole(menu.Id)
 
 
@@ -45,18 +45,19 @@ func BatchRoleMenuAdd(menu dto.RoleMenu) error {
 	cb.RemoveFilteredPolicy(0, roles.Permission)
 	for _, val := range menu.Menus {
 		var roleMenu = SysRolesMenus{RoleId: menu.Id,MenuId: val.Id}
-		err = tx.Create(&roleMenu).Error
-		if err != nil {
-			return err
-		}
+
 		var menus = GetOneMenuById(val.Id)
-		//logging.Info(menus)
+		roleMenus = append(roleMenus,  roleMenu)
 		if roles.Permission != "" && menus.Router != "" && menus.RouterMethod != "" {
 			cb.AddNamedPolicy("p", roles.Permission, menus.Router, menus.RouterMethod)
 		}
 
 	}
 
+	err = tx.Create(&roleMenus).Error
+	if err != nil {
+		return err
+	}
 	//logging.Info(roleMenus)
 	cb.SavePolicy()
 

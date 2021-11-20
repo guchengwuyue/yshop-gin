@@ -77,7 +77,6 @@ func (u *User) GetUserOneByName() (*models.SysUser, error) {
 
 func (u *User) GetUserAll() vo.ResultList {
 	maps := make(map[string]interface{})
-	maps["is_del"] = 0
 	if u.DeptId >= 0 {
 		maps["dept_id"] = u.DeptId
 	}

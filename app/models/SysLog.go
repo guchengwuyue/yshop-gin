@@ -5,11 +5,6 @@
  */
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 type SysLog struct {
 	Description string `json:"description"`
 	Method string `json:"method"`
@@ -23,11 +18,14 @@ type SysLog struct {
 	BaseModel
 }
 
+func (SysLog) TableName() string  {
+	return "sys_log"
+}
 
 // get all
-func GetAllLog(pageNUm int,pageSize int,maps interface{}) (int,[]SysLog)  {
+func GetAllLog(pageNUm int,pageSize int,maps interface{}) (int64,[]SysLog)  {
 	var (
-		total int
+		total int64
 		lists []SysLog
 	)
 
@@ -48,7 +46,7 @@ func AddLog(m *SysLog)  error {
 
 func DelBylog(ids []int64) error {
 	var err error
-	err = db.Model(&SysLog{}).Where("id in (?)",ids).Update("is_del",1).Error
+	err = db.Where("id in (?)",ids).Delete(&SysLog{}).Error
 	if err != nil {
 		return err
 	}
@@ -57,13 +55,3 @@ func DelBylog(ids []int64) error {
 	return err
 }
 
-func (u *SysLog) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
-
-func (u *SysLog) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}

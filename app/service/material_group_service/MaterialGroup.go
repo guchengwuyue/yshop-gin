@@ -29,7 +29,6 @@ type MaterialGroup struct {
 
 func (d *MaterialGroup) GetAll() []models.SysMaterialGroup {
 	maps := make(map[string]interface{})
-	maps["is_del"] = 0
 	if d.Name != "" {
 		maps["name"] = d.Name
 	}

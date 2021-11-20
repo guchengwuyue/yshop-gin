@@ -134,7 +134,6 @@ func (d *Product) GetProductInfo() map[string]interface{} {
 
 func (d *Product) GetAll() vo.ResultList {
 	maps := make(map[string]interface{})
-	maps["is_del"] = 0
 	if d.Name != "" {
 		maps["name"] = d.Name
 	}

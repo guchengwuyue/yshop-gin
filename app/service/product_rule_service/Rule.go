@@ -33,7 +33,6 @@ type Rule struct {
 
 func (d *Rule) GetAll() vo.ResultList {
 	maps := make(map[string]interface{})
-	maps["is_del"] = 0
 	if d.Name != "" {
 		maps["name"] = d.Name
 	}

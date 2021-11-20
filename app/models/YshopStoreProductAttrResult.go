@@ -7,7 +7,6 @@ package models
 
 import (
 	"encoding/json"
-	"github.com/jinzhu/gorm"
 	"time"
 	"yixiang.co/go-mall/app/models/dto"
 	"yixiang.co/go-mall/pkg/logging"
@@ -18,7 +17,11 @@ type YshopStoreProductAttrResult struct {
 	ID         int64     `json:"id"`
 	ProductId  int64     `json:"productId" valid:"Required;"`
 	Result     string    `json:"sliderImage" valid:"Required;"`
-	ChangeTime time.Time `json:"change_time"`
+	ChangeTime time.Time `json:"change_time" gorm:"autoCreateTime"`
+}
+
+func (YshopStoreProductAttrResult) TableName() string  {
+	return "yshop_store_product_attr_result"
 }
 
 func GetProductAttrResult(productId int64) map[string]interface{} {
@@ -47,7 +50,7 @@ func AddProductAttrResult(items []dto.FormatDetail, attrs []dto.ProductFormat, p
 			tx.Commit()
 		}
 	}()
-	var count int
+	var count int64
 	mapData := map[string]interface{}{
 		"attr":  items,
 		"value": attrs,
@@ -77,12 +80,3 @@ func DelByProductAttrResult(productId int64) (err error) {
 	return err
 }
 
-func (u *YshopStoreProductAttrResult) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("ChangeTime",time.Now())
-	return nil
-}
-
-func (u *YshopStoreProductAttrResult) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("ChangeTime",time.Now())
-	return nil
-}

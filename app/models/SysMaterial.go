@@ -5,11 +5,6 @@
  */
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 type SysMaterial struct {
 	Name     string `json:"name" valid:"Required;"`
 	Type     string `json:"type"`
@@ -19,10 +14,13 @@ type SysMaterial struct {
 	BaseModel
 }
 
+func (SysMaterial) TableName() string  {
+	return "sys_material"
+}
 
-func GetAllMaterial(pageNUm int,pageSize int,maps interface{}) (int, []SysMaterial) {
+func GetAllMaterial(pageNUm int,pageSize int,maps interface{}) (int64, []SysMaterial) {
 	var (
-		total int
+		total int64
 		data      []SysMaterial
 	)
 	db.Model(&SysMaterial{}).Where(maps).Count(&total)
@@ -53,7 +51,7 @@ func UpdateByMaterial(m *SysMaterial) error {
 
 func DelByMaterial(ids []int64) error {
 	var err error
-	err = db.Model(&SysMaterial{}).Where("id in (?)",ids).Update("is_del",1).Error
+	err = db.Where("id in (?)",ids).Delete(&SysMaterial{}).Error
 	if err != nil {
 		return err
 	}
@@ -62,13 +60,3 @@ func DelByMaterial(ids []int64) error {
 	return err
 }
 
-func (u *SysMaterial) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
-
-func (u *SysMaterial) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}

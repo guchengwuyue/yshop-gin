@@ -2,6 +2,6 @@ package vo
 
 type ResultList struct {
 	Content       interface{} `json:"content"`
-	TotalElements int         `json:"totalElements"`
+	TotalElements int64         `json:"totalElements"`
 	ExtendData    interface{} `json:"extendData"`
 }

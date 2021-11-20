@@ -63,7 +63,7 @@ func (d *Cate) GetProductCate() []map[string]interface{} {
 
 func (d *Cate) GetAll() vo.ResultList {
 	maps := make(map[string]interface{})
-	maps["is_del"] = 0
+	//maps["is_del"] = 0
 	if d.Enabled >= 0 {
 		maps["is_show"] = d.Enabled
 	}

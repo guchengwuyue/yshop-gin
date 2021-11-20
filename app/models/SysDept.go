@@ -5,11 +5,6 @@
  */
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 type SysDept struct {
 	Name string        `json:"name" valid:"Required;"`
 	Pid int64          `json:"pid"`
@@ -19,6 +14,9 @@ type SysDept struct {
 	BaseModel
 }
 
+func (SysDept) TableName() string  {
+	return "sys_dept"
+}
 
 func GetAllDepts(maps interface{}) []SysDept {
 	var depts []SysDept
@@ -62,7 +60,7 @@ func UpdateByDept(m *SysDept) error {
 
 func DelByDept(ids []int64) error {
 	var err error
-	err = db.Model(&SysDept{}).Where("id in (?)",ids).Update("is_del",1).Error
+	err = db.Where("id in (?)",ids).Delete(&SysDept{}).Error
 	if err != nil {
 		return err
 	}
@@ -71,13 +69,3 @@ func DelByDept(ids []int64) error {
 	return err
 }
 
-func (u *SysDept) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
-
-func (u *SysDept) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}

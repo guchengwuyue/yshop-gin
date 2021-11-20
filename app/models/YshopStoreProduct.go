@@ -5,11 +5,6 @@
  */
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 
 type YshopStoreProduct struct {
 	Image       string `json:"image" valid:"Required;"`
@@ -47,6 +42,10 @@ type YshopStoreProduct struct {
 	BaseModel
 }
 
+func (YshopStoreProduct) TableName() string  {
+	return "yshop_store_product"
+}
+
 func GetProduct(id int64) YshopStoreProduct {
 	var product YshopStoreProduct
 	db.Where("id =  ?",id).First(&product)
@@ -55,9 +54,9 @@ func GetProduct(id int64) YshopStoreProduct {
 }
 
 // get all
-func GetAllProduct(pageNUm int,pageSize int,maps interface{}) (int, []YshopStoreProduct) {
+func GetAllProduct(pageNUm int,pageSize int,maps interface{}) (int64, []YshopStoreProduct) {
 	var (
-		total int
+		total int64
 		data      []YshopStoreProduct
 	)
 
@@ -103,7 +102,7 @@ func OnSaleByProduct(id int64, status int) (err error) {
 
 func DelByProduct(ids []int64) error {
 	var err error
-	err = db.Model(&YshopStoreProduct{}).Where("id in (?)",ids).Update("is_del",1).Error
+	err = db.Where("id in (?)",ids).Delete(&YshopStoreProduct{}).Error
 	if err != nil {
 		return err
 	}
@@ -113,69 +112,3 @@ func DelByProduct(ids []int64) error {
 }
 
 
-
-
-//
-////计算获取属性结果最小值
-//func computeProduct(attrs []dto.ProductFormat) map[string]interface{} {
-//	returnMap := make(map[string]interface{})
-//
-//	var (
-//		minPrice   []float64
-//		minOtprice []float64
-//		minCost    []float64
-//		stock      []int
-//	)
-//	for _, dto := range attrs {
-//		price, _ := strconv.ParseFloat(dto.Price, 64)
-//		OtPrice, _ := strconv.ParseFloat(dto.Price, 64)
-//		cost, _ := strconv.ParseFloat(dto.Price, 64)
-//		s, _ := strconv.Atoi(dto.Stock)
-//		minPrice = append(minPrice, price)
-//		minOtprice = append(minOtprice, OtPrice)
-//		minCost = append(minCost, cost)
-//		stock = append(stock, s)
-//	}
-//	sort.Float64s(minPrice)
-//	sort.Float64s(minOtprice)
-//	sort.Float64s(minCost)
-//	returnMap["minPrice"] = minPrice[0]
-//	returnMap["minOtPrice"] = minOtprice[0]
-//	returnMap["minCost"] = minCost[0]
-//	returnMap["stock"] = untils.GetSum(stock)
-//	return returnMap
-//}
-//
-//func insertProductSku(items []dto.FormatDetail, attrs []dto.ProductFormat, productId int64) (err error) {
-//	DelByProductttr(productId)
-//	DelByProductttrValue(productId)
-//	err = AddProductAttr(items, productId)
-//	if err != nil {
-//		return err
-//	}
-//
-//	err = AddProductttrValue(attrs, productId)
-//	if err != nil {
-//		return err
-//	}
-//	_, err = AddProductAttrResult(items, attrs, productId)
-//	if err != nil {
-//		return err
-//	}
-//
-//	return
-//
-//}
-
-
-func (u *YshopStoreProduct) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
-
-func (u *YshopStoreProduct) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}

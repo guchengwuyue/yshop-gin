@@ -5,11 +5,6 @@
  */
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 type YshopStoreCategory struct {
 	CateName string               `json:"cateName" valid:"Required;"`
 	Pid      int64                `json:"pid"`
@@ -21,6 +16,9 @@ type YshopStoreCategory struct {
 	BaseModel
 }
 
+func (YshopStoreCategory) TableName() string  {
+	return "yshop_store_category"
+}
 
 func GetAllCates(maps interface{}) []YshopStoreCategory {
 	var data []YshopStoreCategory
@@ -63,7 +61,7 @@ func UpdateByCate(m *YshopStoreCategory) error {
 
 func DelByCate(ids []int64) error {
 	var err error
-	err = db.Model(&YshopStoreCategory{}).Where("id in (?)",ids).Update("is_del",1).Error
+	err = db.Where("id in (?)",ids).Delete(&YshopStoreCategory{}).Error
 	if err != nil {
 		return err
 	}
@@ -73,13 +71,3 @@ func DelByCate(ids []int64) error {
 }
 
 
-func (u *YshopStoreCategory) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
-
-func (u *YshopStoreCategory) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}

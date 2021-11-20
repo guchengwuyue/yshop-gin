@@ -7,11 +7,14 @@ package models
 
 import (
 	"fmt"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
+	"gorm.io/plugin/soft_delete"
 
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	//"gorm.io/plugin/soft_delete"
 	"log"
-	"strconv"
+	"os"
 	"time"
 	"yixiang.co/go-mall/pkg/casbin"
 	"yixiang.co/go-mall/pkg/setting"
@@ -19,42 +22,59 @@ import (
 
 var db *gorm.DB
 
+
 type BaseModel struct {
 	Id int64 `gorm:"primary_key" json:"id"`
-	UpdateTime time.Time `json:"updateTime"`
-	CreateTime time.Time `json:"createTime"`
-	IsDel int8 `json:"isDel"`
+	UpdateTime time.Time `json:"updateTime" gorm:"autoUpdateTime"`
+	CreateTime time.Time `json:"createTime" gorm:"autoCreateTime"`
+	IsDel soft_delete.DeletedAt `json:"isDel" gorm:"softDelete:flag"`
 }
 
 // Setup initializes the database instance
 func Setup() {
 	var err error
-	db, err = gorm.Open(setting.DatabaseSetting.Type, fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local",
+	var connStr = fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local",
 		setting.DatabaseSetting.User,
 		setting.DatabaseSetting.Password,
 		setting.DatabaseSetting.Host,
-		setting.DatabaseSetting.Name))
+		setting.DatabaseSetting.Name)
+	newLogger := logger.New(
+		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer（日志输出的目标，前缀和日志包含的内容——译者注）
+		logger.Config{
+			SlowThreshold: time.Second,   // 慢 SQL 阈值
+			LogLevel:      logger.Info, // 日志级别
+			IgnoreRecordNotFoundError: true,   // 忽略ErrRecordNotFound（记录未找到）错误
+			Colorful:      true,         // 禁用彩色打印
+		},
+	)
+
+	db, err = gorm.Open(mysql.Open(connStr), &gorm.Config{
+		Logger: newLogger,
+	})
 
 	if err != nil {
-		log.Fatalf("models.Setup err: %v", err)
+		log.Printf("[info] gorm %s", err)
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Printf("[info] gorm %s", err)
+	}
+
+	// SetMaxIdleConns 设置空闲连接池中连接的最大数量
+	sqlDB.SetMaxIdleConns(10)
+
+	// SetMaxOpenConns 设置打开数据库连接的最大数量。
+	sqlDB.SetMaxOpenConns(100)
+
+	// SetConnMaxLifetime 设置了连接可复用的最大时间。
+	sqlDB.SetConnMaxLifetime(time.Hour)
 
 	casbin.InitCasbin(db)
 
-	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
-		return setting.DatabaseSetting.TablePrefix + defaultTableName
-	}
-
-	db.LogMode(true)
-	db.SingularTable(true)
-	db.DB().SetMaxIdleConns(10)
-	db.DB().SetMaxOpenConns(100)
 }
 
-// CloseDB closes database connection (unnecessary)
-func CloseDB() {
-	defer db.Close()
-}
+
 
 
 
@@ -66,35 +86,6 @@ func addExtraSpaceIfExist(str string) string {
 	return ""
 }
 
-/**
-* 分页函数，适用任何表
-* 返回 总记录条数,总页数,以及当前请求的数据RawSeter,调用中需要"rs.QueryRows(&tblog)"就行了  --tblog是一个Tb_log对象
-* 参数：表名，当前页数，页面大小，条件（查询条件,格式为 " and name='zhifeiya' and age=12 "）
-*/
-func GetPagesInfo(tableName string, currentpage int, pagesize int, conditions string) (int, int, *gorm.DB) {
-	if currentpage <= 1 {
-		currentpage = 1
-	}
-	if pagesize == 0 {
-		pagesize = 20
-	}
-	var rs *gorm.DB
-	var totalItem, totalpages int = 0, 0
-	//var totals = make([]int,0)
-	//总条数,总页数
-	db.Raw("SELECT count(*) FROM " + tableName + "  where is_del=0 " + conditions).Count(&totalItem) //获取总条数
-	if totalItem <= pagesize {
-		totalpages = 1
-	} else if totalItem > pagesize {
-		temp := totalItem / pagesize
-		if (totalItem % pagesize) != 0 {
-			temp = temp + 1
-		}
-		totalpages = temp
-	}
-	rs = db.Raw("select *  from  " + tableName + "  where is_del=0 " + conditions +  " order by id desc " +
-		" LIMIT " + strconv.Itoa((currentpage-1)*pagesize) + "," + strconv.Itoa(pagesize))
-	return totalItem, totalpages, rs
-}
+
 
 

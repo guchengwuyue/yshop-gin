@@ -28,7 +28,6 @@ type Log struct {
 
 func (d *Log) GetAll() vo.ResultList {
 	maps := make(map[string]interface{})
-	maps["is_del"] = 0
 	if d.Des != "" {
 		maps["description"] = d.Des
 	}

@@ -7,8 +7,6 @@ package models
 
 import (
 	"encoding/json"
-	"github.com/jinzhu/gorm"
-	"time"
 	"yixiang.co/go-mall/app/models/dto"
 )
 
@@ -20,11 +18,14 @@ type YshopStoreProductRule struct {
 	BaseModel
 }
 
+func (YshopStoreProductRule) TableName() string  {
+	return "yshop_store_product_rule"
+}
 
 // get all
-func GetAllProductRule(pageNUm int,pageSize int,maps interface{}) (int, []dto.ProductRule) {
+func GetAllProductRule(pageNUm int,pageSize int,maps interface{}) (int64, []dto.ProductRule) {
 	var (
-		total int
+		total int64
 		data      []YshopStoreProductRule
 		retData   []dto.ProductRule
 	)
@@ -78,13 +79,3 @@ func DelByProductRulee(ids []int64) error {
 	return err
 }
 
-func (u *YshopStoreProductRule) BeforeCreate(scope *gorm.Scope) error  {
-	scope.SetColumn("CreateTime",time.Now())
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
-
-func (u *YshopStoreProductRule) BeforeUpdate(scope *gorm.Scope) error  {
-	scope.SetColumn("UpdateTime",time.Now())
-	return nil
-}
