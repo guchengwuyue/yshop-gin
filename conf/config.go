@@ -5,4 +5,5 @@ type Config struct {
 	Database Database `mapstructure:"database" yaml:"database"`
 	Redis Redis `mapstructure:"redis" yaml:"redis"`
 	Server Server `mapstructure:"server" yaml:"server"`
+	Zap Zap `mapstructure:"zap" yaml:"zap"`
 }

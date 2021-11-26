@@ -34,3 +34,9 @@ redis:
   max_idle: 30
   max_active: 30
   idle_timeout: 200
+
+zap:
+  log-filepath: 'runtime/logs'
+  log-info-filename: 'info'
+  log-warn-filename: 'warn'
+  log-fiile-ext: 'log'

@@ -23,6 +23,8 @@ require (
 	github.com/jinzhu/copier v0.3.2
 	github.com/jinzhu/now v1.1.3 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
+	github.com/lestrrat/go-file-rotatelogs v0.0.0-20180223000712-d3151e2a480f
+	github.com/lestrrat/go-strftime v0.0.0-20180220042222-ba3bf9c1d042 // indirect
 	github.com/magiconair/properties v1.8.5 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect

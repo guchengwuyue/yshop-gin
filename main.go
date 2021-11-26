@@ -17,6 +17,7 @@ import (
 
 func init() {
 	global.YSHOP_VP = base.Viper()
+	global.YSHOP_LOG = base.SetupLogger()
 	models.Setup()
 	logging.Setup()
 	redis.Setup()
@@ -44,8 +45,9 @@ func main() {
 	}
 
 
-
+	global.YSHOP_LOG.Info("[info] start http server listening %s",endPoint)
 	log.Printf("[info] start http server listening %s", endPoint)
+	fmt.Printf("欢迎使用yshop-gin,官网地址：https://www.yixiang.co")
 
 	server.ListenAndServe()
 
