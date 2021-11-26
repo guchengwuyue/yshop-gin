@@ -19,17 +19,6 @@ import (
 	"yixiang.co/go-mall/pkg/util"
 )
 
-//
-//import (
-//	"encoding/json"
-//	"github.com/beego/beego/v2/core/logs"
-//	beego "github.com/beego/beego/v2/server/web"
-//	"yixiang.co/yshop/common/jwt"
-//	"yixiang.co/yshop/controllers"
-//	"yixiang.co/yshop/models"
-//	"yixiang.co/yshop/models/vo"
-//)
-//
 // 素材api
 type MaterialController struct {
 }
@@ -175,20 +164,5 @@ func (e *MaterialController) Upload(c *gin.Context) {
 	//imageSaveUrl := avePath + imageName
 
 	appG.Response(http.StatusOK, constant.SUCCESS, imageUrl)
-	//logs.Info("======file start======")
-	//f, h, err := c.GetFile("file")
-	//if err != nil {
-	//	logs.Error(err)
-	//}
-	//defer f.Close()
-	//var path = "static/upload/" + h.Filename
-	//e := c.SaveToFile("file", path) // 保存位置在 static/upload, 没有文件夹要先创建
-	//logs.Error(e)
-	//if e != nil {
-	//	c.Fail(e.Error(), 5009)
-	//}
-	//apiUrl, _ := beego.AppConfig.String("api_url")
-	//imgUrl := apiUrl + "/" + path
-	//
-	//c.Ok(imgUrl)
+
 }

@@ -8,14 +8,14 @@ import (
 	"path"
 	"strings"
 	"yixiang.co/go-mall/pkg/file"
+	"yixiang.co/go-mall/pkg/global"
 	"yixiang.co/go-mall/pkg/logging"
-	"yixiang.co/go-mall/pkg/setting"
 	"yixiang.co/go-mall/pkg/util"
 )
 
 // GetImageFullUrl get the full access path
 func GetImageFullUrl(name string) string {
-	return setting.AppSetting.PrefixUrl + "/" + GetImagePath() + name
+	return global.YSHOP_CONFIG.App.PrefixUrl + "/" + GetImagePath() + name
 }
 
 // GetImageName get image name
@@ -29,18 +29,18 @@ func GetImageName(name string) string {
 
 // GetImagePath get save path
 func GetImagePath() string {
-	return setting.AppSetting.ImageSavePath
+	return global.YSHOP_CONFIG.App.ImageSavePath
 }
 
 // GetImageFullPath get full save path
 func GetImageFullPath() string {
-	return setting.AppSetting.RuntimeRootPath + GetImagePath()
+	return global.YSHOP_CONFIG.App.RuntimeRootPath + GetImagePath()
 }
 
 // CheckImageExt check image file ext
 func CheckImageExt(fileName string) bool {
 	ext := file.GetExt(fileName)
-	for _, allowExt := range setting.AppSetting.ImageAllowExts {
+	for _, allowExt := range global.YSHOP_CONFIG.App.ImageAllowExts {
 		if strings.ToUpper(allowExt) == strings.ToUpper(ext) {
 			return true
 		}
@@ -58,7 +58,7 @@ func CheckImageSize(f multipart.File) bool {
 		return false
 	}
 
-	return size <= setting.AppSetting.ImageMaxSize
+	return size <= global.YSHOP_CONFIG.App.ImageMaxSize
 }
 
 // CheckImage check if the file exists

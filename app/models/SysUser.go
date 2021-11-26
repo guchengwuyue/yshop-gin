@@ -40,20 +40,31 @@ func (SysUser) TableName() string  {
 
 func FindByUserId(id int64) ([]string, error) {
 	var roles []SysRole
-	db.Model(&SysRole{}).Preload("Users","sys_user_id = ?",id).Preload("Menus").Find(&roles)
+	var roleIds []int64
+	db.Raw("SELECT r.* FROM sys_role r, sys_users_roles u WHERE r.id = u.sys_role_id AND u.sys_user_id = ?",id).Scan(&roles)
+	for _,role := range roles {
+		roleIds = append(roleIds, role.Id)
+	}
+	var rolesMenus []SysRolesMenus
+	var menuIds []int64
+	db.Table("sys_roles_menus").Where("sys_role_id in (?)",roleIds).Find(&rolesMenus)
+	for _,roleMenu := range rolesMenus {
+		menuIds = append(menuIds, roleMenu.MenuId)
+	}
+    var menus []SysMenu
+	db.Table("sys_menu").Where("id in (?)",menuIds).Find(&menus)
 
 	logging.Info(roles)
 	var permissions []string
 
-	for _, v := range roles {
-		menus := v.Menus
-		for _, m := range menus {
-			if m.Permission == "" {
-				continue
-			}
-			permissions = append(permissions, m.Permission)
+
+	for _, m := range menus {
+		if m.Permission == "" {
+			continue
 		}
+		permissions = append(permissions, m.Permission)
 	}
+
 
 	return permissions, nil
 }

@@ -3,7 +3,7 @@ package util
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
-	"yixiang.co/go-mall/pkg/setting"
+	"yixiang.co/go-mall/pkg/global"
 )
 
 func GetPage(c *gin.Context) int  {
@@ -13,7 +13,7 @@ func GetPage(c *gin.Context) int  {
 	page = page + 1
 
 	if page > 0 {
-		result = (page - 1) * setting.AppSetting.PageSize
+		result = (page - 1) * global.YSHOP_CONFIG.App.PageSize
 	}
 
 	return result
@@ -26,7 +26,7 @@ func GetSize(c *gin.Context) int  {
 	if size > 0 {
 		result = size
 	}else{
-		result = setting.AppSetting.PageSize
+		result = global.YSHOP_CONFIG.App.PageSize
 	}
 
 	return result

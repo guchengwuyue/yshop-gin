@@ -11,13 +11,13 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"gorm.io/plugin/soft_delete"
+	"yixiang.co/go-mall/pkg/global"
 
 	//"gorm.io/plugin/soft_delete"
 	"log"
 	"os"
 	"time"
 	"yixiang.co/go-mall/pkg/casbin"
-	"yixiang.co/go-mall/pkg/setting"
 )
 
 var db *gorm.DB
@@ -34,10 +34,10 @@ type BaseModel struct {
 func Setup() {
 	var err error
 	var connStr = fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local",
-		setting.DatabaseSetting.User,
-		setting.DatabaseSetting.Password,
-		setting.DatabaseSetting.Host,
-		setting.DatabaseSetting.Name)
+		global.YSHOP_CONFIG.Database.User,
+		global.YSHOP_CONFIG.Database.Password,
+		global.YSHOP_CONFIG.Database.Host,
+		global.YSHOP_CONFIG.Database.Name)
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer（日志输出的目标，前缀和日志包含的内容——译者注）
 		logger.Config{
@@ -69,6 +69,8 @@ func Setup() {
 
 	// SetConnMaxLifetime 设置了连接可复用的最大时间。
 	sqlDB.SetConnMaxLifetime(time.Hour)
+
+	global.YSHOP_DB = db
 
 	casbin.InitCasbin(db)
 

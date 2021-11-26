@@ -1,0 +1,36 @@
+server:
+  run-mode: 'debug'
+  http-port: 8000
+  read-timeout: 60
+  write-timeout: 60
+app:
+  page-size: 10
+  jwt-secret: go-mall
+  prefix-url: 'http://127.0.0.1:8000'
+  runtime-root-path: 'runtime/'
+  image-save-path: 'upload/images/'
+  # MB
+  image-max-size: 5242880
+  image-allow-exts: ['.jpg','.jpeg','.png']
+  export-save-path: 'export/'
+  qrcode-save-path: 'qrcode/'
+  font-save-path: 'fonts/'
+  log-save-path: 'logs/'
+  Log-save-name: 'log'
+  Log-file-ext: 'log'
+  time-format: 20060102
+
+database:
+  type: 'mysql'
+  user: 'root'
+  password: 'root'
+  host: '127.0.0.1:3306'
+  name: 'yshop_go'
+  table_prefix:
+
+redis:
+  host: '127.0.0.1:6379'
+  password:
+  max_idle: 30
+  max_active: 30
+  idle_timeout: 200

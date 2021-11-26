@@ -5,7 +5,7 @@ import (
 	"github.com/boombuler/barcode/qr"
 	"image/jpeg"
 	"yixiang.co/go-mall/pkg/file"
-	"yixiang.co/go-mall/pkg/setting"
+	"yixiang.co/go-mall/pkg/global"
 	"yixiang.co/go-mall/pkg/util"
 )
 
@@ -36,17 +36,17 @@ func NewQrCode(url string, width, height int, level qr.ErrorCorrectionLevel, mod
 
 // GetQrCodePath get save path
 func GetQrCodePath() string {
-	return setting.AppSetting.QrCodeSavePath
+	return global.YSHOP_CONFIG.App.QrCodeSavePath
 }
 
 // GetQrCodeFullPath get full save path
 func GetQrCodeFullPath() string {
-	return setting.AppSetting.RuntimeRootPath + setting.AppSetting.QrCodeSavePath
+	return global.YSHOP_CONFIG.App.RuntimeRootPath + global.YSHOP_CONFIG.App.QrCodeSavePath
 }
 
 // GetQrCodeFullUrl get the full access path
 func GetQrCodeFullUrl(name string) string {
-	return setting.AppSetting.PrefixUrl + "/" + GetQrCodePath() + name
+	return global.YSHOP_CONFIG.App.PrefixUrl + "/" + GetQrCodePath() + name
 }
 
 // GetQrCodeFileName get qr file name

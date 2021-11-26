@@ -5,16 +5,18 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
+	"time"
 	"yixiang.co/go-mall/app/models"
+	"yixiang.co/go-mall/pkg/base"
+	"yixiang.co/go-mall/pkg/global"
 	"yixiang.co/go-mall/pkg/jwt"
 	"yixiang.co/go-mall/pkg/logging"
 	"yixiang.co/go-mall/pkg/redis"
-	"yixiang.co/go-mall/pkg/setting"
 	"yixiang.co/go-mall/routers"
 )
 
 func init() {
-	setting.Setup()
+	global.YSHOP_VP = base.Viper()
 	models.Setup()
 	logging.Setup()
 	redis.Setup()
@@ -27,21 +29,21 @@ func init() {
 // @termsOfService https://gitee.com/guchengwuyue/gin-shop
 // @license.name apache2
 func main() {
-	gin.SetMode(setting.ServerSetting.RunMode)
+	gin.SetMode(global.YSHOP_CONFIG.Server.RunMode)
 
 	routersInit := routers.InitRouter()
-	readTimeout := setting.ServerSetting.ReadTimeout
-	writeTimeout := setting.ServerSetting.WriteTimeout
-	endPoint := fmt.Sprintf(":%d", setting.ServerSetting.HttpPort)
+	endPoint := fmt.Sprintf(":%d", global.YSHOP_CONFIG.Server.HttpPort)
 	maxHeaderBytes := 1 << 20
 
 	server := &http.Server{
 		Addr:           endPoint,
 		Handler:        routersInit,
-		ReadTimeout:    readTimeout,
-		WriteTimeout:   writeTimeout,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: maxHeaderBytes,
 	}
+
+
 
 	log.Printf("[info] start http server listening %s", endPoint)
 

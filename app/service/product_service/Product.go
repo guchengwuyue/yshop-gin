@@ -76,6 +76,7 @@ func (d *Product) AddOrSaveProduct() (err error) {
 		productId = model.Id
 	}
 
+
 	//sku处理
 	if m.SpecType == productEnum.SEPC_TYPE_0 {
 		list1 := []string{"默认"}

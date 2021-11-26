@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"github.com/gomodule/redigo/redis"
 	"time"
-	"yixiang.co/go-mall/pkg/setting"
+	"yixiang.co/go-mall/pkg/global"
 )
 
 var RedisConn *redis.Pool
@@ -12,16 +12,16 @@ var RedisConn *redis.Pool
 // Setup Initialize the Redis instance
 func Setup() error {
 	RedisConn = &redis.Pool{
-		MaxIdle:     setting.RedisSetting.MaxIdle,
-		MaxActive:   setting.RedisSetting.MaxActive,
-		IdleTimeout: setting.RedisSetting.IdleTimeout,
+		MaxIdle:     global.YSHOP_CONFIG.Redis.MaxIdle,
+		MaxActive:   global.YSHOP_CONFIG.Redis.MaxActive,
+		IdleTimeout: global.YSHOP_CONFIG.Redis.IdleTimeout * time.Second,
 		Dial: func() (redis.Conn, error) {
-			c, err := redis.Dial("tcp", setting.RedisSetting.Host)
+			c, err := redis.Dial("tcp", global.YSHOP_CONFIG.Redis.Host)
 			if err != nil {
 				return nil, err
 			}
-			if setting.RedisSetting.Password != "" {
-				if _, err := c.Do("AUTH", setting.RedisSetting.Password); err != nil {
+			if global.YSHOP_CONFIG.Redis.Password != "" {
+				if _, err := c.Do("AUTH", global.YSHOP_CONFIG.Redis.Password); err != nil {
 					c.Close()
 					return nil, err
 				}

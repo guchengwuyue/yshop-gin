@@ -12,9 +12,9 @@ import (
 	"yixiang.co/go-mall/app/models"
 	"yixiang.co/go-mall/app/models/vo"
 	"yixiang.co/go-mall/pkg/constant"
+	"yixiang.co/go-mall/pkg/global"
 	"yixiang.co/go-mall/pkg/logging"
 	"yixiang.co/go-mall/pkg/redis"
-	"yixiang.co/go-mall/pkg/setting"
 )
 
 var jwtSecret []byte
@@ -34,7 +34,7 @@ type userStdClaims struct {
 }
 
 func Setup() {
-	jwtSecret = []byte(setting.AppSetting.JwtSecret)
+	jwtSecret = []byte(global.YSHOP_CONFIG.App.JwtSecret)
 }
 
 func GenerateToken(m *models.SysUser, d time.Duration) (string, error) {
