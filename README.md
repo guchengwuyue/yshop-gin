@@ -71,7 +71,7 @@ yshop-gin意象商城后台管理系统(目前版本v1.0)基于当前流行技�
 
 6、导入sql/yshop_go.sql,修改conf/app.ini 里数据库与redis配置
 
-7、本地运行air -c .air.conf 启动即可
+7、本地运行air -c .air.conf 启动即可，如果没有安装air的 直接go run main,go即可
 
 8、线上部署： go build  打包然后上传服务器命令： nohup ./go-mall & 
 
