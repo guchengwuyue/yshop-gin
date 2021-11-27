@@ -6,3 +6,4 @@ yshop
 *.exe
 yshop.tar.gz
 go-mall.iml
+tmp/

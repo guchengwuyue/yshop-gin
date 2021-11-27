@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"time"
+	"yixiang.co/go-mall/app/listen"
 	"yixiang.co/go-mall/app/models"
 	"yixiang.co/go-mall/pkg/base"
 	"yixiang.co/go-mall/pkg/global"
@@ -22,6 +23,7 @@ func init() {
 	logging.Setup()
 	redis.Setup()
 	jwt.Setup()
+	listen.Setup()
 }
 
 // @title gin-shop  API
@@ -47,7 +49,8 @@ func main() {
 
 	global.YSHOP_LOG.Info("[info] start http server listening %s",endPoint)
 	log.Printf("[info] start http server listening %s", endPoint)
-	fmt.Printf("欢迎使用yshop-gin,官网地址：https://www.yixiang.co")
+	fmt.Printf("欢迎使用yshop-gin,官网地址：https://www.yixiang.co\n")
+
 
 	server.ListenAndServe()
 
