@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 16/11/2021 16:16:46
+ Date: 18/12/2021 11:10:55
 */
 
 SET NAMES utf8mb4;
@@ -22,60 +22,105 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `casbin_rule`;
 CREATE TABLE `casbin_rule` (
-  `p_type` varchar(100) DEFAULT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `ptype` varchar(100) DEFAULT NULL,
   `v0` varchar(100) DEFAULT NULL,
   `v1` varchar(100) DEFAULT NULL,
   `v2` varchar(100) DEFAULT NULL,
   `v3` varchar(100) DEFAULT NULL,
   `v4` varchar(100) DEFAULT NULL,
-  `v5` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `v5` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_casbin_rule` (`ptype`,`v0`,`v1`,`v2`,`v3`,`v4`,`v5`)
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of casbin_rule
 -- ----------------------------
 BEGIN;
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/user', 'get', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/user', 'post', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/user', 'put', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/user', 'delete', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/auth/logout', 'delete', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/user/updateAvatar', 'post', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/auth/info', 'get', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/roles', 'get', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/roles', 'post', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/roles', 'put', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/roles/*', 'get', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/roles/menu', 'put', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/menu/tree', 'get', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/roles', 'delete', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/menu', 'get', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/menu', 'post', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/menu', 'put', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/menu', 'delete', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/dept', 'get', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/dept', 'post', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/dept', 'delete', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/job', 'get', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/job', 'post', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/job', 'put', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/job', 'delete', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/dict', 'get', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/dict', 'post', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/dict', 'put', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '22', '/admin/dict', 'delete', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', 'common', '/admin/dept', 'get', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', 'common', '/admin/dept', 'post', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', 'common', '/admin/dept', 'put', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', 'common', '/admin/dept', 'delete', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', 'common', '/admin/job', 'get', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', 'common', '/admin/job', 'post', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', 'common', '/admin/job', 'put', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', 'common', '/admin/job', 'delete', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', 'common', '/admin/dictDetail', 'get', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', 'common', '/admin/dictDetail', 'delete', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', 'common', '/admin/dictDetail', 'put', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', 'common', '/admin/dictDetail', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (55, 'p', 'admin', '/admin/auth/info', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (53, 'p', 'admin', '/admin/auth/logout', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (70, 'p', 'admin', '/admin/dept', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (67, 'p', 'admin', '/admin/dept', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (68, 'p', 'admin', '/admin/dept', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (69, 'p', 'admin', '/admin/dept', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (78, 'p', 'admin', '/admin/dict', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (75, 'p', 'admin', '/admin/dict', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (76, 'p', 'admin', '/admin/dict', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (77, 'p', 'admin', '/admin/dict', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (81, 'p', 'admin', '/admin/dictDetail', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (80, 'p', 'admin', '/admin/dictDetail', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (82, 'p', 'admin', '/admin/dictDetail', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (83, 'p', 'admin', '/admin/dictDetail', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (74, 'p', 'admin', '/admin/job', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (71, 'p', 'admin', '/admin/job', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (72, 'p', 'admin', '/admin/job', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (73, 'p', 'admin', '/admin/job', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (79, 'p', 'admin', '/admin/logs', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (66, 'p', 'admin', '/admin/menu', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (63, 'p', 'admin', '/admin/menu', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (64, 'p', 'admin', '/admin/menu', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (65, 'p', 'admin', '/admin/menu', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (61, 'p', 'admin', '/admin/menu/tree', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (62, 'p', 'admin', '/admin/roles', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (56, 'p', 'admin', '/admin/roles', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (57, 'p', 'admin', '/admin/roles', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (58, 'p', 'admin', '/admin/roles', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (59, 'p', 'admin', '/admin/roles/*', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (60, 'p', 'admin', '/admin/roles/menu', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (52, 'p', 'admin', '/admin/user', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (49, 'p', 'admin', '/admin/user', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (50, 'p', 'admin', '/admin/user', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (51, 'p', 'admin', '/admin/user', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (54, 'p', 'admin', '/admin/user/updateAvatar', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (30, 'p', 'admin', '/shop/cate', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (27, 'p', 'admin', '/shop/cate', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (28, 'p', 'admin', '/shop/cate', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (29, 'p', 'admin', '/shop/cate', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (35, 'p', 'admin', '/shop/product', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (36, 'p', 'admin', '/shop/product/*', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (39, 'p', 'admin', '/shop/product/addOrSave', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (37, 'p', 'admin', '/shop/product/info/*', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (38, 'p', 'admin', '/shop/product/onsale/*', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (34, 'p', 'admin', '/shop/rule', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (31, 'p', 'admin', '/shop/rule', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (33, 'p', 'admin', '/shop/rule', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (32, 'p', 'admin', '/shop/rule/save/*', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (46, 'p', 'admin', '/wechat/msg', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (45, 'p', 'admin', '/weixin/article', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (44, 'p', 'admin', '/weixin/article', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (47, 'p', 'admin', '/weixin/article', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (48, 'p', 'admin', '/weixin/article', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (43, 'p', 'admin', '/weixin/menu', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (41, 'p', 'admin', '/weixin/user', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (42, 'p', 'admin', '/weixin/user', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (40, 'p', 'admin', 'product', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (4, 'p', 'common', '/admin/dept', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (1, 'p', 'common', '/admin/dept', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (2, 'p', 'common', '/admin/dept', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (3, 'p', 'common', '/admin/dept', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (10, 'p', 'common', '/admin/dictDetail', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (9, 'p', 'common', '/admin/dictDetail', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (12, 'p', 'common', '/admin/dictDetail', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (11, 'p', 'common', '/admin/dictDetail', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (8, 'p', 'common', '/admin/job', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (5, 'p', 'common', '/admin/job', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (6, 'p', 'common', '/admin/job', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (7, 'p', 'common', '/admin/job', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (16, 'p', 'test', '/shop/cate', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (13, 'p', 'test', '/shop/cate', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (14, 'p', 'test', '/shop/cate', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (15, 'p', 'test', '/shop/cate', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (21, 'p', 'test', '/shop/product', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (22, 'p', 'test', '/shop/product/*', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (25, 'p', 'test', '/shop/product/addOrSave', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (23, 'p', 'test', '/shop/product/info/*', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (24, 'p', 'test', '/shop/product/onsale/*', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (20, 'p', 'test', '/shop/rule', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (17, 'p', 'test', '/shop/rule', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (19, 'p', 'test', '/shop/rule', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (18, 'p', 'test', '/shop/rule/save/*', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (26, 'p', 'test', 'product', 'put', '', '', '');
 COMMIT;
 
 -- ----------------------------
@@ -109,7 +154,7 @@ INSERT INTO `sys_dept` VALUES (13, '333', 1, 0, '2021-02-26 14:28:26', '2021-02-
 INSERT INTO `sys_dept` VALUES (14, '9922', 13, 1, '2021-02-26 15:05:05', '2021-02-26 14:29:17', 1);
 INSERT INTO `sys_dept` VALUES (15, '44', 1, 1, '2021-05-25 14:42:26', '2021-05-25 14:42:26', 1);
 INSERT INTO `sys_dept` VALUES (16, '111', 1, 1, '2021-09-05 15:55:42', '2021-09-05 15:55:42', 1);
-INSERT INTO `sys_dept` VALUES (17, 'aaaa', 1, 0, '2021-11-11 16:56:57', '2021-11-16 14:28:33', 0);
+INSERT INTO `sys_dept` VALUES (17, 'aaaa', 1, 0, '2021-11-11 16:56:57', '2021-11-16 14:28:33', 1);
 INSERT INTO `sys_dept` VALUES (18, 'bbbb4', 17, 1, '2021-11-11 16:57:14', '2021-11-11 16:57:14', 1);
 COMMIT;
 
@@ -138,8 +183,8 @@ INSERT INTO `sys_dict` VALUES (6, '33', '3', '2020-05-18 19:55:49', NULL, 1);
 INSERT INTO `sys_dict` VALUES (16, 'force_update', '强制升级', '2020-12-09 11:13:21', NULL, 0);
 INSERT INTO `sys_dict` VALUES (17, 'is_enable', '是否启用', '2020-12-10 12:02:57', NULL, 0);
 INSERT INTO `sys_dict` VALUES (18, 'sex2', '性别', '2021-02-23 15:20:40', '2021-02-23 14:12:04', 0);
-INSERT INTO `sys_dict` VALUES (19, 'sex4', '性别', '2021-02-23 15:20:20', '2021-02-23 14:14:29', 0);
-INSERT INTO `sys_dict` VALUES (20, '4', '', '2021-07-19 17:22:47', '2021-05-25 14:48:05', 0);
+INSERT INTO `sys_dict` VALUES (19, 'sex4', '性别', '2021-02-23 15:20:20', '2021-02-23 14:14:29', 1);
+INSERT INTO `sys_dict` VALUES (20, '4', '', '2021-07-19 17:22:47', '2021-05-25 14:48:05', 1);
 INSERT INTO `sys_dict` VALUES (21, '6', '', '2021-07-19 16:25:15', '2021-07-19 16:25:15', 0);
 INSERT INTO `sys_dict` VALUES (22, '7', '', '2021-07-19 16:26:43', '2021-07-19 16:26:43', 0);
 INSERT INTO `sys_dict` VALUES (23, '7', '', '2021-07-19 16:44:01', '2021-11-12 13:22:00', 1);
@@ -231,7 +276,7 @@ CREATE TABLE `sys_log` (
   `update_time` datetime DEFAULT NULL,
   `is_del` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1600 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='系统日志';
+) ENGINE=InnoDB AUTO_INCREMENT=2183 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='系统日志';
 
 -- ----------------------------
 -- Records of sys_log
@@ -1697,6 +1742,589 @@ INSERT INTO `sys_log` VALUES (1596, '2021-11-16 15:47:59', '用户个人信息',
 INSERT INTO `sys_log` VALUES (1597, '2021-11-16 15:48:00', '', 'get', '127.0.0.1', 3357, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-16 15:48:00', 0);
 INSERT INTO `sys_log` VALUES (1598, '2021-11-16 15:49:04', '用户个人信息', 'get', '127.0.0.1', 316, 'admin', '/admin/auth/info', '', 0, 1, '2021-11-16 15:49:04', 0);
 INSERT INTO `sys_log` VALUES (1599, '2021-11-16 15:49:04', '', 'get', '127.0.0.1', 5682, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-16 15:49:04', 0);
+INSERT INTO `sys_log` VALUES (1600, '2021-11-16 16:19:25', '用户个人信息', 'get', '127.0.0.1', 1437, 'admin', '/admin/auth/info', '', 0, 1, '2021-11-16 16:19:25', 0);
+INSERT INTO `sys_log` VALUES (1601, '2021-11-16 16:19:25', '', 'get', '127.0.0.1', 90985, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-16 16:19:25', 0);
+INSERT INTO `sys_log` VALUES (1602, '2021-11-16 16:19:25', '用户个人信息', 'get', '127.0.0.1', 363, 'admin', '/admin/auth/info', '', 0, 1, '2021-11-16 16:19:25', 0);
+INSERT INTO `sys_log` VALUES (1603, '2021-11-16 16:19:25', '', 'get', '127.0.0.1', 4838, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-16 16:19:25', 0);
+INSERT INTO `sys_log` VALUES (1604, '2021-11-16 16:19:29', '商品分类', 'get', '127.0.0.1', 909, 'admin', '/shop/cate', '', 0, 1, '2021-11-16 16:19:29', 0);
+INSERT INTO `sys_log` VALUES (1605, '2021-11-16 16:19:30', '商品分类', 'get', '127.0.0.1', 523, 'admin', '/shop/cate', '', 0, 1, '2021-11-16 16:19:30', 0);
+INSERT INTO `sys_log` VALUES (1606, '2021-11-16 16:19:33', '分类修改', 'put', '127.0.0.1', 1334, 'admin', '/shop/cate', '', 0, 1, '2021-11-16 16:19:33', 0);
+INSERT INTO `sys_log` VALUES (1607, '2021-11-16 16:19:33', '商品分类', 'get', '127.0.0.1', 660, 'admin', '/shop/cate', '', 0, 1, '2021-11-16 16:19:33', 0);
+INSERT INTO `sys_log` VALUES (1608, '2021-11-16 16:34:22', '', 'get', '127.0.0.1', 2380, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-16 16:34:22', 0);
+INSERT INTO `sys_log` VALUES (1609, '2021-11-16 16:34:22', '商品分类', 'get', '127.0.0.1', 575, 'admin', '/shop/cate', '', 0, 1, '2021-11-16 16:34:22', 0);
+INSERT INTO `sys_log` VALUES (1610, '2021-11-16 16:36:04', '用户个人信息', 'get', '127.0.0.1', 757, 'admin', '/admin/auth/info', '', 0, 1, '2021-11-16 16:36:04', 0);
+INSERT INTO `sys_log` VALUES (1611, '2021-11-16 16:36:04', '', 'get', '127.0.0.1', 2279, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-16 16:36:04', 0);
+INSERT INTO `sys_log` VALUES (1612, '2021-11-16 16:36:04', '用户个人信息', 'get', '127.0.0.1', 319, 'admin', '/admin/auth/info', '', 0, 1, '2021-11-16 16:36:04', 0);
+INSERT INTO `sys_log` VALUES (1613, '2021-11-16 16:36:05', '', 'get', '127.0.0.1', 3705, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-16 16:36:05', 0);
+INSERT INTO `sys_log` VALUES (1614, '2021-11-16 16:36:05', '商品分类', 'get', '127.0.0.1', 713, 'admin', '/shop/cate', '', 0, 1, '2021-11-16 16:36:05', 0);
+INSERT INTO `sys_log` VALUES (1615, '2021-11-16 16:37:19', '', 'get', '127.0.0.1', 2480, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-16 16:37:19', 0);
+INSERT INTO `sys_log` VALUES (1616, '2021-11-16 16:37:20', '商品分类', 'get', '127.0.0.1', 896, 'admin', '/shop/cate', '', 0, 1, '2021-11-16 16:37:20', 0);
+INSERT INTO `sys_log` VALUES (1617, '2021-11-16 16:37:25', '用户退出', 'delete', '127.0.0.1', 350, 'admin', '/admin/auth/logout', '', 0, 1, '2021-11-16 16:37:25', 0);
+INSERT INTO `sys_log` VALUES (1618, '2021-11-19 15:44:39', '商品分类', 'get', '127.0.0.1', 902, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 15:44:39', 0);
+INSERT INTO `sys_log` VALUES (1619, '2021-11-19 15:44:45', '新增分类', 'post', '127.0.0.1', 3430, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 15:44:45', 0);
+INSERT INTO `sys_log` VALUES (1620, '2021-11-19 15:44:45', '商品分类', 'get', '127.0.0.1', 561, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 15:44:45', 0);
+INSERT INTO `sys_log` VALUES (1621, '2021-11-19 15:46:03', '商品分类', 'get', '127.0.0.1', 561, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 15:46:03', 0);
+INSERT INTO `sys_log` VALUES (1622, '2021-11-19 15:46:06', '分类修改', 'put', '127.0.0.1', 1233, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 15:46:06', 0);
+INSERT INTO `sys_log` VALUES (1623, '2021-11-19 15:46:06', '商品分类', 'get', '127.0.0.1', 417, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 15:46:06', 0);
+INSERT INTO `sys_log` VALUES (1624, '2021-11-19 15:47:28', '商品规格', 'get', '127.0.0.1', 4094, 'admin', '/shop/rule', '', 0, 1, '2021-11-19 15:47:28', 0);
+INSERT INTO `sys_log` VALUES (1625, '2021-11-19 15:50:07', '用户退出', 'delete', '127.0.0.1', 902, 'admin', '/admin/auth/logout', '', 0, 1, '2021-11-19 15:50:07', 0);
+INSERT INTO `sys_log` VALUES (1626, '2021-11-19 15:50:12', '', 'get', '127.0.0.1', 1584, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-19 15:50:12', 0);
+INSERT INTO `sys_log` VALUES (1627, '2021-11-19 15:50:12', '商品规格', 'get', '127.0.0.1', 1189, 'admin', '/shop/rule', '', 0, 1, '2021-11-19 15:50:12', 0);
+INSERT INTO `sys_log` VALUES (1628, '2021-11-19 15:52:55', '商品分类', 'get', '127.0.0.1', 686, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 15:52:55', 0);
+INSERT INTO `sys_log` VALUES (1629, '2021-11-19 15:53:41', '管理商品', 'get', '127.0.0.1', 5841, 'admin', '/shop/product', '', 0, 1, '2021-11-19 15:53:41', 0);
+INSERT INTO `sys_log` VALUES (1630, '2021-11-19 15:53:41', '管理商品', 'get', '127.0.0.1', 7250, 'admin', '/shop/product', '', 0, 1, '2021-11-19 15:53:41', 0);
+INSERT INTO `sys_log` VALUES (1631, '2021-11-19 15:53:52', '商品信息', 'get', '127.0.0.1', 13206, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-19 15:53:52', 0);
+INSERT INTO `sys_log` VALUES (1632, '2021-11-19 15:53:52', '', 'post', '127.0.0.1', 17639, 'admin', '/shop/product/isFormatAttr/*', '', 0, 1, '2021-11-19 15:53:52', 0);
+INSERT INTO `sys_log` VALUES (1633, '2021-11-19 15:53:55', '商品新增', 'post', '127.0.0.1', 13212, 'admin', '/shop/product/addOrSave', '', 0, 1, '2021-11-19 15:53:55', 0);
+INSERT INTO `sys_log` VALUES (1634, '2021-11-19 15:56:42', '商品新增', 'post', '127.0.0.1', 12868, 'admin', '/shop/product/addOrSave', '', 0, 1, '2021-11-19 15:56:42', 0);
+INSERT INTO `sys_log` VALUES (1635, '2021-11-19 15:59:23', '商品分类', 'get', '127.0.0.1', 663, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 15:59:23', 0);
+INSERT INTO `sys_log` VALUES (1636, '2021-11-19 15:59:27', '商品规格', 'get', '127.0.0.1', 1076, 'admin', '/shop/rule', '', 0, 1, '2021-11-19 15:59:27', 0);
+INSERT INTO `sys_log` VALUES (1637, '2021-11-19 16:01:54', '商品分类', 'get', '127.0.0.1', 517, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 16:01:54', 0);
+INSERT INTO `sys_log` VALUES (1638, '2021-11-19 16:01:56', '管理商品', 'get', '127.0.0.1', 1928, 'admin', '/shop/product', '', 0, 1, '2021-11-19 16:01:56', 0);
+INSERT INTO `sys_log` VALUES (1639, '2021-11-19 16:01:56', '管理商品', 'get', '127.0.0.1', 2768, 'admin', '/shop/product', '', 0, 1, '2021-11-19 16:01:56', 0);
+INSERT INTO `sys_log` VALUES (1640, '2021-11-19 16:03:00', '商品信息', 'get', '127.0.0.1', 2988, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-19 16:03:00', 0);
+INSERT INTO `sys_log` VALUES (1641, '2021-11-19 16:03:01', '', 'post', '127.0.0.1', 57, 'admin', '/shop/product/isFormatAttr/*', '', 0, 1, '2021-11-19 16:03:01', 0);
+INSERT INTO `sys_log` VALUES (1642, '2021-11-19 16:03:09', '管理商品', 'get', '127.0.0.1', 2597, 'admin', '/shop/product', '', 0, 1, '2021-11-19 16:03:09', 0);
+INSERT INTO `sys_log` VALUES (1643, '2021-11-19 16:03:09', '管理商品', 'get', '127.0.0.1', 2613, 'admin', '/shop/product', '', 0, 1, '2021-11-19 16:03:09', 0);
+INSERT INTO `sys_log` VALUES (1644, '2021-11-19 16:03:12', '商品信息', 'get', '127.0.0.1', 2725, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-19 16:03:12', 0);
+INSERT INTO `sys_log` VALUES (1645, '2021-11-19 16:03:12', '', 'post', '127.0.0.1', 32, 'admin', '/shop/product/isFormatAttr/*', '', 0, 1, '2021-11-19 16:03:12', 0);
+INSERT INTO `sys_log` VALUES (1646, '2021-11-19 16:03:39', '管理商品', 'get', '127.0.0.1', 1538, 'admin', '/shop/product', '', 0, 1, '2021-11-19 16:03:39', 0);
+INSERT INTO `sys_log` VALUES (1647, '2021-11-19 16:03:39', '管理商品', 'get', '127.0.0.1', 2074, 'admin', '/shop/product', '', 0, 1, '2021-11-19 16:03:39', 0);
+INSERT INTO `sys_log` VALUES (1648, '2021-11-19 16:03:42', '商品信息', 'get', '127.0.0.1', 1894, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-19 16:03:42', 0);
+INSERT INTO `sys_log` VALUES (1649, '2021-11-19 16:03:42', '', 'post', '127.0.0.1', 1711, 'admin', '/shop/product/isFormatAttr/*', '', 0, 1, '2021-11-19 16:03:42', 0);
+INSERT INTO `sys_log` VALUES (1650, '2021-11-19 16:03:50', '管理商品', 'get', '127.0.0.1', 1324, 'admin', '/shop/product', '', 0, 1, '2021-11-19 16:03:50', 0);
+INSERT INTO `sys_log` VALUES (1651, '2021-11-19 16:03:50', '管理商品', 'get', '127.0.0.1', 1759, 'admin', '/shop/product', '', 0, 1, '2021-11-19 16:03:50', 0);
+INSERT INTO `sys_log` VALUES (1652, '2021-11-19 16:04:51', '商品信息', 'get', '127.0.0.1', 2078, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-19 16:04:51', 0);
+INSERT INTO `sys_log` VALUES (1653, '2021-11-19 16:04:51', '', 'post', '127.0.0.1', 56, 'admin', '/shop/product/isFormatAttr/*', '', 0, 1, '2021-11-19 16:04:51', 0);
+INSERT INTO `sys_log` VALUES (1654, '2021-11-19 16:07:25', '管理商品', 'get', '127.0.0.1', 1180, 'admin', '/shop/product', '', 0, 1, '2021-11-19 16:07:25', 0);
+INSERT INTO `sys_log` VALUES (1655, '2021-11-19 16:07:25', '管理商品', 'get', '127.0.0.1', 2063, 'admin', '/shop/product', '', 0, 1, '2021-11-19 16:07:25', 0);
+INSERT INTO `sys_log` VALUES (1656, '2021-11-19 16:10:27', '商品信息', 'get', '127.0.0.1', 1947, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-19 16:10:27', 0);
+INSERT INTO `sys_log` VALUES (1657, '2021-11-19 16:10:27', '', 'post', '127.0.0.1', 2157, 'admin', '/shop/product/isFormatAttr/*', '', 0, 1, '2021-11-19 16:10:27', 0);
+INSERT INTO `sys_log` VALUES (1658, '2021-11-19 16:10:31', '商品新增', 'post', '127.0.0.1', 10023, 'admin', '/shop/product/addOrSave', '', 0, 1, '2021-11-19 16:10:31', 0);
+INSERT INTO `sys_log` VALUES (1659, '2021-11-19 16:11:51', '商品新增', 'post', '127.0.0.1', 12257, 'admin', '/shop/product/addOrSave', '', 0, 1, '2021-11-19 16:11:51', 0);
+INSERT INTO `sys_log` VALUES (1660, '2021-11-19 16:11:52', '管理商品', 'get', '127.0.0.1', 2579, 'admin', '/shop/product', '', 0, 1, '2021-11-19 16:11:52', 0);
+INSERT INTO `sys_log` VALUES (1661, '2021-11-19 16:11:52', '管理商品', 'get', '127.0.0.1', 1719, 'admin', '/shop/product', '', 0, 1, '2021-11-19 16:11:52', 0);
+INSERT INTO `sys_log` VALUES (1662, '2021-11-19 17:10:20', '商品分类', 'get', '127.0.0.1', 823, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 17:10:20', 0);
+INSERT INTO `sys_log` VALUES (1663, '2021-11-19 17:11:47', '商品分类', 'get', '127.0.0.1', 646, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 17:11:47', 0);
+INSERT INTO `sys_log` VALUES (1664, '2021-11-19 17:15:19', '分类删除', 'delete', '127.0.0.1', 1613, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 17:15:19', 0);
+INSERT INTO `sys_log` VALUES (1665, '2021-11-19 17:23:38', '分类删除', 'delete', '127.0.0.1', 611, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 17:23:38', 0);
+INSERT INTO `sys_log` VALUES (1666, '2021-11-19 17:25:21', '分类删除', 'delete', '127.0.0.1', 2691, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 17:25:21', 0);
+INSERT INTO `sys_log` VALUES (1667, '2021-11-19 17:25:21', '商品分类', 'get', '127.0.0.1', 552, 'admin', '/shop/cate', '', 0, 1, '2021-11-19 17:25:21', 0);
+INSERT INTO `sys_log` VALUES (1668, '2021-11-20 14:43:18', '', 'get', '127.0.0.1', 7582, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-20 14:43:18', 0);
+INSERT INTO `sys_log` VALUES (1669, '2021-11-20 14:44:26', '部门管理', 'get', '127.0.0.1', 722, 'admin', '/admin/dept', '', 0, 1, '2021-11-20 14:44:26', 0);
+INSERT INTO `sys_log` VALUES (1670, '2021-11-20 14:45:03', '部门删除', 'delete', '127.0.0.1', 5423, 'admin', '/admin/dept', '', 0, 1, '2021-11-20 14:45:03', 0);
+INSERT INTO `sys_log` VALUES (1671, '2021-11-20 14:45:03', '部门管理', 'get', '127.0.0.1', 599, 'admin', '/admin/dept', '', 0, 1, '2021-11-20 14:45:03', 0);
+INSERT INTO `sys_log` VALUES (1672, '2021-11-20 14:46:07', '字典管理', 'get', '127.0.0.1', 990, 'admin', '/admin/dict', '', 0, 1, '2021-11-20 14:46:07', 0);
+INSERT INTO `sys_log` VALUES (1673, '2021-11-20 14:46:11', '字典详情列表', 'get', '127.0.0.1', 10882, 'admin', '/admin/dictDetail', '', 0, 1, '2021-11-20 14:46:11', 0);
+INSERT INTO `sys_log` VALUES (1674, '2021-11-20 14:46:12', '', 'delete', '127.0.0.1', 1674, 'admin', '/admin/dict/*', '', 0, 1, '2021-11-20 14:46:12', 0);
+INSERT INTO `sys_log` VALUES (1675, '2021-11-20 14:46:12', '字典管理', 'get', '127.0.0.1', 694, 'admin', '/admin/dict', '', 0, 1, '2021-11-20 14:46:12', 0);
+INSERT INTO `sys_log` VALUES (1676, '2021-11-20 14:46:15', '字典详情列表', 'get', '127.0.0.1', 1079, 'admin', '/admin/dictDetail', '', 0, 1, '2021-11-20 14:46:15', 0);
+INSERT INTO `sys_log` VALUES (1677, '2021-11-20 14:46:16', '', 'delete', '127.0.0.1', 1265, 'admin', '/admin/dict/*', '', 0, 1, '2021-11-20 14:46:16', 0);
+INSERT INTO `sys_log` VALUES (1678, '2021-11-20 14:46:16', '字典管理', 'get', '127.0.0.1', 840, 'admin', '/admin/dict', '', 0, 1, '2021-11-20 14:46:16', 0);
+INSERT INTO `sys_log` VALUES (1679, '2021-11-20 14:54:07', '字典详情列表', 'get', '127.0.0.1', 2921, 'admin', '/admin/dictDetail', '', 0, 1, '2021-11-20 14:54:07', 0);
+INSERT INTO `sys_log` VALUES (1680, '2021-11-20 14:54:07', '用户管理', 'get', '127.0.0.1', 6093, 'admin', '/admin/user', '', 0, 1, '2021-11-20 14:54:07', 0);
+INSERT INTO `sys_log` VALUES (1681, '2021-11-20 14:54:07', '部门管理', 'get', '127.0.0.1', 1096, 'admin', '/admin/dept', '', 0, 1, '2021-11-20 14:54:07', 0);
+INSERT INTO `sys_log` VALUES (1682, '2021-11-20 14:54:08', '用户管理', 'get', '127.0.0.1', 5194, 'admin', '/admin/user', '', 0, 1, '2021-11-20 14:54:08', 0);
+INSERT INTO `sys_log` VALUES (1683, '2021-11-20 14:54:37', '部门管理', 'get', '127.0.0.1', 683, 'admin', '/admin/dept', '', 0, 1, '2021-11-20 14:54:37', 0);
+INSERT INTO `sys_log` VALUES (1684, '2021-11-20 14:54:37', '岗位管理', 'get', '127.0.0.1', 1662, 'admin', '/admin/job', '', 0, 1, '2021-11-20 14:54:37', 0);
+INSERT INTO `sys_log` VALUES (1685, '2021-11-20 14:54:37', '角色管理', 'get', '127.0.0.1', 3541, 'admin', '/admin/roles', '', 0, 1, '2021-11-20 14:54:37', 0);
+INSERT INTO `sys_log` VALUES (1686, '2021-11-20 14:54:47', '岗位管理', 'get', '127.0.0.1', 1033, 'admin', '/admin/job', '', 0, 1, '2021-11-20 14:54:47', 0);
+INSERT INTO `sys_log` VALUES (1687, '2021-11-20 14:54:54', '用户新增', 'post', '127.0.0.1', 7476, 'admin', '/admin/user', '', 0, 1, '2021-11-20 14:54:54', 0);
+INSERT INTO `sys_log` VALUES (1688, '2021-11-20 14:54:54', '用户管理', 'get', '127.0.0.1', 2289, 'admin', '/admin/user', '', 0, 1, '2021-11-20 14:54:54', 0);
+INSERT INTO `sys_log` VALUES (1689, '2021-11-20 14:55:10', '用户删除', 'delete', '127.0.0.1', 2094, 'admin', '/admin/user', '', 0, 1, '2021-11-20 14:55:10', 0);
+INSERT INTO `sys_log` VALUES (1690, '2021-11-20 15:02:02', '用户删除', 'delete', '127.0.0.1', 4476, 'admin', '/admin/user', '', 0, 1, '2021-11-20 15:02:02', 0);
+INSERT INTO `sys_log` VALUES (1691, '2021-11-20 15:02:02', '用户管理', 'get', '127.0.0.1', 2799, 'admin', '/admin/user', '', 0, 1, '2021-11-20 15:02:02', 0);
+INSERT INTO `sys_log` VALUES (1692, '2021-11-20 15:02:27', '部门管理', 'get', '127.0.0.1', 842, 'admin', '/admin/dept', '', 0, 1, '2021-11-20 15:02:27', 0);
+INSERT INTO `sys_log` VALUES (1693, '2021-11-20 15:02:27', '岗位管理', 'get', '127.0.0.1', 2485, 'admin', '/admin/job', '', 0, 1, '2021-11-20 15:02:27', 0);
+INSERT INTO `sys_log` VALUES (1694, '2021-11-20 15:02:27', '角色管理', 'get', '127.0.0.1', 5043, 'admin', '/admin/roles', '', 0, 1, '2021-11-20 15:02:27', 0);
+INSERT INTO `sys_log` VALUES (1695, '2021-11-20 15:02:33', '岗位管理', 'get', '127.0.0.1', 1126, 'admin', '/admin/job', '', 0, 1, '2021-11-20 15:02:33', 0);
+INSERT INTO `sys_log` VALUES (1696, '2021-11-20 15:02:40', '用户新增', 'post', '127.0.0.1', 4207, 'admin', '/admin/user', '', 0, 1, '2021-11-20 15:02:40', 0);
+INSERT INTO `sys_log` VALUES (1697, '2021-11-20 15:02:40', '用户管理', 'get', '127.0.0.1', 3045, 'admin', '/admin/user', '', 0, 1, '2021-11-20 15:02:40', 0);
+INSERT INTO `sys_log` VALUES (1698, '2021-11-20 15:10:42', '', 'get', '127.0.0.1', 1918, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-11-20 15:10:42', 0);
+INSERT INTO `sys_log` VALUES (1699, '2021-11-20 15:10:42', '角色管理', 'get', '127.0.0.1', 5314, 'admin', '/admin/roles', '', 0, 1, '2021-11-20 15:10:42', 0);
+INSERT INTO `sys_log` VALUES (1700, '2021-11-20 15:10:42', '角色管理', 'get', '127.0.0.1', 8584, 'admin', '/admin/roles', '', 0, 1, '2021-11-20 15:10:42', 0);
+INSERT INTO `sys_log` VALUES (1701, '2021-11-20 15:11:05', '角色创建', 'post', '127.0.0.1', 1572, 'admin', '/admin/roles', '', 0, 1, '2021-11-20 15:11:05', 0);
+INSERT INTO `sys_log` VALUES (1702, '2021-11-20 15:11:05', '角色管理', 'get', '127.0.0.1', 5570, 'admin', '/admin/roles', '', 0, 1, '2021-11-20 15:11:05', 0);
+INSERT INTO `sys_log` VALUES (1703, '2021-11-20 15:11:16', '角色菜单保存', 'put', '127.0.0.1', 67171, 'admin', '/admin/roles/menu', '', 0, 1, '2021-11-20 15:11:16', 0);
+INSERT INTO `sys_log` VALUES (1704, '2021-11-20 15:11:16', '单个角色', 'get', '127.0.0.1', 475, 'admin', '/admin/roles/*', '', 0, 1, '2021-11-20 15:11:16', 0);
+INSERT INTO `sys_log` VALUES (1705, '2021-11-20 15:13:00', '角色菜单保存', 'put', '127.0.0.1', 47836, 'admin', '/admin/roles/menu', '', 0, 1, '2021-11-20 15:13:00', 0);
+INSERT INTO `sys_log` VALUES (1706, '2021-11-20 15:13:00', '单个角色', 'get', '127.0.0.1', 470, 'admin', '/admin/roles/*', '', 0, 1, '2021-11-20 15:13:00', 0);
+INSERT INTO `sys_log` VALUES (1707, '2021-11-20 15:14:43', '角色管理', 'get', '127.0.0.1', 4363, 'admin', '/admin/roles', '', 0, 1, '2021-11-20 15:14:43', 0);
+INSERT INTO `sys_log` VALUES (1708, '2021-11-20 15:14:47', '角色菜单保存', 'put', '127.0.0.1', 46034, 'admin', '/admin/roles/menu', '', 0, 1, '2021-11-20 15:14:47', 0);
+INSERT INTO `sys_log` VALUES (1709, '2021-11-20 15:14:47', '单个角色', 'get', '127.0.0.1', 525, 'admin', '/admin/roles/*', '', 0, 1, '2021-11-20 15:14:47', 0);
+INSERT INTO `sys_log` VALUES (1710, '2021-11-20 15:17:56', '管理商品', 'get', '127.0.0.1', 12545, 'admin', '/shop/product', '', 0, 1, '2021-11-20 15:17:56', 0);
+INSERT INTO `sys_log` VALUES (1711, '2021-11-20 15:17:56', '管理商品', 'get', '127.0.0.1', 12589, 'admin', '/shop/product', '', 0, 1, '2021-11-20 15:17:56', 0);
+INSERT INTO `sys_log` VALUES (1712, '2021-11-20 15:18:02', '商品信息', 'get', '127.0.0.1', 13470, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-20 15:18:02', 0);
+INSERT INTO `sys_log` VALUES (1713, '2021-11-20 15:18:10', '', 'get', '127.0.0.1', 2515, 'admin', '/admin/materialgroup', '', 0, 1, '2021-11-20 15:18:10', 0);
+INSERT INTO `sys_log` VALUES (1714, '2021-11-20 15:18:10', '', 'get', '127.0.0.1', 5677, 'admin', '/admin/material', '', 0, 1, '2021-11-20 15:18:10', 0);
+INSERT INTO `sys_log` VALUES (1715, '2021-11-20 15:18:15', '', 'get', '127.0.0.1', 429, 'admin', '/admin/materialgroup', '', 0, 1, '2021-11-20 15:18:15', 0);
+INSERT INTO `sys_log` VALUES (1716, '2021-11-20 15:18:16', '', 'get', '127.0.0.1', 714, 'admin', '/admin/material', '', 0, 1, '2021-11-20 15:18:16', 0);
+INSERT INTO `sys_log` VALUES (1717, '2021-11-20 15:18:30', '', 'post', '127.0.0.1', 342, 'admin', '/shop/product/isFormatAttr/*', '', 0, 1, '2021-11-20 15:18:30', 0);
+INSERT INTO `sys_log` VALUES (1718, '2021-11-20 15:18:50', '商品新增', 'post', '127.0.0.1', 24235, 'admin', '/shop/product/addOrSave', '', 0, 1, '2021-11-20 15:18:50', 0);
+INSERT INTO `sys_log` VALUES (1719, '2021-11-20 15:18:51', '管理商品', 'get', '127.0.0.1', 1494, 'admin', '/shop/product', '', 0, 1, '2021-11-20 15:18:51', 0);
+INSERT INTO `sys_log` VALUES (1720, '2021-11-20 15:18:51', '管理商品', 'get', '127.0.0.1', 2395, 'admin', '/shop/product', '', 0, 1, '2021-11-20 15:18:51', 0);
+INSERT INTO `sys_log` VALUES (1721, '2021-11-20 15:19:47', '商品信息', 'get', '127.0.0.1', 2124, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-20 15:19:47', 0);
+INSERT INTO `sys_log` VALUES (1722, '2021-11-20 15:19:47', '', 'post', '127.0.0.1', 3551, 'admin', '/shop/product/isFormatAttr/*', '', 0, 1, '2021-11-20 15:19:47', 0);
+INSERT INTO `sys_log` VALUES (1723, '2021-11-24 11:20:04', '', 'get', '127.0.0.1', 2410, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-24 11:20:04', 0);
+INSERT INTO `sys_log` VALUES (1724, '2021-11-24 11:20:44', '管理商品', 'get', '127.0.0.1', 10700, 'admin', '/shop/product', '', 0, 1, '2021-11-24 11:20:44', 0);
+INSERT INTO `sys_log` VALUES (1725, '2021-11-24 11:20:44', '管理商品', 'get', '127.0.0.1', 10458, 'admin', '/shop/product', '', 0, 1, '2021-11-24 11:20:44', 0);
+INSERT INTO `sys_log` VALUES (1726, '2021-11-24 11:20:52', '商品信息', 'get', '127.0.0.1', 7881, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-24 11:20:52', 0);
+INSERT INTO `sys_log` VALUES (1727, '2021-11-24 11:29:57', '', 'get', '127.0.0.1', 22524, 'admin', '/admin/materialgroup', '', 0, 1, '2021-11-24 11:29:57', 0);
+INSERT INTO `sys_log` VALUES (1728, '2021-11-24 11:29:57', '', 'get', '127.0.0.1', 4118, 'admin', '/admin/material', '', 0, 1, '2021-11-24 11:29:57', 0);
+INSERT INTO `sys_log` VALUES (1729, '2021-11-24 11:30:02', '', 'get', '127.0.0.1', 449, 'admin', '/admin/materialgroup', '', 0, 1, '2021-11-24 11:30:02', 0);
+INSERT INTO `sys_log` VALUES (1730, '2021-11-24 11:30:02', '', 'get', '127.0.0.1', 1319, 'admin', '/admin/material', '', 0, 1, '2021-11-24 11:30:02', 0);
+INSERT INTO `sys_log` VALUES (1731, '2021-11-24 11:30:14', '商品新增', 'post', '127.0.0.1', 209, 'admin', '/shop/product/addOrSave', '', 0, 1, '2021-11-24 11:30:14', 0);
+INSERT INTO `sys_log` VALUES (1732, '2021-11-24 11:37:59', '商品信息', 'get', '127.0.0.1', 2769, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-24 11:37:59', 0);
+INSERT INTO `sys_log` VALUES (1733, '2021-11-24 11:38:11', '', 'get', '127.0.0.1', 485, 'admin', '/admin/materialgroup', '', 0, 1, '2021-11-24 11:38:11', 0);
+INSERT INTO `sys_log` VALUES (1734, '2021-11-24 11:38:11', '', 'get', '127.0.0.1', 1012, 'admin', '/admin/material', '', 0, 1, '2021-11-24 11:38:11', 0);
+INSERT INTO `sys_log` VALUES (1735, '2021-11-24 11:38:17', '', 'get', '127.0.0.1', 391, 'admin', '/admin/materialgroup', '', 0, 1, '2021-11-24 11:38:17', 0);
+INSERT INTO `sys_log` VALUES (1736, '2021-11-24 11:38:17', '', 'get', '127.0.0.1', 1124, 'admin', '/admin/material', '', 0, 1, '2021-11-24 11:38:17', 0);
+INSERT INTO `sys_log` VALUES (1737, '2021-11-24 11:38:29', '商品新增', 'post', '127.0.0.1', 84, 'admin', '/shop/product/addOrSave', '', 0, 1, '2021-11-24 11:38:29', 0);
+INSERT INTO `sys_log` VALUES (1738, '2021-11-24 11:38:54', '商品信息', 'get', '127.0.0.1', 1831, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-24 11:38:54', 0);
+INSERT INTO `sys_log` VALUES (1739, '2021-11-24 11:39:05', '', 'get', '127.0.0.1', 503, 'admin', '/admin/materialgroup', '', 0, 1, '2021-11-24 11:39:05', 0);
+INSERT INTO `sys_log` VALUES (1740, '2021-11-24 11:39:05', '', 'get', '127.0.0.1', 1310, 'admin', '/admin/material', '', 0, 1, '2021-11-24 11:39:05', 0);
+INSERT INTO `sys_log` VALUES (1741, '2021-11-24 11:39:10', '', 'get', '127.0.0.1', 589, 'admin', '/admin/materialgroup', '', 0, 1, '2021-11-24 11:39:10', 0);
+INSERT INTO `sys_log` VALUES (1742, '2021-11-24 11:39:10', '', 'get', '127.0.0.1', 1959, 'admin', '/admin/material', '', 0, 1, '2021-11-24 11:39:10', 0);
+INSERT INTO `sys_log` VALUES (1743, '2021-11-24 11:39:20', '商品新增', 'post', '127.0.0.1', 14027, 'admin', '/shop/product/addOrSave', '', 0, 1, '2021-11-24 11:39:20', 0);
+INSERT INTO `sys_log` VALUES (1744, '2021-11-24 11:39:21', '管理商品', 'get', '127.0.0.1', 1758, 'admin', '/shop/product', '', 0, 1, '2021-11-24 11:39:21', 0);
+INSERT INTO `sys_log` VALUES (1745, '2021-11-24 11:39:21', '管理商品', 'get', '127.0.0.1', 2303, 'admin', '/shop/product', '', 0, 1, '2021-11-24 11:39:21', 0);
+INSERT INTO `sys_log` VALUES (1746, '2021-11-24 11:41:52', '商品信息', 'get', '127.0.0.1', 3971, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-24 11:41:52', 0);
+INSERT INTO `sys_log` VALUES (1747, '2021-11-24 11:41:52', '', 'post', '127.0.0.1', 1285, 'admin', '/shop/product/isFormatAttr/*', '', 0, 1, '2021-11-24 11:41:52', 0);
+INSERT INTO `sys_log` VALUES (1748, '2021-11-24 11:42:02', '管理商品', 'get', '127.0.0.1', 2689, 'admin', '/shop/product', '', 0, 1, '2021-11-24 11:42:02', 0);
+INSERT INTO `sys_log` VALUES (1749, '2021-11-24 11:42:02', '管理商品', 'get', '127.0.0.1', 2576, 'admin', '/shop/product', '', 0, 1, '2021-11-24 11:42:02', 0);
+INSERT INTO `sys_log` VALUES (1750, '2021-11-24 11:42:32', '商品信息', 'get', '127.0.0.1', 2764, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-24 11:42:32', 0);
+INSERT INTO `sys_log` VALUES (1751, '2021-11-24 11:42:32', '', 'post', '127.0.0.1', 966, 'admin', '/shop/product/isFormatAttr/*', '', 0, 1, '2021-11-24 11:42:32', 0);
+INSERT INTO `sys_log` VALUES (1752, '2021-11-24 11:43:38', '商品新增', 'post', '127.0.0.1', 12989, 'admin', '/shop/product/addOrSave', '', 0, 1, '2021-11-24 11:43:38', 0);
+INSERT INTO `sys_log` VALUES (1753, '2021-11-24 11:43:39', '管理商品', 'get', '127.0.0.1', 2315, 'admin', '/shop/product', '', 0, 1, '2021-11-24 11:43:39', 0);
+INSERT INTO `sys_log` VALUES (1754, '2021-11-24 11:43:39', '管理商品', 'get', '127.0.0.1', 3204, 'admin', '/shop/product', '', 0, 1, '2021-11-24 11:43:39', 0);
+INSERT INTO `sys_log` VALUES (1755, '2021-11-24 11:43:41', '商品信息', 'get', '127.0.0.1', 2607, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-24 11:43:41', 0);
+INSERT INTO `sys_log` VALUES (1756, '2021-11-24 11:43:41', '', 'post', '127.0.0.1', 850, 'admin', '/shop/product/isFormatAttr/*', '', 0, 1, '2021-11-24 11:43:41', 0);
+INSERT INTO `sys_log` VALUES (1757, '2021-11-25 16:53:57', '', 'get', '127.0.0.1', 2913, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-25 16:53:57', 0);
+INSERT INTO `sys_log` VALUES (1758, '2021-11-25 16:54:21', '商品分类', 'get', '127.0.0.1', 22198, 'admin', '/shop/cate', '', 0, 1, '2021-11-25 16:54:21', 0);
+INSERT INTO `sys_log` VALUES (1759, '2021-11-25 16:54:25', '商品分类', 'get', '127.0.0.1', 769, 'admin', '/shop/cate', '', 0, 1, '2021-11-25 16:54:25', 0);
+INSERT INTO `sys_log` VALUES (1760, '2021-11-25 16:54:26', '', 'get', '127.0.0.1', 2616, 'admin', '/admin/materialgroup', '', 0, 1, '2021-11-25 16:54:26', 0);
+INSERT INTO `sys_log` VALUES (1761, '2021-11-25 16:54:26', '', 'get', '127.0.0.1', 1577, 'admin', '/admin/material', '', 0, 1, '2021-11-25 16:54:26', 0);
+INSERT INTO `sys_log` VALUES (1762, '2021-11-25 16:54:33', '', 'post', '::1', 280, 'admin', '/admin/material/upload', '', 0, 1, '2021-11-25 16:54:33', 0);
+INSERT INTO `sys_log` VALUES (1763, '2021-11-25 17:03:56', '用户个人信息', 'get', '127.0.0.1', 4716, 'admin', '/admin/auth/info', '', 0, 1, '2021-11-25 17:03:56', 0);
+INSERT INTO `sys_log` VALUES (1764, '2021-11-25 17:03:56', '', 'get', '127.0.0.1', 3771, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-25 17:03:56', 0);
+INSERT INTO `sys_log` VALUES (1765, '2021-11-25 17:03:57', '商品分类', 'get', '127.0.0.1', 988, 'admin', '/shop/cate', '', 0, 1, '2021-11-25 17:03:57', 0);
+INSERT INTO `sys_log` VALUES (1766, '2021-11-25 17:04:12', '用户退出', 'delete', '127.0.0.1', 403, 'admin', '/admin/auth/logout', '', 0, 1, '2021-11-25 17:04:12', 0);
+INSERT INTO `sys_log` VALUES (1767, '2021-11-25 17:04:25', '', 'get', '127.0.0.1', 3587, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-25 17:04:25', 0);
+INSERT INTO `sys_log` VALUES (1768, '2021-11-25 17:04:25', '商品分类', 'get', '127.0.0.1', 552, 'admin', '/shop/cate', '', 0, 1, '2021-11-25 17:04:25', 0);
+INSERT INTO `sys_log` VALUES (1769, '2021-11-25 17:15:16', '用户退出', 'delete', '127.0.0.1', 321, 'admin', '/admin/auth/logout', '', 0, 1, '2021-11-25 17:15:16', 0);
+INSERT INTO `sys_log` VALUES (1770, '2021-11-25 17:26:15', '', 'get', '127.0.0.1', 1644, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-25 17:26:15', 0);
+INSERT INTO `sys_log` VALUES (1771, '2021-11-25 17:26:15', '商品分类', 'get', '127.0.0.1', 694, 'admin', '/shop/cate', '', 0, 1, '2021-11-25 17:26:15', 0);
+INSERT INTO `sys_log` VALUES (1772, '2021-11-25 17:39:03', '用户退出', 'delete', '127.0.0.1', 318, 'admin', '/admin/auth/logout', '', 0, 1, '2021-11-25 17:39:03', 0);
+INSERT INTO `sys_log` VALUES (1773, '2021-11-25 17:42:52', '', 'get', '127.0.0.1', 1496, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-25 17:42:52', 0);
+INSERT INTO `sys_log` VALUES (1774, '2021-11-25 17:42:52', '商品分类', 'get', '127.0.0.1', 765, 'admin', '/shop/cate', '', 0, 1, '2021-11-25 17:42:52', 0);
+INSERT INTO `sys_log` VALUES (1775, '2021-11-25 17:44:36', '用户退出', 'delete', '127.0.0.1', 320, 'admin', '/admin/auth/logout', '', 0, 1, '2021-11-25 17:44:36', 0);
+INSERT INTO `sys_log` VALUES (1776, '2021-11-25 17:44:47', '', 'get', '127.0.0.1', 1698, 'hupeng', '/admin/menu/build', '', 0, 9998, '2021-11-25 17:44:47', 0);
+INSERT INTO `sys_log` VALUES (1777, '2021-11-25 17:44:51', '用户个人信息', 'get', '127.0.0.1', 543, 'hupeng', '/admin/auth/info', '', 0, 9998, '2021-11-25 17:44:51', 0);
+INSERT INTO `sys_log` VALUES (1778, '2021-11-25 17:44:51', '', 'get', '127.0.0.1', 1950, 'hupeng', '/admin/menu/build', '', 0, 9998, '2021-11-25 17:44:51', 0);
+INSERT INTO `sys_log` VALUES (1779, '2021-11-25 17:45:00', '用户退出', 'delete', '127.0.0.1', 303, 'hupeng', '/admin/auth/logout', '', 0, 9998, '2021-11-25 17:45:00', 0);
+INSERT INTO `sys_log` VALUES (1780, '2021-11-25 17:45:04', '', 'get', '127.0.0.1', 1763, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-25 17:45:04', 0);
+INSERT INTO `sys_log` VALUES (1781, '2021-11-25 17:45:07', '菜单管理', 'get', '127.0.0.1', 1475, 'admin', '/admin/menu', '', 0, 1, '2021-11-25 17:45:07', 0);
+INSERT INTO `sys_log` VALUES (1782, '2021-11-25 17:45:10', '', 'get', '127.0.0.1', 1764, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-11-25 17:45:10', 0);
+INSERT INTO `sys_log` VALUES (1783, '2021-11-25 17:45:10', '角色管理', 'get', '127.0.0.1', 3606, 'admin', '/admin/roles', '', 0, 1, '2021-11-25 17:45:10', 0);
+INSERT INTO `sys_log` VALUES (1784, '2021-11-25 17:45:10', '角色管理', 'get', '127.0.0.1', 7640, 'admin', '/admin/roles', '', 0, 1, '2021-11-25 17:45:10', 0);
+INSERT INTO `sys_log` VALUES (1785, '2021-11-25 17:45:22', '商品分类', 'get', '127.0.0.1', 779, 'admin', '/shop/cate', '', 0, 1, '2021-11-25 17:45:22', 0);
+INSERT INTO `sys_log` VALUES (1786, '2021-11-25 17:45:30', '商品分类', 'get', '127.0.0.1', 546, 'admin', '/shop/cate', '', 0, 1, '2021-11-25 17:45:30', 0);
+INSERT INTO `sys_log` VALUES (1787, '2021-11-25 17:45:31', '', 'get', '127.0.0.1', 852, 'admin', '/admin/materialgroup', '', 0, 1, '2021-11-25 17:45:31', 0);
+INSERT INTO `sys_log` VALUES (1788, '2021-11-25 17:45:31', '', 'get', '127.0.0.1', 2843, 'admin', '/admin/material', '', 0, 1, '2021-11-25 17:45:31', 0);
+INSERT INTO `sys_log` VALUES (1789, '2021-11-25 17:45:37', '', 'post', '::1', 148, 'admin', '/admin/material/upload', '', 0, 1, '2021-11-25 17:45:37', 0);
+INSERT INTO `sys_log` VALUES (1790, '2021-11-25 17:48:32', '', 'post', '::1', 404, 'admin', '/admin/material/upload', '', 0, 1, '2021-11-25 17:48:32', 0);
+INSERT INTO `sys_log` VALUES (1791, '2021-11-25 17:49:32', '', 'post', '::1', 242, 'admin', '/admin/material/upload', '', 0, 1, '2021-11-25 17:49:32', 0);
+INSERT INTO `sys_log` VALUES (1792, '2021-11-25 17:49:59', '', 'post', '::1', 287, 'admin', '/admin/material/upload', '', 0, 1, '2021-11-25 17:49:59', 0);
+INSERT INTO `sys_log` VALUES (1793, '2021-11-25 17:51:26', '', 'post', '::1', 331, 'admin', '/admin/material/upload', '', 0, 1, '2021-11-25 17:51:26', 0);
+INSERT INTO `sys_log` VALUES (1794, '2021-11-25 17:52:19', '', 'post', '::1', 325, 'admin', '/admin/material/upload', '', 0, 1, '2021-11-25 17:52:19', 0);
+INSERT INTO `sys_log` VALUES (1795, '2021-11-25 17:54:12', '', 'post', '::1', 352, 'admin', '/admin/material/upload', '', 0, 1, '2021-11-25 17:54:12', 0);
+INSERT INTO `sys_log` VALUES (1796, '2021-11-25 17:57:42', '', 'post', '::1', 1600, 'admin', '/admin/material/upload', '', 0, 1, '2021-11-25 17:57:42', 0);
+INSERT INTO `sys_log` VALUES (1797, '2021-11-25 17:57:42', '', 'post', '127.0.0.1', 2260, 'admin', '/admin/material', '', 0, 1, '2021-11-25 17:57:42', 0);
+INSERT INTO `sys_log` VALUES (1798, '2021-11-25 17:57:42', '', 'get', '127.0.0.1', 1269, 'admin', '/admin/material', '', 0, 1, '2021-11-25 17:57:42', 0);
+INSERT INTO `sys_log` VALUES (1799, '2021-11-26 10:14:07', '', 'get', '127.0.0.1', 4296, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-26 10:14:07', 0);
+INSERT INTO `sys_log` VALUES (1800, '2021-11-26 10:14:23', '商品分类', 'get', '127.0.0.1', 5365, 'admin', '/shop/cate', '', 0, 1, '2021-11-26 10:14:23', 0);
+INSERT INTO `sys_log` VALUES (1801, '2021-11-26 10:18:34', '商品分类', 'get', '127.0.0.1', 547, 'admin', '/shop/cate', '', 0, 1, '2021-11-26 10:18:34', 0);
+INSERT INTO `sys_log` VALUES (1802, '2021-11-26 10:18:36', '分类修改', 'put', '127.0.0.1', 4699, 'admin', '/shop/cate', '', 0, 1, '2021-11-26 10:18:36', 0);
+INSERT INTO `sys_log` VALUES (1803, '2021-11-26 10:18:36', '商品分类', 'get', '127.0.0.1', 621, 'admin', '/shop/cate', '', 0, 1, '2021-11-26 10:18:36', 0);
+INSERT INTO `sys_log` VALUES (1804, '2021-11-26 10:18:39', '商品规格', 'get', '127.0.0.1', 5446, 'admin', '/shop/rule', '', 0, 1, '2021-11-26 10:18:39', 0);
+INSERT INTO `sys_log` VALUES (1805, '2021-11-26 10:18:46', '新增/编辑规格', 'post', '127.0.0.1', 2472, 'admin', '/shop/rule/save/*', '', 0, 1, '2021-11-26 10:18:46', 0);
+INSERT INTO `sys_log` VALUES (1806, '2021-11-26 10:18:47', '商品规格', 'get', '127.0.0.1', 1012, 'admin', '/shop/rule', '', 0, 1, '2021-11-26 10:18:47', 0);
+INSERT INTO `sys_log` VALUES (1807, '2021-11-26 10:18:50', '管理商品', 'get', '127.0.0.1', 22540, 'admin', '/shop/product', '', 0, 1, '2021-11-26 10:18:50', 0);
+INSERT INTO `sys_log` VALUES (1808, '2021-11-26 10:18:50', '管理商品', 'get', '127.0.0.1', 21443, 'admin', '/shop/product', '', 0, 1, '2021-11-26 10:18:50', 0);
+INSERT INTO `sys_log` VALUES (1809, '2021-11-26 10:18:53', '商品信息', 'get', '127.0.0.1', 13089, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-26 10:18:53', 0);
+INSERT INTO `sys_log` VALUES (1810, '2021-11-26 10:18:53', '', 'post', '127.0.0.1', 26211, 'admin', '/shop/product/isFormatAttr/*', '', 0, 1, '2021-11-26 10:18:53', 0);
+INSERT INTO `sys_log` VALUES (1811, '2021-11-26 10:19:03', '商品新增', 'post', '127.0.0.1', 20661, 'admin', '/shop/product/addOrSave', '', 0, 1, '2021-11-26 10:19:03', 0);
+INSERT INTO `sys_log` VALUES (1812, '2021-11-26 10:19:04', '管理商品', 'get', '127.0.0.1', 1738, 'admin', '/shop/product', '', 0, 1, '2021-11-26 10:19:04', 0);
+INSERT INTO `sys_log` VALUES (1813, '2021-11-26 10:19:04', '管理商品', 'get', '127.0.0.1', 2572, 'admin', '/shop/product', '', 0, 1, '2021-11-26 10:19:04', 0);
+INSERT INTO `sys_log` VALUES (1814, '2021-11-26 10:19:07', '商品信息', 'get', '127.0.0.1', 1848, 'admin', '/shop/product/info/*', '', 0, 1, '2021-11-26 10:19:07', 0);
+INSERT INTO `sys_log` VALUES (1815, '2021-11-26 10:19:07', '', 'post', '127.0.0.1', 2347, 'admin', '/shop/product/isFormatAttr/*', '', 0, 1, '2021-11-26 10:19:07', 0);
+INSERT INTO `sys_log` VALUES (1816, '2021-11-26 10:19:13', '用户管理', 'get', '127.0.0.1', 3480, 'admin', '/admin/user', '', 0, 1, '2021-11-26 10:19:13', 0);
+INSERT INTO `sys_log` VALUES (1817, '2021-11-26 10:19:13', '字典详情列表', 'get', '127.0.0.1', 3597, 'admin', '/admin/dictDetail', '', 0, 1, '2021-11-26 10:19:13', 0);
+INSERT INTO `sys_log` VALUES (1818, '2021-11-26 10:19:13', '部门管理', 'get', '127.0.0.1', 528, 'admin', '/admin/dept', '', 0, 1, '2021-11-26 10:19:13', 0);
+INSERT INTO `sys_log` VALUES (1819, '2021-11-26 10:19:13', '用户管理', 'get', '127.0.0.1', 2835, 'admin', '/admin/user', '', 0, 1, '2021-11-26 10:19:13', 0);
+INSERT INTO `sys_log` VALUES (1820, '2021-11-26 10:19:19', '部门管理', 'get', '127.0.0.1', 489, 'admin', '/admin/dept', '', 0, 1, '2021-11-26 10:19:19', 0);
+INSERT INTO `sys_log` VALUES (1821, '2021-11-26 10:19:19', '岗位管理', 'get', '127.0.0.1', 997, 'admin', '/admin/job', '', 0, 1, '2021-11-26 10:19:19', 0);
+INSERT INTO `sys_log` VALUES (1822, '2021-11-26 10:19:19', '角色管理', 'get', '127.0.0.1', 3248, 'admin', '/admin/roles', '', 0, 1, '2021-11-26 10:19:19', 0);
+INSERT INTO `sys_log` VALUES (1823, '2021-11-26 10:19:19', '岗位管理', 'get', '127.0.0.1', 1281, 'admin', '/admin/job', '', 0, 1, '2021-11-26 10:19:19', 0);
+INSERT INTO `sys_log` VALUES (1824, '2021-11-26 10:19:23', '部门管理', 'get', '127.0.0.1', 567, 'admin', '/admin/dept', '', 0, 1, '2021-11-26 10:19:23', 0);
+INSERT INTO `sys_log` VALUES (1825, '2021-11-26 10:19:23', '岗位管理', 'get', '127.0.0.1', 1829, 'admin', '/admin/job', '', 0, 1, '2021-11-26 10:19:23', 0);
+INSERT INTO `sys_log` VALUES (1826, '2021-11-26 10:19:23', '角色管理', 'get', '127.0.0.1', 5064, 'admin', '/admin/roles', '', 0, 1, '2021-11-26 10:19:23', 0);
+INSERT INTO `sys_log` VALUES (1827, '2021-11-26 10:19:23', '岗位管理', 'get', '127.0.0.1', 21104, 'admin', '/admin/job', '', 0, 1, '2021-11-26 10:19:23', 0);
+INSERT INTO `sys_log` VALUES (1828, '2021-11-26 10:19:25', '用户编辑', 'put', '127.0.0.1', 3967, 'admin', '/admin/user', '', 0, 1, '2021-11-26 10:19:25', 0);
+INSERT INTO `sys_log` VALUES (1829, '2021-11-26 10:19:25', '用户管理', 'get', '127.0.0.1', 2614, 'admin', '/admin/user', '', 0, 1, '2021-11-26 10:19:25', 0);
+INSERT INTO `sys_log` VALUES (1830, '2021-11-26 10:21:01', '商品分类', 'get', '127.0.0.1', 838, 'admin', '/shop/cate', '', 0, 1, '2021-11-26 10:21:01', 0);
+INSERT INTO `sys_log` VALUES (1831, '2021-11-26 10:21:03', '商品规格', 'get', '127.0.0.1', 1074, 'admin', '/shop/rule', '', 0, 1, '2021-11-26 10:21:03', 0);
+INSERT INTO `sys_log` VALUES (1832, '2021-11-27 11:16:57', '', 'get', '127.0.0.1', 1552, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-27 11:16:57', 0);
+INSERT INTO `sys_log` VALUES (1833, '2021-11-27 11:17:01', '菜单管理', 'get', '127.0.0.1', 1824, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:17:01', 0);
+INSERT INTO `sys_log` VALUES (1834, '2021-11-27 11:17:23', '', 'get', '127.0.0.1', 1303, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-11-27 11:17:23', 0);
+INSERT INTO `sys_log` VALUES (1835, '2021-11-27 11:18:26', '菜单新增', 'post', '127.0.0.1', 1969, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:18:26', 0);
+INSERT INTO `sys_log` VALUES (1836, '2021-11-27 11:18:26', '菜单管理', 'get', '127.0.0.1', 1475, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:18:26', 0);
+INSERT INTO `sys_log` VALUES (1837, '2021-11-27 11:18:29', '', 'get', '127.0.0.1', 1598, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-11-27 11:18:29', 0);
+INSERT INTO `sys_log` VALUES (1838, '2021-11-27 11:19:49', '', 'get', '127.0.0.1', 1606, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-27 11:19:49', 0);
+INSERT INTO `sys_log` VALUES (1839, '2021-11-27 11:19:53', '菜单管理', 'get', '127.0.0.1', 1533, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:19:53', 0);
+INSERT INTO `sys_log` VALUES (1840, '2021-11-27 11:19:59', '', 'get', '127.0.0.1', 1490, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-11-27 11:19:59', 0);
+INSERT INTO `sys_log` VALUES (1841, '2021-11-27 11:21:48', '菜单新增', 'post', '127.0.0.1', 1231, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:21:48', 0);
+INSERT INTO `sys_log` VALUES (1842, '2021-11-27 11:21:48', '菜单管理', 'get', '127.0.0.1', 1631, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:21:48', 0);
+INSERT INTO `sys_log` VALUES (1843, '2021-11-27 11:21:53', '菜单管理', 'get', '127.0.0.1', 1414, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:21:53', 0);
+INSERT INTO `sys_log` VALUES (1844, '2021-11-27 11:21:57', '', 'get', '127.0.0.1', 1418, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-11-27 11:21:57', 0);
+INSERT INTO `sys_log` VALUES (1845, '2021-11-27 11:22:01', '', 'get', '127.0.0.1', 1825, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-11-27 11:22:01', 0);
+INSERT INTO `sys_log` VALUES (1846, '2021-11-27 11:24:06', '菜单新增', 'post', '127.0.0.1', 1327, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:24:06', 0);
+INSERT INTO `sys_log` VALUES (1847, '2021-11-27 11:24:06', '菜单管理', 'get', '127.0.0.1', 1623, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:24:06', 0);
+INSERT INTO `sys_log` VALUES (1848, '2021-11-27 11:24:09', '菜单编辑', 'put', '127.0.0.1', 1301, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:24:09', 0);
+INSERT INTO `sys_log` VALUES (1849, '2021-11-27 11:24:09', '菜单管理', 'get', '127.0.0.1', 1491, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:24:09', 0);
+INSERT INTO `sys_log` VALUES (1850, '2021-11-27 11:24:12', '', 'get', '127.0.0.1', 2411, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-11-27 11:24:12', 0);
+INSERT INTO `sys_log` VALUES (1851, '2021-11-27 11:24:16', '', 'get', '127.0.0.1', 1477, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-11-27 11:24:16', 0);
+INSERT INTO `sys_log` VALUES (1852, '2021-11-27 11:26:16', '', 'get', '127.0.0.1', 1390, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-11-27 11:26:16', 0);
+INSERT INTO `sys_log` VALUES (1853, '2021-11-27 11:27:59', '菜单新增', 'post', '127.0.0.1', 2911, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:27:59', 0);
+INSERT INTO `sys_log` VALUES (1854, '2021-11-27 11:27:59', '菜单管理', 'get', '127.0.0.1', 1568, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:27:59', 0);
+INSERT INTO `sys_log` VALUES (1855, '2021-11-27 11:29:04', '', 'get', '127.0.0.1', 2055, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-11-27 11:29:04', 0);
+INSERT INTO `sys_log` VALUES (1856, '2021-11-27 11:30:09', '菜单新增', 'post', '127.0.0.1', 1208, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:30:09', 0);
+INSERT INTO `sys_log` VALUES (1857, '2021-11-27 11:30:09', '菜单管理', 'get', '127.0.0.1', 1512, 'admin', '/admin/menu', '', 0, 1, '2021-11-27 11:30:09', 0);
+INSERT INTO `sys_log` VALUES (1858, '2021-11-27 11:30:50', '', 'get', '127.0.0.1', 1552, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-11-27 11:30:50', 0);
+INSERT INTO `sys_log` VALUES (1859, '2021-11-27 11:30:50', '角色管理', 'get', '127.0.0.1', 2984, 'admin', '/admin/roles', '', 0, 1, '2021-11-27 11:30:50', 0);
+INSERT INTO `sys_log` VALUES (1860, '2021-11-27 11:30:50', '角色管理', 'get', '127.0.0.1', 3083, 'admin', '/admin/roles', '', 0, 1, '2021-11-27 11:30:50', 0);
+INSERT INTO `sys_log` VALUES (1861, '2021-11-27 11:30:55', '角色菜单保存', 'put', '127.0.0.1', 114319, 'admin', '/admin/roles/menu', '', 0, 1, '2021-11-27 11:30:55', 0);
+INSERT INTO `sys_log` VALUES (1862, '2021-11-27 11:30:55', '单个角色', 'get', '127.0.0.1', 366, 'admin', '/admin/roles/*', '', 0, 1, '2021-11-27 11:30:55', 0);
+INSERT INTO `sys_log` VALUES (1863, '2021-11-27 11:30:57', '用户个人信息', 'get', '127.0.0.1', 559, 'admin', '/admin/auth/info', '', 0, 1, '2021-11-27 11:30:57', 0);
+INSERT INTO `sys_log` VALUES (1864, '2021-11-27 11:30:57', '', 'get', '127.0.0.1', 1610, 'admin', '/admin/menu/build', '', 0, 1, '2021-11-27 11:30:57', 0);
+INSERT INTO `sys_log` VALUES (1865, '2021-11-27 11:30:58', '', 'get', '127.0.0.1', 1219, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-11-27 11:30:58', 0);
+INSERT INTO `sys_log` VALUES (1866, '2021-11-27 11:30:58', '角色管理', 'get', '127.0.0.1', 3445, 'admin', '/admin/roles', '', 0, 1, '2021-11-27 11:30:58', 0);
+INSERT INTO `sys_log` VALUES (1867, '2021-11-27 11:30:58', '角色管理', 'get', '127.0.0.1', 3013, 'admin', '/admin/roles', '', 0, 1, '2021-11-27 11:30:58', 0);
+INSERT INTO `sys_log` VALUES (1868, '2021-12-11 11:13:43', '', 'get', '127.0.0.1', 1445, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-11 11:13:43', 0);
+INSERT INTO `sys_log` VALUES (1869, '2021-12-12 14:11:42', '', 'get', '127.0.0.1', 3124, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-12 14:11:42', 0);
+INSERT INTO `sys_log` VALUES (1870, '2021-12-12 17:30:08', '用户个人信息', 'get', '127.0.0.1', 944, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-12 17:30:08', 0);
+INSERT INTO `sys_log` VALUES (1871, '2021-12-12 17:30:08', '', 'get', '127.0.0.1', 2140, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-12 17:30:08', 0);
+INSERT INTO `sys_log` VALUES (1872, '2021-12-12 17:30:18', '用户个人信息', 'get', '127.0.0.1', 308, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-12 17:30:18', 0);
+INSERT INTO `sys_log` VALUES (1873, '2021-12-12 17:30:18', '', 'get', '127.0.0.1', 4700, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-12 17:30:18', 0);
+INSERT INTO `sys_log` VALUES (1874, '2021-12-12 17:30:24', '', 'get', '127.0.0.1', 869, 'admin', '/wechat/YxWechatMenu', '', 0, 1, '2021-12-12 17:30:24', 0);
+INSERT INTO `sys_log` VALUES (1875, '2021-12-12 17:31:40', '', 'get', '127.0.0.1', 875, 'admin', '/wechat/YxWechatMenu', '', 0, 1, '2021-12-12 17:31:40', 0);
+INSERT INTO `sys_log` VALUES (1876, '2021-12-12 17:31:58', '', 'get', '127.0.0.1', 367, 'admin', '/wechat/YxWechatMenu', '', 0, 1, '2021-12-12 17:31:58', 0);
+INSERT INTO `sys_log` VALUES (1877, '2021-12-12 17:32:06', '', 'get', '127.0.0.1', 371, 'admin', '/wechat/YxWechatMenu', '', 0, 1, '2021-12-12 17:32:06', 0);
+INSERT INTO `sys_log` VALUES (1878, '2021-12-12 17:32:57', '', 'get', '127.0.0.1', 949, 'admin', '/wechat/YxWechatMenu', '', 0, 1, '2021-12-12 17:32:57', 0);
+INSERT INTO `sys_log` VALUES (1879, '2021-12-12 18:32:49', '', 'post', '127.0.0.1', 1190025, 'admin', '/wechat/YxWechatMenu', '', 0, 1, '2021-12-12 18:32:49', 0);
+INSERT INTO `sys_log` VALUES (1880, '2021-12-12 18:39:16', '', 'post', '127.0.0.1', 732998, 'admin', '/wechat/YxWechatMenu', '', 0, 1, '2021-12-12 18:39:16', 0);
+INSERT INTO `sys_log` VALUES (1881, '2021-12-13 10:12:01', '', 'get', '127.0.0.1', 1543, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 10:12:01', 0);
+INSERT INTO `sys_log` VALUES (1882, '2021-12-13 10:12:06', '', 'get', '127.0.0.1', 733, 'admin', '/wechat/YxWechatMenu', '', 0, 1, '2021-12-13 10:12:06', 0);
+INSERT INTO `sys_log` VALUES (1883, '2021-12-13 10:12:40', '', 'post', '127.0.0.1', 1306763, 'admin', '/wechat/YxWechatMenu', '', 0, 1, '2021-12-13 10:12:40', 0);
+INSERT INTO `sys_log` VALUES (1884, '2021-12-13 10:14:50', '', 'post', '127.0.0.1', 887886, 'admin', '/wechat/YxWechatMenu', '', 0, 1, '2021-12-13 10:14:50', 0);
+INSERT INTO `sys_log` VALUES (1885, '2021-12-13 10:18:33', '', 'post', '127.0.0.1', 1329237, 'admin', '/wechat/YxWechatMenu', '', 0, 1, '2021-12-13 10:18:33', 0);
+INSERT INTO `sys_log` VALUES (1886, '2021-12-13 15:22:58', '用户个人信息', 'get', '127.0.0.1', 787, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:22:58', 0);
+INSERT INTO `sys_log` VALUES (1887, '2021-12-13 15:22:58', '', 'get', '127.0.0.1', 2028, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:22:58', 0);
+INSERT INTO `sys_log` VALUES (1888, '2021-12-13 15:24:34', '用户个人信息', 'get', '127.0.0.1', 399, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:24:34', 0);
+INSERT INTO `sys_log` VALUES (1889, '2021-12-13 15:24:35', '', 'get', '127.0.0.1', 2911, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:24:35', 0);
+INSERT INTO `sys_log` VALUES (1890, '2021-12-13 15:27:52', '', 'get', '127.0.0.1', 1224, 'admin', '/wechat/yxUser', '', 0, 1, '2021-12-13 15:27:52', 0);
+INSERT INTO `sys_log` VALUES (1891, '2021-12-13 15:30:40', '', 'get', '127.0.0.1', 1499, 'admin', '/wechat/yxUser', '', 0, 1, '2021-12-13 15:30:40', 0);
+INSERT INTO `sys_log` VALUES (1892, '2021-12-13 15:32:32', '用户个人信息', 'get', '127.0.0.1', 511, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:32:32', 0);
+INSERT INTO `sys_log` VALUES (1893, '2021-12-13 15:32:32', '', 'get', '127.0.0.1', 1703, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:32:32', 0);
+INSERT INTO `sys_log` VALUES (1894, '2021-12-13 15:32:38', '菜单管理', 'get', '127.0.0.1', 1662, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:32:38', 0);
+INSERT INTO `sys_log` VALUES (1895, '2021-12-13 15:32:48', '', 'get', '127.0.0.1', 1542, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:32:48', 0);
+INSERT INTO `sys_log` VALUES (1896, '2021-12-13 15:32:53', '菜单编辑', 'put', '127.0.0.1', 1854, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:32:53', 0);
+INSERT INTO `sys_log` VALUES (1897, '2021-12-13 15:32:53', '菜单管理', 'get', '127.0.0.1', 1541, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:32:53', 0);
+INSERT INTO `sys_log` VALUES (1898, '2021-12-13 15:33:00', '', 'get', '127.0.0.1', 1383, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:33:00', 0);
+INSERT INTO `sys_log` VALUES (1899, '2021-12-13 15:33:45', '菜单管理', 'get', '127.0.0.1', 1485, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:33:45', 0);
+INSERT INTO `sys_log` VALUES (1900, '2021-12-13 15:33:50', '', 'get', '127.0.0.1', 1249, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:33:50', 0);
+INSERT INTO `sys_log` VALUES (1901, '2021-12-13 15:34:00', '', 'get', '127.0.0.1', 1498, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:34:00', 0);
+INSERT INTO `sys_log` VALUES (1902, '2021-12-13 15:35:12', '', 'get', '127.0.0.1', 1434, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:35:12', 0);
+INSERT INTO `sys_log` VALUES (1903, '2021-12-13 15:36:29', '菜单新增', 'post', '127.0.0.1', 2008, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:36:29', 0);
+INSERT INTO `sys_log` VALUES (1904, '2021-12-13 15:36:29', '菜单管理', 'get', '127.0.0.1', 1576, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:36:29', 0);
+INSERT INTO `sys_log` VALUES (1905, '2021-12-13 15:36:42', '', 'get', '127.0.0.1', 1767, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:36:42', 0);
+INSERT INTO `sys_log` VALUES (1906, '2021-12-13 15:37:30', '用户个人信息', 'get', '127.0.0.1', 296, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:37:30', 0);
+INSERT INTO `sys_log` VALUES (1907, '2021-12-13 15:37:30', '', 'get', '127.0.0.1', 1273, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:37:30', 0);
+INSERT INTO `sys_log` VALUES (1908, '2021-12-13 15:37:31', '菜单管理', 'get', '127.0.0.1', 1226, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:37:31', 0);
+INSERT INTO `sys_log` VALUES (1909, '2021-12-13 15:37:33', '', 'get', '127.0.0.1', 827, 'admin', '/wechat/yxUser', '', 0, 1, '2021-12-13 15:37:33', 0);
+INSERT INTO `sys_log` VALUES (1910, '2021-12-13 15:37:38', '菜单管理', 'get', '127.0.0.1', 1404, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:37:38', 0);
+INSERT INTO `sys_log` VALUES (1911, '2021-12-13 15:37:39', '', 'get', '127.0.0.1', 1587, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:37:39', 0);
+INSERT INTO `sys_log` VALUES (1912, '2021-12-13 15:37:39', '角色管理', 'get', '127.0.0.1', 4928, 'admin', '/admin/roles', '', 0, 1, '2021-12-13 15:37:39', 0);
+INSERT INTO `sys_log` VALUES (1913, '2021-12-13 15:37:39', '角色管理', 'get', '127.0.0.1', 3843, 'admin', '/admin/roles', '', 0, 1, '2021-12-13 15:37:39', 0);
+INSERT INTO `sys_log` VALUES (1914, '2021-12-13 15:38:58', '角色菜单保存', 'put', '127.0.0.1', 83630, 'admin', '/admin/roles/menu', '', 0, 1, '2021-12-13 15:38:58', 0);
+INSERT INTO `sys_log` VALUES (1915, '2021-12-13 15:38:59', '单个角色', 'get', '127.0.0.1', 374, 'admin', '/admin/roles/*', '', 0, 1, '2021-12-13 15:38:59', 0);
+INSERT INTO `sys_log` VALUES (1916, '2021-12-13 15:39:02', '用户个人信息', 'get', '127.0.0.1', 317, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:39:02', 0);
+INSERT INTO `sys_log` VALUES (1917, '2021-12-13 15:39:02', '', 'get', '127.0.0.1', 2001, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:39:02', 0);
+INSERT INTO `sys_log` VALUES (1918, '2021-12-13 15:39:02', '', 'get', '127.0.0.1', 1360, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:39:02', 0);
+INSERT INTO `sys_log` VALUES (1919, '2021-12-13 15:39:02', '角色管理', 'get', '127.0.0.1', 4048, 'admin', '/admin/roles', '', 0, 1, '2021-12-13 15:39:02', 0);
+INSERT INTO `sys_log` VALUES (1920, '2021-12-13 15:39:02', '角色管理', 'get', '127.0.0.1', 2945, 'admin', '/admin/roles', '', 0, 1, '2021-12-13 15:39:02', 0);
+INSERT INTO `sys_log` VALUES (1921, '2021-12-13 15:39:04', '', 'get', '127.0.0.1', 889, 'admin', '/wechat/yxUser', '', 0, 1, '2021-12-13 15:39:04', 0);
+INSERT INTO `sys_log` VALUES (1922, '2021-12-13 15:39:19', '用户退出', 'delete', '127.0.0.1', 264, 'admin', '/admin/auth/logout', '', 0, 1, '2021-12-13 15:39:19', 0);
+INSERT INTO `sys_log` VALUES (1923, '2021-12-13 15:39:45', '', 'get', '127.0.0.1', 1379, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:39:45', 0);
+INSERT INTO `sys_log` VALUES (1924, '2021-12-13 15:39:49', '', 'get', '127.0.0.1', 795, 'admin', '/wechat/yxUser', '', 0, 1, '2021-12-13 15:39:49', 0);
+INSERT INTO `sys_log` VALUES (1925, '2021-12-13 15:40:07', '用户个人信息', 'get', '127.0.0.1', 305, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:40:07', 0);
+INSERT INTO `sys_log` VALUES (1926, '2021-12-13 15:40:07', '', 'get', '127.0.0.1', 4223, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:40:07', 0);
+INSERT INTO `sys_log` VALUES (1927, '2021-12-13 15:40:08', '菜单管理', 'get', '127.0.0.1', 1778, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:40:08', 0);
+INSERT INTO `sys_log` VALUES (1928, '2021-12-13 15:40:19', '', 'get', '127.0.0.1', 1493, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:40:19', 0);
+INSERT INTO `sys_log` VALUES (1929, '2021-12-13 15:41:21', '', 'get', '127.0.0.1', 1750, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:41:21', 0);
+INSERT INTO `sys_log` VALUES (1930, '2021-12-13 15:41:44', '', 'get', '127.0.0.1', 1407, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:41:44', 0);
+INSERT INTO `sys_log` VALUES (1931, '2021-12-13 15:41:56', '', 'get', '127.0.0.1', 1804, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:41:56', 0);
+INSERT INTO `sys_log` VALUES (1932, '2021-12-13 15:45:16', '菜单编辑', 'put', '127.0.0.1', 1531, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:45:16', 0);
+INSERT INTO `sys_log` VALUES (1933, '2021-12-13 15:45:16', '菜单管理', 'get', '127.0.0.1', 1679, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:45:16', 0);
+INSERT INTO `sys_log` VALUES (1934, '2021-12-13 15:45:19', '用户个人信息', 'get', '127.0.0.1', 1291, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:45:19', 0);
+INSERT INTO `sys_log` VALUES (1935, '2021-12-13 15:45:19', '', 'get', '127.0.0.1', 2652, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:45:19', 0);
+INSERT INTO `sys_log` VALUES (1936, '2021-12-13 15:45:19', '菜单管理', 'get', '127.0.0.1', 1535, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:45:19', 0);
+INSERT INTO `sys_log` VALUES (1937, '2021-12-13 15:45:23', '', 'get', '127.0.0.1', 913, 'admin', '/wechat/yxUser', '', 0, 1, '2021-12-13 15:45:23', 0);
+INSERT INTO `sys_log` VALUES (1938, '2021-12-13 15:46:52', '用户个人信息', 'get', '127.0.0.1', 368, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:46:52', 0);
+INSERT INTO `sys_log` VALUES (1939, '2021-12-13 15:46:52', '', 'get', '127.0.0.1', 2895, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:46:52', 0);
+INSERT INTO `sys_log` VALUES (1940, '2021-12-13 15:46:56', '', 'get', '127.0.0.1', 1112, 'admin', '/wechat/YxWechatMenu', '', 0, 1, '2021-12-13 15:46:56', 0);
+INSERT INTO `sys_log` VALUES (1941, '2021-12-13 15:47:54', '用户个人信息', 'get', '127.0.0.1', 330, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:47:54', 0);
+INSERT INTO `sys_log` VALUES (1942, '2021-12-13 15:47:54', '', 'get', '127.0.0.1', 2773, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:47:54', 0);
+INSERT INTO `sys_log` VALUES (1943, '2021-12-13 15:47:58', '用户管理', 'get', '127.0.0.1', 3039, 'admin', '/admin/user', '', 0, 1, '2021-12-13 15:47:58', 0);
+INSERT INTO `sys_log` VALUES (1944, '2021-12-13 15:47:58', '部门管理', 'get', '127.0.0.1', 411, 'admin', '/admin/dept', '', 0, 1, '2021-12-13 15:47:58', 0);
+INSERT INTO `sys_log` VALUES (1945, '2021-12-13 15:47:58', '字典详情列表', 'get', '127.0.0.1', 9748, 'admin', '/admin/dictDetail', '', 0, 1, '2021-12-13 15:47:58', 0);
+INSERT INTO `sys_log` VALUES (1946, '2021-12-13 15:47:58', '用户管理', 'get', '127.0.0.1', 2410, 'admin', '/admin/user', '', 0, 1, '2021-12-13 15:47:58', 0);
+INSERT INTO `sys_log` VALUES (1947, '2021-12-13 15:48:03', '用户管理', 'get', '127.0.0.1', 2367, 'admin', '/admin/user', '', 0, 1, '2021-12-13 15:48:03', 0);
+INSERT INTO `sys_log` VALUES (1948, '2021-12-13 15:48:08', '用户个人信息', 'get', '127.0.0.1', 320, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:48:08', 0);
+INSERT INTO `sys_log` VALUES (1949, '2021-12-13 15:48:08', '', 'get', '127.0.0.1', 2010, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:48:08', 0);
+INSERT INTO `sys_log` VALUES (1950, '2021-12-13 15:48:09', '字典详情列表', 'get', '127.0.0.1', 895, 'admin', '/admin/dictDetail', '', 0, 1, '2021-12-13 15:48:09', 0);
+INSERT INTO `sys_log` VALUES (1951, '2021-12-13 15:48:09', '用户管理', 'get', '127.0.0.1', 2474, 'admin', '/admin/user', '', 0, 1, '2021-12-13 15:48:09', 0);
+INSERT INTO `sys_log` VALUES (1952, '2021-12-13 15:48:09', '部门管理', 'get', '127.0.0.1', 600, 'admin', '/admin/dept', '', 0, 1, '2021-12-13 15:48:09', 0);
+INSERT INTO `sys_log` VALUES (1953, '2021-12-13 15:48:09', '用户管理', 'get', '127.0.0.1', 2686, 'admin', '/admin/user', '', 0, 1, '2021-12-13 15:48:09', 0);
+INSERT INTO `sys_log` VALUES (1954, '2021-12-13 15:51:39', '菜单管理', 'get', '127.0.0.1', 1330, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:51:39', 0);
+INSERT INTO `sys_log` VALUES (1955, '2021-12-13 15:51:46', '', 'get', '127.0.0.1', 1456, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:51:46', 0);
+INSERT INTO `sys_log` VALUES (1956, '2021-12-13 15:52:10', '菜单编辑', 'put', '127.0.0.1', 1855, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:52:10', 0);
+INSERT INTO `sys_log` VALUES (1957, '2021-12-13 15:52:10', '菜单管理', 'get', '127.0.0.1', 2316, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:52:10', 0);
+INSERT INTO `sys_log` VALUES (1958, '2021-12-13 15:52:15', '', 'get', '127.0.0.1', 1388, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:52:15', 0);
+INSERT INTO `sys_log` VALUES (1959, '2021-12-13 15:52:22', '菜单编辑', 'put', '127.0.0.1', 1401, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:52:22', 0);
+INSERT INTO `sys_log` VALUES (1960, '2021-12-13 15:52:22', '菜单管理', 'get', '127.0.0.1', 1594, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:52:22', 0);
+INSERT INTO `sys_log` VALUES (1961, '2021-12-13 15:52:25', '', 'get', '127.0.0.1', 1569, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-13 15:52:25', 0);
+INSERT INTO `sys_log` VALUES (1962, '2021-12-13 15:52:31', '菜单编辑', 'put', '127.0.0.1', 1775, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:52:31', 0);
+INSERT INTO `sys_log` VALUES (1963, '2021-12-13 15:52:31', '菜单管理', 'get', '127.0.0.1', 1623, 'admin', '/admin/menu', '', 0, 1, '2021-12-13 15:52:31', 0);
+INSERT INTO `sys_log` VALUES (1964, '2021-12-13 15:52:56', '用户个人信息', 'get', '127.0.0.1', 597, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:52:56', 0);
+INSERT INTO `sys_log` VALUES (1965, '2021-12-13 15:52:56', '', 'get', '127.0.0.1', 2704, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:52:56', 0);
+INSERT INTO `sys_log` VALUES (1966, '2021-12-13 15:54:46', '用户个人信息', 'get', '127.0.0.1', 4960, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:54:46', 0);
+INSERT INTO `sys_log` VALUES (1967, '2021-12-13 15:54:46', '', 'get', '127.0.0.1', 1501, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:54:46', 0);
+INSERT INTO `sys_log` VALUES (1968, '2021-12-13 15:54:46', '用户个人信息', 'get', '127.0.0.1', 385, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:54:46', 0);
+INSERT INTO `sys_log` VALUES (1969, '2021-12-13 15:54:46', '', 'get', '127.0.0.1', 2024, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:54:46', 0);
+INSERT INTO `sys_log` VALUES (1970, '2021-12-13 15:55:46', '用户个人信息', 'get', '127.0.0.1', 686, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:55:46', 0);
+INSERT INTO `sys_log` VALUES (1971, '2021-12-13 15:55:46', '', 'get', '127.0.0.1', 1381, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:55:46', 0);
+INSERT INTO `sys_log` VALUES (1972, '2021-12-13 15:55:46', '用户个人信息', 'get', '127.0.0.1', 396, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:55:46', 0);
+INSERT INTO `sys_log` VALUES (1973, '2021-12-13 15:55:46', '', 'get', '127.0.0.1', 3460, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:55:46', 0);
+INSERT INTO `sys_log` VALUES (1974, '2021-12-13 15:55:47', '公众号用户', 'get', '127.0.0.1', 1495, 'admin', '/weixin/user', '', 0, 1, '2021-12-13 15:55:47', 0);
+INSERT INTO `sys_log` VALUES (1975, '2021-12-13 15:56:00', '公众号用户', 'get', '127.0.0.1', 900, 'admin', '/weixin/user', '', 0, 1, '2021-12-13 15:56:00', 0);
+INSERT INTO `sys_log` VALUES (1976, '2021-12-13 15:56:03', '用户个人信息', 'get', '127.0.0.1', 382, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:56:03', 0);
+INSERT INTO `sys_log` VALUES (1977, '2021-12-13 15:56:03', '', 'get', '127.0.0.1', 3632, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:56:03', 0);
+INSERT INTO `sys_log` VALUES (1978, '2021-12-13 15:56:03', '公众号用户', 'get', '127.0.0.1', 718, 'admin', '/weixin/user', '', 0, 1, '2021-12-13 15:56:03', 0);
+INSERT INTO `sys_log` VALUES (1979, '2021-12-13 15:59:16', '用户个人信息', 'get', '127.0.0.1', 345, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-13 15:59:16', 0);
+INSERT INTO `sys_log` VALUES (1980, '2021-12-13 15:59:16', '', 'get', '127.0.0.1', 3045, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-13 15:59:16', 0);
+INSERT INTO `sys_log` VALUES (1981, '2021-12-13 15:59:17', '公众号用户', 'get', '127.0.0.1', 1282, 'admin', '/weixin/user', '', 0, 1, '2021-12-13 15:59:17', 0);
+INSERT INTO `sys_log` VALUES (1982, '2021-12-14 10:20:19', '', 'get', '127.0.0.1', 2344, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-14 10:20:19', 0);
+INSERT INTO `sys_log` VALUES (1983, '2021-12-14 10:20:34', '公众号用户', 'get', '127.0.0.1', 7673, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 10:20:34', 0);
+INSERT INTO `sys_log` VALUES (1984, '2021-12-14 10:20:46', '用户个人信息', 'get', '127.0.0.1', 310, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-14 10:20:46', 0);
+INSERT INTO `sys_log` VALUES (1985, '2021-12-14 10:20:46', '', 'get', '127.0.0.1', 4907, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-14 10:20:46', 0);
+INSERT INTO `sys_log` VALUES (1986, '2021-12-14 10:20:47', '公众号用户', 'get', '127.0.0.1', 654, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 10:20:47', 0);
+INSERT INTO `sys_log` VALUES (1987, '2021-12-14 10:21:01', '用户个人信息', 'get', '127.0.0.1', 321, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-14 10:21:01', 0);
+INSERT INTO `sys_log` VALUES (1988, '2021-12-14 10:21:01', '', 'get', '127.0.0.1', 2296, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-14 10:21:01', 0);
+INSERT INTO `sys_log` VALUES (1989, '2021-12-14 10:21:01', '公众号用户', 'get', '127.0.0.1', 740, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 10:21:01', 0);
+INSERT INTO `sys_log` VALUES (1990, '2021-12-14 10:34:44', '编辑用户', 'put', '127.0.0.1', 6253, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 10:34:44', 0);
+INSERT INTO `sys_log` VALUES (1991, '2021-12-14 10:39:24', '公众号用户', 'get', '127.0.0.1', 1175, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 10:39:24', 0);
+INSERT INTO `sys_log` VALUES (1992, '2021-12-14 10:39:32', '编辑用户', 'put', '127.0.0.1', 2042, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 10:39:32', 0);
+INSERT INTO `sys_log` VALUES (1993, '2021-12-14 10:51:01', '编辑用户', 'put', '127.0.0.1', 3886, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 10:51:01', 0);
+INSERT INTO `sys_log` VALUES (1994, '2021-12-14 10:51:01', '公众号用户', 'get', '127.0.0.1', 862, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 10:51:01', 0);
+INSERT INTO `sys_log` VALUES (1995, '2021-12-14 10:51:19', '编辑用户', 'put', '127.0.0.1', 2986, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 10:51:19', 0);
+INSERT INTO `sys_log` VALUES (1996, '2021-12-14 10:51:19', '公众号用户', 'get', '127.0.0.1', 1419, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 10:51:19', 0);
+INSERT INTO `sys_log` VALUES (1997, '2021-12-14 14:19:50', '', 'post', '127.0.0.1', 128, 'admin', '/weixin/user/money', '', 0, 1, '2021-12-14 14:19:50', 0);
+INSERT INTO `sys_log` VALUES (1998, '2021-12-14 14:20:53', '', 'post', '127.0.0.1', 52, 'admin', '/weixin/user/money', '', 0, 1, '2021-12-14 14:20:53', 0);
+INSERT INTO `sys_log` VALUES (1999, '2021-12-14 14:25:05', '', 'post', '127.0.0.1', 68, 'admin', '/weixin/user/money', '', 0, 1, '2021-12-14 14:25:05', 0);
+INSERT INTO `sys_log` VALUES (2000, '2021-12-14 14:25:57', '公众号用户', 'get', '127.0.0.1', 1353, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:25:57', 0);
+INSERT INTO `sys_log` VALUES (2001, '2021-12-14 14:26:23', '公众号用户', 'get', '127.0.0.1', 2077, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:26:23', 0);
+INSERT INTO `sys_log` VALUES (2002, '2021-12-14 14:27:29', '公众号用户', 'get', '127.0.0.1', 860, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:27:29', 0);
+INSERT INTO `sys_log` VALUES (2003, '2021-12-14 14:28:22', '', 'post', '127.0.0.1', 1826, 'admin', '/weixin/user/money', '', 0, 1, '2021-12-14 14:28:22', 0);
+INSERT INTO `sys_log` VALUES (2004, '2021-12-14 14:28:22', '公众号用户', 'get', '127.0.0.1', 1254, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:28:22', 0);
+INSERT INTO `sys_log` VALUES (2005, '2021-12-14 14:29:03', '', 'post', '127.0.0.1', 1191, 'admin', '/weixin/user/money', '', 0, 1, '2021-12-14 14:29:03', 0);
+INSERT INTO `sys_log` VALUES (2006, '2021-12-14 14:29:03', '公众号用户', 'get', '127.0.0.1', 5861, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:29:03', 0);
+INSERT INTO `sys_log` VALUES (2007, '2021-12-14 14:29:13', '', 'post', '127.0.0.1', 1547, 'admin', '/weixin/user/money', '', 0, 1, '2021-12-14 14:29:13', 0);
+INSERT INTO `sys_log` VALUES (2008, '2021-12-14 14:29:13', '公众号用户', 'get', '127.0.0.1', 1076, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:29:13', 0);
+INSERT INTO `sys_log` VALUES (2009, '2021-12-14 14:29:24', '', 'post', '127.0.0.1', 1478, 'admin', '/weixin/user/money', '', 0, 1, '2021-12-14 14:29:24', 0);
+INSERT INTO `sys_log` VALUES (2010, '2021-12-14 14:29:24', '公众号用户', 'get', '127.0.0.1', 1483, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:29:24', 0);
+INSERT INTO `sys_log` VALUES (2011, '2021-12-14 14:29:37', '公众号用户', 'get', '127.0.0.1', 737, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:29:37', 0);
+INSERT INTO `sys_log` VALUES (2012, '2021-12-14 14:32:08', '公众号用户', 'get', '127.0.0.1', 1175, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:32:08', 0);
+INSERT INTO `sys_log` VALUES (2013, '2021-12-14 14:32:26', '公众号用户', 'get', '127.0.0.1', 742, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:32:26', 0);
+INSERT INTO `sys_log` VALUES (2014, '2021-12-14 14:32:41', '公众号用户', 'get', '127.0.0.1', 790, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:32:41', 0);
+INSERT INTO `sys_log` VALUES (2015, '2021-12-14 14:32:51', '公众号用户', 'get', '127.0.0.1', 693, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:32:51', 0);
+INSERT INTO `sys_log` VALUES (2016, '2021-12-14 14:37:24', '公众号用户', 'get', '127.0.0.1', 1228, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:37:24', 0);
+INSERT INTO `sys_log` VALUES (2017, '2021-12-14 14:37:28', '公众号用户', 'get', '127.0.0.1', 772, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:37:28', 0);
+INSERT INTO `sys_log` VALUES (2018, '2021-12-14 14:37:32', '公众号用户', 'get', '127.0.0.1', 693, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:37:32', 0);
+INSERT INTO `sys_log` VALUES (2019, '2021-12-14 14:37:46', '公众号用户', 'get', '127.0.0.1', 720, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:37:46', 0);
+INSERT INTO `sys_log` VALUES (2020, '2021-12-14 14:37:51', '公众号用户', 'get', '127.0.0.1', 853, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:37:51', 0);
+INSERT INTO `sys_log` VALUES (2021, '2021-12-14 14:37:53', '公众号用户', 'get', '127.0.0.1', 840, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:37:53', 0);
+INSERT INTO `sys_log` VALUES (2022, '2021-12-14 14:38:50', '公众号用户', 'get', '127.0.0.1', 1494, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:38:50', 0);
+INSERT INTO `sys_log` VALUES (2023, '2021-12-14 14:38:57', '公众号用户', 'get', '127.0.0.1', 800, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:38:57', 0);
+INSERT INTO `sys_log` VALUES (2024, '2021-12-14 14:39:00', '公众号用户', 'get', '127.0.0.1', 1026, 'admin', '/weixin/user', '', 0, 1, '2021-12-14 14:39:00', 0);
+INSERT INTO `sys_log` VALUES (2025, '2021-12-14 14:56:19', '用户个人信息', 'get', '127.0.0.1', 576, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-14 14:56:19', 0);
+INSERT INTO `sys_log` VALUES (2026, '2021-12-14 14:56:19', '', 'get', '127.0.0.1', 5366, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-14 14:56:19', 0);
+INSERT INTO `sys_log` VALUES (2027, '2021-12-14 14:57:20', '用户个人信息', 'get', '127.0.0.1', 448, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-14 14:57:20', 0);
+INSERT INTO `sys_log` VALUES (2028, '2021-12-14 14:57:20', '', 'get', '127.0.0.1', 2897, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-14 14:57:20', 0);
+INSERT INTO `sys_log` VALUES (2029, '2021-12-14 14:57:49', '', 'get', '127.0.0.1', 9343, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 14:57:49', 0);
+INSERT INTO `sys_log` VALUES (2030, '2021-12-14 14:58:11', '用户个人信息', 'get', '127.0.0.1', 302, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-14 14:58:11', 0);
+INSERT INTO `sys_log` VALUES (2031, '2021-12-14 14:58:11', '', 'get', '127.0.0.1', 1567, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-14 14:58:11', 0);
+INSERT INTO `sys_log` VALUES (2032, '2021-12-14 14:58:11', '', 'get', '127.0.0.1', 508, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 14:58:11', 0);
+INSERT INTO `sys_log` VALUES (2033, '2021-12-14 14:58:15', '菜单管理', 'get', '127.0.0.1', 1548, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 14:58:15', 0);
+INSERT INTO `sys_log` VALUES (2034, '2021-12-14 14:58:24', '', 'get', '127.0.0.1', 1602, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 14:58:24', 0);
+INSERT INTO `sys_log` VALUES (2035, '2021-12-14 14:58:34', '', 'get', '127.0.0.1', 1531, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 14:58:34', 0);
+INSERT INTO `sys_log` VALUES (2036, '2021-12-14 14:59:03', '菜单管理', 'get', '127.0.0.1', 1393, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 14:59:03', 0);
+INSERT INTO `sys_log` VALUES (2037, '2021-12-14 14:59:09', '', 'get', '127.0.0.1', 1479, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 14:59:09', 0);
+INSERT INTO `sys_log` VALUES (2038, '2021-12-14 14:59:55', '菜单新增', 'post', '127.0.0.1', 2277, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 14:59:55', 0);
+INSERT INTO `sys_log` VALUES (2039, '2021-12-14 14:59:55', '菜单管理', 'get', '127.0.0.1', 1503, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 14:59:55', 0);
+INSERT INTO `sys_log` VALUES (2040, '2021-12-14 14:59:59', '', 'get', '127.0.0.1', 1532, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 14:59:59', 0);
+INSERT INTO `sys_log` VALUES (2041, '2021-12-14 15:00:33', '菜单新增', 'post', '127.0.0.1', 1303, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:00:33', 0);
+INSERT INTO `sys_log` VALUES (2042, '2021-12-14 15:00:33', '菜单管理', 'get', '127.0.0.1', 1520, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:00:33', 0);
+INSERT INTO `sys_log` VALUES (2043, '2021-12-14 15:00:35', '', 'get', '127.0.0.1', 1641, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 15:00:35', 0);
+INSERT INTO `sys_log` VALUES (2044, '2021-12-14 15:01:14', '菜单新增', 'post', '127.0.0.1', 1097, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:01:14', 0);
+INSERT INTO `sys_log` VALUES (2045, '2021-12-14 15:01:14', '菜单管理', 'get', '127.0.0.1', 1607, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:01:14', 0);
+INSERT INTO `sys_log` VALUES (2046, '2021-12-14 15:01:17', '菜单编辑', 'put', '127.0.0.1', 1525, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:01:17', 0);
+INSERT INTO `sys_log` VALUES (2047, '2021-12-14 15:01:17', '菜单管理', 'get', '127.0.0.1', 1594, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:01:17', 0);
+INSERT INTO `sys_log` VALUES (2048, '2021-12-14 15:02:28', '微信菜单', 'get', '127.0.0.1', 1539, 'admin', '/weixin/menu', '', 0, 1, '2021-12-14 15:02:28', 0);
+INSERT INTO `sys_log` VALUES (2049, '2021-12-14 15:02:29', '图文管理', 'get', '127.0.0.1', 676, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:02:29', 0);
+INSERT INTO `sys_log` VALUES (2050, '2021-12-14 15:02:35', '', 'get', '127.0.0.1', 1574, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 15:02:35', 0);
+INSERT INTO `sys_log` VALUES (2051, '2021-12-14 15:02:35', '角色管理', 'get', '127.0.0.1', 5836, 'admin', '/admin/roles', '', 0, 1, '2021-12-14 15:02:35', 0);
+INSERT INTO `sys_log` VALUES (2052, '2021-12-14 15:02:35', '角色管理', 'get', '127.0.0.1', 4614, 'admin', '/admin/roles', '', 0, 1, '2021-12-14 15:02:35', 0);
+INSERT INTO `sys_log` VALUES (2053, '2021-12-14 15:02:45', '角色菜单保存', 'put', '127.0.0.1', 115121, 'admin', '/admin/roles/menu', '', 0, 1, '2021-12-14 15:02:45', 0);
+INSERT INTO `sys_log` VALUES (2054, '2021-12-14 15:02:45', '单个角色', 'get', '127.0.0.1', 428, 'admin', '/admin/roles/*', '', 0, 1, '2021-12-14 15:02:45', 0);
+INSERT INTO `sys_log` VALUES (2055, '2021-12-14 15:02:52', '用户退出', 'delete', '127.0.0.1', 264, 'admin', '/admin/auth/logout', '', 0, 1, '2021-12-14 15:02:52', 0);
+INSERT INTO `sys_log` VALUES (2056, '2021-12-14 15:02:57', '', 'get', '127.0.0.1', 1527, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-14 15:02:57', 0);
+INSERT INTO `sys_log` VALUES (2057, '2021-12-14 15:02:57', '', 'get', '127.0.0.1', 1588, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 15:02:57', 0);
+INSERT INTO `sys_log` VALUES (2058, '2021-12-14 15:02:57', '角色管理', 'get', '127.0.0.1', 5375, 'admin', '/admin/roles', '', 0, 1, '2021-12-14 15:02:57', 0);
+INSERT INTO `sys_log` VALUES (2059, '2021-12-14 15:02:57', '角色管理', 'get', '127.0.0.1', 13526, 'admin', '/admin/roles', '', 0, 1, '2021-12-14 15:02:57', 0);
+INSERT INTO `sys_log` VALUES (2060, '2021-12-14 15:03:01', '微信菜单', 'get', '127.0.0.1', 379, 'admin', '/weixin/menu', '', 0, 1, '2021-12-14 15:03:01', 0);
+INSERT INTO `sys_log` VALUES (2061, '2021-12-14 15:03:01', '图文管理', 'get', '127.0.0.1', 971, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:03:01', 0);
+INSERT INTO `sys_log` VALUES (2062, '2021-12-14 15:03:13', '图文管理', 'get', '127.0.0.1', 710, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:03:13', 0);
+INSERT INTO `sys_log` VALUES (2063, '2021-12-14 15:03:58', '菜单管理', 'get', '127.0.0.1', 1536, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:03:58', 0);
+INSERT INTO `sys_log` VALUES (2064, '2021-12-14 15:04:04', '', 'get', '127.0.0.1', 1295, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 15:04:04', 0);
+INSERT INTO `sys_log` VALUES (2065, '2021-12-14 15:04:12', '菜单管理', 'get', '127.0.0.1', 1495, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:04:12', 0);
+INSERT INTO `sys_log` VALUES (2066, '2021-12-14 15:04:13', '', 'get', '127.0.0.1', 1685, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 15:04:13', 0);
+INSERT INTO `sys_log` VALUES (2067, '2021-12-14 15:05:36', '', 'get', '127.0.0.1', 1608, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 15:05:36', 0);
+INSERT INTO `sys_log` VALUES (2068, '2021-12-14 15:05:49', '', 'get', '127.0.0.1', 1483, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 15:05:49', 0);
+INSERT INTO `sys_log` VALUES (2069, '2021-12-14 15:06:04', '', 'get', '127.0.0.1', 1520, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 15:06:04', 0);
+INSERT INTO `sys_log` VALUES (2070, '2021-12-14 15:06:16', '', 'get', '127.0.0.1', 1589, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 15:06:16', 0);
+INSERT INTO `sys_log` VALUES (2071, '2021-12-14 15:08:10', '菜单编辑', 'put', '127.0.0.1', 1512, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:08:10', 0);
+INSERT INTO `sys_log` VALUES (2072, '2021-12-14 15:08:10', '菜单管理', 'get', '127.0.0.1', 1802, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:08:10', 0);
+INSERT INTO `sys_log` VALUES (2073, '2021-12-14 15:08:14', '', 'get', '127.0.0.1', 1638, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 15:08:14', 0);
+INSERT INTO `sys_log` VALUES (2074, '2021-12-14 15:09:06', '菜单编辑', 'put', '127.0.0.1', 1486, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:09:06', 0);
+INSERT INTO `sys_log` VALUES (2075, '2021-12-14 15:09:06', '菜单管理', 'get', '127.0.0.1', 1985, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:09:06', 0);
+INSERT INTO `sys_log` VALUES (2076, '2021-12-14 15:09:13', '图文管理', 'get', '127.0.0.1', 732, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:09:13', 0);
+INSERT INTO `sys_log` VALUES (2077, '2021-12-14 15:09:17', '图文管理', 'get', '127.0.0.1', 650, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:09:17', 0);
+INSERT INTO `sys_log` VALUES (2078, '2021-12-14 15:10:20', '用户个人信息', 'get', '127.0.0.1', 393, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-14 15:10:20', 0);
+INSERT INTO `sys_log` VALUES (2079, '2021-12-14 15:10:20', '', 'get', '127.0.0.1', 1550, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-14 15:10:20', 0);
+INSERT INTO `sys_log` VALUES (2080, '2021-12-14 15:10:21', '菜单管理', 'get', '127.0.0.1', 1512, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:10:21', 0);
+INSERT INTO `sys_log` VALUES (2081, '2021-12-14 15:10:51', '图文管理', 'get', '127.0.0.1', 986, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:10:51', 0);
+INSERT INTO `sys_log` VALUES (2082, '2021-12-14 15:11:05', '', 'get', '127.0.0.1', 2316, 'admin', '/admin/materialgroup', '', 0, 1, '2021-12-14 15:11:05', 0);
+INSERT INTO `sys_log` VALUES (2083, '2021-12-14 15:11:05', '', 'get', '127.0.0.1', 6487, 'admin', '/admin/material', '', 0, 1, '2021-12-14 15:11:05', 0);
+INSERT INTO `sys_log` VALUES (2084, '2021-12-14 15:11:13', '用户个人信息', 'get', '127.0.0.1', 1029, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-14 15:11:13', 0);
+INSERT INTO `sys_log` VALUES (2085, '2021-12-14 15:11:13', '', 'get', '127.0.0.1', 1709, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-14 15:11:13', 0);
+INSERT INTO `sys_log` VALUES (2086, '2021-12-14 15:11:13', '', 'get', '127.0.0.1', 418, 'admin', '/admin/materialgroup', '', 0, 1, '2021-12-14 15:11:13', 0);
+INSERT INTO `sys_log` VALUES (2087, '2021-12-14 15:11:13', '', 'get', '127.0.0.1', 1503, 'admin', '/admin/material', '', 0, 1, '2021-12-14 15:11:13', 0);
+INSERT INTO `sys_log` VALUES (2088, '2021-12-14 15:11:34', '图文添加', 'post', '127.0.0.1', 60, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:11:34', 0);
+INSERT INTO `sys_log` VALUES (2089, '2021-12-14 15:12:40', '图文添加', 'post', '127.0.0.1', 92, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:12:40', 0);
+INSERT INTO `sys_log` VALUES (2090, '2021-12-14 15:19:23', '', 'get', '127.0.0.1', 389, 'admin', '/admin/materialgroup', '', 0, 1, '2021-12-14 15:19:23', 0);
+INSERT INTO `sys_log` VALUES (2091, '2021-12-14 15:19:23', '', 'get', '127.0.0.1', 1557, 'admin', '/admin/material', '', 0, 1, '2021-12-14 15:19:23', 0);
+INSERT INTO `sys_log` VALUES (2092, '2021-12-14 15:19:35', '图文添加', 'post', '127.0.0.1', 166, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:19:35', 0);
+INSERT INTO `sys_log` VALUES (2093, '2021-12-14 15:20:48', '图文添加', 'post', '127.0.0.1', 1762, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:20:48', 0);
+INSERT INTO `sys_log` VALUES (2094, '2021-12-14 15:21:54', '图文管理', 'get', '127.0.0.1', 4839, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:21:54', 0);
+INSERT INTO `sys_log` VALUES (2095, '2021-12-14 15:22:01', '图文管理', 'get', '127.0.0.1', 962, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:22:01', 0);
+INSERT INTO `sys_log` VALUES (2096, '2021-12-14 15:22:08', '用户退出', 'delete', '127.0.0.1', 219, 'admin', '/admin/auth/logout', '', 0, 1, '2021-12-14 15:22:08', 0);
+INSERT INTO `sys_log` VALUES (2097, '2021-12-14 15:22:17', '', 'get', '127.0.0.1', 1501, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-14 15:22:17', 0);
+INSERT INTO `sys_log` VALUES (2098, '2021-12-14 15:22:17', '图文管理', 'get', '127.0.0.1', 769, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:22:17', 0);
+INSERT INTO `sys_log` VALUES (2099, '2021-12-14 15:22:22', '', 'get', '127.0.0.1', 1978, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 15:22:22', 0);
+INSERT INTO `sys_log` VALUES (2100, '2021-12-14 15:22:22', '角色管理', 'get', '127.0.0.1', 4610, 'admin', '/admin/roles', '', 0, 1, '2021-12-14 15:22:22', 0);
+INSERT INTO `sys_log` VALUES (2101, '2021-12-14 15:22:22', '角色管理', 'get', '127.0.0.1', 6240, 'admin', '/admin/roles', '', 0, 1, '2021-12-14 15:22:22', 0);
+INSERT INTO `sys_log` VALUES (2102, '2021-12-14 15:22:28', '角色菜单保存', 'put', '127.0.0.1', 97729, 'admin', '/admin/roles/menu', '', 0, 1, '2021-12-14 15:22:28', 0);
+INSERT INTO `sys_log` VALUES (2103, '2021-12-14 15:22:28', '单个角色', 'get', '127.0.0.1', 372, 'admin', '/admin/roles/*', '', 0, 1, '2021-12-14 15:22:28', 0);
+INSERT INTO `sys_log` VALUES (2104, '2021-12-14 15:22:33', '微信菜单', 'get', '127.0.0.1', 807, 'admin', '/weixin/menu', '', 0, 1, '2021-12-14 15:22:33', 0);
+INSERT INTO `sys_log` VALUES (2105, '2021-12-14 15:22:33', '图文管理', 'get', '127.0.0.1', 1231, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:22:33', 0);
+INSERT INTO `sys_log` VALUES (2106, '2021-12-14 15:22:41', '', 'get', '127.0.0.1', 731, 'admin', '/admin/materialgroup', '', 0, 1, '2021-12-14 15:22:41', 0);
+INSERT INTO `sys_log` VALUES (2107, '2021-12-14 15:22:41', '', 'get', '127.0.0.1', 1499, 'admin', '/admin/material', '', 0, 1, '2021-12-14 15:22:41', 0);
+INSERT INTO `sys_log` VALUES (2108, '2021-12-14 15:22:51', '图文添加', 'post', '127.0.0.1', 4221, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:22:51', 0);
+INSERT INTO `sys_log` VALUES (2109, '2021-12-14 15:22:52', '图文管理', 'get', '127.0.0.1', 874, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:22:52', 0);
+INSERT INTO `sys_log` VALUES (2110, '2021-12-14 15:23:48', '用户个人信息', 'get', '127.0.0.1', 328, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-14 15:23:48', 0);
+INSERT INTO `sys_log` VALUES (2111, '2021-12-14 15:23:48', '', 'get', '127.0.0.1', 7641, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-14 15:23:48', 0);
+INSERT INTO `sys_log` VALUES (2112, '2021-12-14 15:23:48', '图文管理', 'get', '127.0.0.1', 999, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:23:48', 0);
+INSERT INTO `sys_log` VALUES (2113, '2021-12-14 15:24:27', '图文管理', 'get', '127.0.0.1', 1236, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:24:27', 0);
+INSERT INTO `sys_log` VALUES (2114, '2021-12-14 15:24:41', '用户个人信息', 'get', '127.0.0.1', 333, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-14 15:24:41', 0);
+INSERT INTO `sys_log` VALUES (2115, '2021-12-14 15:24:41', '', 'get', '127.0.0.1', 2398, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-14 15:24:41', 0);
+INSERT INTO `sys_log` VALUES (2116, '2021-12-14 15:24:50', '菜单管理', 'get', '127.0.0.1', 1738, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:24:50', 0);
+INSERT INTO `sys_log` VALUES (2117, '2021-12-14 15:24:54', '', 'get', '127.0.0.1', 1802, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 15:24:54', 0);
+INSERT INTO `sys_log` VALUES (2118, '2021-12-14 15:25:07', '菜单管理', 'get', '127.0.0.1', 1740, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:25:07', 0);
+INSERT INTO `sys_log` VALUES (2119, '2021-12-14 15:25:13', '', 'get', '127.0.0.1', 1537, 'admin', '/admin/menu/listtree', '', 0, 1, '2021-12-14 15:25:13', 0);
+INSERT INTO `sys_log` VALUES (2120, '2021-12-14 15:25:27', '菜单编辑', 'put', '127.0.0.1', 1532, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:25:27', 0);
+INSERT INTO `sys_log` VALUES (2121, '2021-12-14 15:25:27', '菜单管理', 'get', '127.0.0.1', 1708, 'admin', '/admin/menu', '', 0, 1, '2021-12-14 15:25:27', 0);
+INSERT INTO `sys_log` VALUES (2122, '2021-12-14 15:25:35', '图文管理', 'get', '127.0.0.1', 866, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:25:35', 0);
+INSERT INTO `sys_log` VALUES (2123, '2021-12-14 15:25:40', '图文管理', 'get', '127.0.0.1', 667, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:25:40', 0);
+INSERT INTO `sys_log` VALUES (2124, '2021-12-14 15:25:41', '用户个人信息', 'get', '127.0.0.1', 350, 'admin', '/admin/auth/info', '', 0, 1, '2021-12-14 15:25:41', 0);
+INSERT INTO `sys_log` VALUES (2125, '2021-12-14 15:25:41', '', 'get', '127.0.0.1', 2713, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-14 15:25:41', 0);
+INSERT INTO `sys_log` VALUES (2126, '2021-12-14 15:25:41', '图文管理', 'get', '127.0.0.1', 1045, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:25:41', 0);
+INSERT INTO `sys_log` VALUES (2127, '2021-12-14 15:25:53', '图文管理', 'get', '127.0.0.1', 1078, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:25:53', 0);
+INSERT INTO `sys_log` VALUES (2128, '2021-12-14 15:32:03', '图文管理', 'get', '127.0.0.1', 1244, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:32:03', 0);
+INSERT INTO `sys_log` VALUES (2129, '2021-12-14 15:32:36', '图文管理', 'get', '127.0.0.1', 1441, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:32:36', 0);
+INSERT INTO `sys_log` VALUES (2130, '2021-12-14 15:32:38', '', 'get', '127.0.0.1', 27, 'admin', '/weixin/article/info/*', '', 0, 1, '2021-12-14 15:32:38', 0);
+INSERT INTO `sys_log` VALUES (2131, '2021-12-14 15:34:43', '图文管理', 'get', '127.0.0.1', 1627, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:34:43', 0);
+INSERT INTO `sys_log` VALUES (2132, '2021-12-14 15:34:57', '', 'get', '127.0.0.1', 35, 'admin', '/weixin/article/info/*', '', 0, 1, '2021-12-14 15:34:57', 0);
+INSERT INTO `sys_log` VALUES (2133, '2021-12-14 15:36:55', '图文管理', 'get', '127.0.0.1', 1329, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:36:55', 0);
+INSERT INTO `sys_log` VALUES (2134, '2021-12-14 15:36:58', '', 'get', '127.0.0.1', 117, 'admin', '/weixin/article/info/*', '', 0, 1, '2021-12-14 15:36:58', 0);
+INSERT INTO `sys_log` VALUES (2135, '2021-12-14 15:37:49', '图文管理', 'get', '127.0.0.1', 1630, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:37:49', 0);
+INSERT INTO `sys_log` VALUES (2136, '2021-12-14 15:37:51', '', 'get', '127.0.0.1', 117, 'admin', '/weixin/article/info/*', '', 0, 1, '2021-12-14 15:37:51', 0);
+INSERT INTO `sys_log` VALUES (2137, '2021-12-14 15:38:43', '图文管理', 'get', '127.0.0.1', 2032, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:38:43', 0);
+INSERT INTO `sys_log` VALUES (2138, '2021-12-14 15:38:46', '', 'get', '127.0.0.1', 1584, 'admin', '/weixin/article/info/*', '', 0, 1, '2021-12-14 15:38:46', 0);
+INSERT INTO `sys_log` VALUES (2139, '2021-12-14 15:40:02', '图文管理', 'get', '127.0.0.1', 1935, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:40:02', 0);
+INSERT INTO `sys_log` VALUES (2140, '2021-12-14 15:40:04', '', 'get', '127.0.0.1', 526, 'admin', '/weixin/article/info/*', '', 0, 1, '2021-12-14 15:40:04', 0);
+INSERT INTO `sys_log` VALUES (2141, '2021-12-14 15:40:56', '', 'get', '127.0.0.1', 891, 'admin', '/weixin/article/info/*', '', 0, 1, '2021-12-14 15:40:56', 0);
+INSERT INTO `sys_log` VALUES (2142, '2021-12-14 15:41:07', '图文编辑', 'put', '127.0.0.1', 1933, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:41:07', 0);
+INSERT INTO `sys_log` VALUES (2143, '2021-12-14 15:41:08', '图文管理', 'get', '127.0.0.1', 724, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:41:08', 0);
+INSERT INTO `sys_log` VALUES (2144, '2021-12-14 15:42:35', '部门管理', 'get', '127.0.0.1', 660, 'admin', '/admin/dept', '', 0, 1, '2021-12-14 15:42:35', 0);
+INSERT INTO `sys_log` VALUES (2145, '2021-12-14 15:42:35', '字典详情列表', 'get', '127.0.0.1', 6030, 'admin', '/admin/dictDetail', '', 0, 1, '2021-12-14 15:42:35', 0);
+INSERT INTO `sys_log` VALUES (2146, '2021-12-14 15:42:35', '用户管理', 'get', '127.0.0.1', 5196, 'admin', '/admin/user', '', 0, 1, '2021-12-14 15:42:35', 0);
+INSERT INTO `sys_log` VALUES (2147, '2021-12-14 15:42:35', '用户管理', 'get', '127.0.0.1', 3708, 'admin', '/admin/user', '', 0, 1, '2021-12-14 15:42:35', 0);
+INSERT INTO `sys_log` VALUES (2148, '2021-12-14 15:42:40', '部门管理', 'get', '127.0.0.1', 438, 'admin', '/admin/dept', '', 0, 1, '2021-12-14 15:42:40', 0);
+INSERT INTO `sys_log` VALUES (2149, '2021-12-14 15:42:40', '岗位管理', 'get', '127.0.0.1', 1633, 'admin', '/admin/job', '', 0, 1, '2021-12-14 15:42:40', 0);
+INSERT INTO `sys_log` VALUES (2150, '2021-12-14 15:42:40', '角色管理', 'get', '127.0.0.1', 3286, 'admin', '/admin/roles', '', 0, 1, '2021-12-14 15:42:40', 0);
+INSERT INTO `sys_log` VALUES (2151, '2021-12-14 15:42:40', '岗位管理', 'get', '127.0.0.1', 1586, 'admin', '/admin/job', '', 0, 1, '2021-12-14 15:42:40', 0);
+INSERT INTO `sys_log` VALUES (2152, '2021-12-14 15:42:44', '用户编辑', 'put', '127.0.0.1', 4851, 'admin', '/admin/user', '', 0, 1, '2021-12-14 15:42:44', 0);
+INSERT INTO `sys_log` VALUES (2153, '2021-12-14 15:42:44', '用户管理', 'get', '127.0.0.1', 2390, 'admin', '/admin/user', '', 0, 1, '2021-12-14 15:42:44', 0);
+INSERT INTO `sys_log` VALUES (2154, '2021-12-14 15:43:07', '图文管理', 'get', '127.0.0.1', 840, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:43:07', 0);
+INSERT INTO `sys_log` VALUES (2155, '2021-12-14 15:43:13', '', 'get', '127.0.0.1', 579, 'admin', '/weixin/article/info/*', '', 0, 1, '2021-12-14 15:43:13', 0);
+INSERT INTO `sys_log` VALUES (2156, '2021-12-14 15:43:18', '图文编辑', 'put', '127.0.0.1', 1541, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:43:18', 0);
+INSERT INTO `sys_log` VALUES (2157, '2021-12-14 15:43:19', '图文管理', 'get', '127.0.0.1', 755, 'admin', '/weixin/article', '', 0, 1, '2021-12-14 15:43:19', 0);
+INSERT INTO `sys_log` VALUES (2158, '2021-12-15 11:34:33', '', 'get', '127.0.0.1', 2954, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-15 11:34:33', 0);
+INSERT INTO `sys_log` VALUES (2159, '2021-12-15 11:34:41', '图文管理', 'get', '127.0.0.1', 3211, 'admin', '/weixin/article', '', 0, 1, '2021-12-15 11:34:41', 0);
+INSERT INTO `sys_log` VALUES (2160, '2021-12-15 11:36:08', '', 'delete', '127.0.0.1', 2860, 'admin', '/weixin/article/*', '', 0, 1, '2021-12-15 11:36:08', 0);
+INSERT INTO `sys_log` VALUES (2161, '2021-12-15 11:36:08', '图文管理', 'get', '127.0.0.1', 1201, 'admin', '/weixin/article', '', 0, 1, '2021-12-15 11:36:08', 0);
+INSERT INTO `sys_log` VALUES (2162, '2021-12-15 11:37:32', '微信菜单', 'get', '127.0.0.1', 5166, 'admin', '/weixin/menu', '', 0, 1, '2021-12-15 11:37:32', 0);
+INSERT INTO `sys_log` VALUES (2163, '2021-12-15 16:02:03', '图文管理', 'get', '127.0.0.1', 1583, 'admin', '/weixin/article', '', 0, 1, '2021-12-15 16:02:03', 0);
+INSERT INTO `sys_log` VALUES (2164, '2021-12-15 16:04:51', '', 'get', '127.0.0.1', 546969, 'admin', '/weixin/article/publish/*', '', 0, 1, '2021-12-15 16:04:51', 0);
+INSERT INTO `sys_log` VALUES (2165, '2021-12-15 16:04:51', '图文管理', 'get', '127.0.0.1', 1187, 'admin', '/weixin/article', '', 0, 1, '2021-12-15 16:04:51', 0);
+INSERT INTO `sys_log` VALUES (2166, '2021-12-15 16:08:17', '', 'get', '127.0.0.1', 983, 'admin', '/weixin/article/publish/*', '', 0, 1, '2021-12-15 16:08:17', 0);
+INSERT INTO `sys_log` VALUES (2167, '2021-12-15 16:08:17', '图文管理', 'get', '127.0.0.1', 1302, 'admin', '/weixin/article', '', 0, 1, '2021-12-15 16:08:17', 0);
+INSERT INTO `sys_log` VALUES (2168, '2021-12-15 16:20:32', '', 'get', '127.0.0.1', 2236625, 'admin', '/weixin/article/publish/*', '', 0, 1, '2021-12-15 16:20:32', 0);
+INSERT INTO `sys_log` VALUES (2169, '2021-12-15 16:20:32', '图文管理', 'get', '127.0.0.1', 671, 'admin', '/weixin/article', '', 0, 1, '2021-12-15 16:20:32', 0);
+INSERT INTO `sys_log` VALUES (2170, '2021-12-15 16:57:07', '', 'get', '127.0.0.1', 2578773, 'admin', '/weixin/article/publish/*', '', 0, 1, '2021-12-15 16:57:07', 0);
+INSERT INTO `sys_log` VALUES (2171, '2021-12-15 16:57:07', '图文管理', 'get', '127.0.0.1', 758, 'admin', '/weixin/article', '', 0, 1, '2021-12-15 16:57:07', 0);
+INSERT INTO `sys_log` VALUES (2172, '2021-12-15 17:52:32', '', 'get', '127.0.0.1', 2168987, 'admin', '/weixin/article/publish/*', '', 0, 1, '2021-12-15 17:52:32', 0);
+INSERT INTO `sys_log` VALUES (2173, '2021-12-15 17:52:32', '图文管理', 'get', '127.0.0.1', 1101, 'admin', '/weixin/article', '', 0, 1, '2021-12-15 17:52:32', 0);
+INSERT INTO `sys_log` VALUES (2174, '2021-12-15 17:55:05', '', 'get', '127.0.0.1', 2036171, 'admin', '/weixin/article/publish/*', '', 0, 1, '2021-12-15 17:55:05', 0);
+INSERT INTO `sys_log` VALUES (2175, '2021-12-15 17:55:05', '图文管理', 'get', '127.0.0.1', 1138, 'admin', '/weixin/article', '', 0, 1, '2021-12-15 17:55:05', 0);
+INSERT INTO `sys_log` VALUES (2176, '2021-12-15 17:56:46', '', 'get', '127.0.0.1', 1103, 'admin', '/weixin/article/publish/*', '', 0, 1, '2021-12-15 17:56:46', 0);
+INSERT INTO `sys_log` VALUES (2177, '2021-12-15 17:56:46', '图文管理', 'get', '127.0.0.1', 745, 'admin', '/weixin/article', '', 0, 1, '2021-12-15 17:56:46', 0);
+INSERT INTO `sys_log` VALUES (2178, '2021-12-15 17:56:57', '', 'get', '127.0.0.1', 507, 'admin', '/weixin/article/publish/*', '', 0, 1, '2021-12-15 17:56:57', 0);
+INSERT INTO `sys_log` VALUES (2179, '2021-12-15 17:56:57', '图文管理', 'get', '127.0.0.1', 782, 'admin', '/weixin/article', '', 0, 1, '2021-12-15 17:56:57', 0);
+INSERT INTO `sys_log` VALUES (2180, '2021-12-15 18:00:03', '', 'get', '127.0.0.1', 644, 'admin', '/weixin/article/publish/*', '', 0, 1, '2021-12-15 18:00:03', 0);
+INSERT INTO `sys_log` VALUES (2181, '2021-12-18 10:34:40', '', 'get', '127.0.0.1', 3346, 'admin', '/admin/menu/build', '', 0, 1, '2021-12-18 10:34:40', 0);
+INSERT INTO `sys_log` VALUES (2182, '2021-12-18 10:34:44', '微信菜单', 'get', '127.0.0.1', 8543, 'admin', '/weixin/menu', '', 0, 1, '2021-12-18 10:34:44', 0);
 COMMIT;
 
 -- ----------------------------
@@ -1714,7 +2342,7 @@ CREATE TABLE `sys_material` (
   `update_time` datetime DEFAULT NULL,
   `is_del` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='素材库';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='素材库';
 
 -- ----------------------------
 -- Records of sys_material
@@ -1734,6 +2362,7 @@ INSERT INTO `sys_material` VALUES (11, '2021-10-08 14:33:51', 0, '1', 0, 'wawa.j
 INSERT INTO `sys_material` VALUES (12, '2021-11-15 10:10:06', 1, '1', 0, '404.png', 'http://127.0.0.1:8000/upload/images/4f4adcbf8c6f66dcfc8a3282ac2bf10a.png', '2021-11-15 10:10:06', 0);
 INSERT INTO `sys_material` VALUES (13, '2021-11-15 10:20:58', 1, '1', 0, 'address.png', 'http://127.0.0.1:8000/upload/images/884d9804999fc47a3c2694e49ad2536a.png', '2021-11-15 10:20:58', 0);
 INSERT INTO `sys_material` VALUES (14, '2021-11-15 10:22:27', 1, '1', 4, 'angle.png', 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '2021-11-15 10:22:27', 0);
+INSERT INTO `sys_material` VALUES (15, '2021-11-25 17:57:42', 1, '1', 0, '404.png', 'http://127.0.0.1:8000/upload/images/4f4adcbf8c6f66dcfc8a3282ac2bf10a.png', '2021-11-25 17:57:42', 0);
 COMMIT;
 
 -- ----------------------------
@@ -1785,7 +2414,7 @@ CREATE TABLE `sys_menu` (
   `router_method` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '路由动作',
   PRIMARY KEY (`id`) USING BTREE,
   KEY `FKqcf9gem97gqa5qjm4d3elcqt5` (`pid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1012 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=1021 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -1849,6 +2478,14 @@ INSERT INTO `sys_menu` VALUES (1006, 0, '商品新增', 'shop/goods/form', 280, 
 INSERT INTO `sys_menu` VALUES (1007, 0, '商品修改', 'shop/goods/form', 280, 5, 'anq', 'goodsEdit/:id', 0, 1, 'GoodsEdit', '2021-09-22 15:07:11', 'product:edit', 1, '2021-09-16 09:59:38', 0, 'product', 'put');
 INSERT INTO `sys_menu` VALUES (1008, 0, '商品信息', '', 1004, 2, '', '', 0, 0, '', '2021-09-26 16:31:23', 'product:info', 2, '2021-09-26 16:31:23', 0, '/shop/product/info/*', 'get');
 INSERT INTO `sys_menu` VALUES (1009, 0, '上下架', '', 1004, 3, '', '', 0, 0, '', '2021-10-08 15:26:57', 'product:on', 2, '2021-10-08 15:08:28', 0, '/shop/product/onsale/*', 'post');
+INSERT INTO `sys_menu` VALUES (1012, 0, '公众号管理', '', 0, 104, 'weixin', 'wechat', 0, 0, '', '2021-11-27 11:18:26', '', 1, '2021-12-13 15:32:53', 0, '', '');
+INSERT INTO `sys_menu` VALUES (1013, 0, '公众号用户', 'wechat/user/index', 1012, 1, 'user', 'member', 0, 0, 'Member', '2021-11-27 11:21:48', 'wxuser:list', 1, '2021-12-13 15:52:10', 0, '/weixin/user', 'get');
+INSERT INTO `sys_menu` VALUES (1014, 0, '微信菜单', 'wechat/menu/index', 1012, 2, 'menu', 'wechatmenu', 0, 0, 'Wechatmenu', '2021-11-27 11:24:06', 'wxmenu:list', 1, '2021-12-13 15:52:31', 0, '/weixin/menu', 'get');
+INSERT INTO `sys_menu` VALUES (1015, 0, '图文管理', 'wechat/article/index', 1012, 3, 'article', 'wechatarticle', 0, 0, 'Wechatarticle', '2021-11-27 11:27:59', 'wxarticle:list', 1, '2021-12-14 15:01:17', 0, '/weixin/article', 'get');
+INSERT INTO `sys_menu` VALUES (1017, 0, '编辑用户', '', 1013, 1, '', '', 0, 0, '', '2021-11-27 11:21:48', 'wxuser:edit', 2, '2021-12-13 15:52:22', 0, '/weixin/user', 'put');
+INSERT INTO `sys_menu` VALUES (1018, 0, '图文添加', 'wechat/article/form', 1012, 4, 'anq', 'articleAdd', 0, 1, 'ArticleAdd', '2021-11-27 11:27:59', 'wxarticle:add', 1, '2021-12-14 15:08:10', 0, '/weixin/article', 'post');
+INSERT INTO `sys_menu` VALUES (1019, 0, '图文编辑', 'wechat/article/form', 1012, 5, 'anq', 'articleEdit/:id', 0, 1, 'ArticleEdit', '2021-11-27 11:27:59', 'wxarticle:edit', 1, '2021-12-14 15:25:27', 0, '/weixin/article', 'put');
+INSERT INTO `sys_menu` VALUES (1020, 0, '图文删除', '', 1015, 3, '', '', 0, 0, '', '2021-11-27 11:27:59', 'wxarticle:del', 2, '2021-11-27 11:27:59', 0, '/weixin/article', 'delete');
 COMMIT;
 
 -- ----------------------------
@@ -1866,7 +2503,7 @@ CREATE TABLE `sys_role` (
   `update_time` datetime DEFAULT NULL,
   `is_del` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='角色表';
 
 -- ----------------------------
 -- Records of sys_role
@@ -1878,6 +2515,7 @@ INSERT INTO `sys_role` VALUES (3, '管理员2', '222', '全部', 3, '2020-01-31 
 INSERT INTO `sys_role` VALUES (4, '667', '66', '全部', 3, '2021-03-02 16:16:43', '666', '2021-03-02 16:15:20', 1);
 INSERT INTO `sys_role` VALUES (5, '99', '9', '全部', 3, '2021-03-02 16:16:35', '9', '2021-03-02 16:16:35', 1);
 INSERT INTO `sys_role` VALUES (6, 'ttttr', 'tttt', '全部', 3, '2021-11-12 15:13:40', 'tttt', '2021-11-12 15:14:08', 1);
+INSERT INTO `sys_role` VALUES (7, 'test5', 'test', '全部', 3, '2021-11-20 15:11:05', 'test', '2021-11-20 15:11:05', 0);
 COMMIT;
 
 -- ----------------------------
@@ -1908,65 +2546,12 @@ CREATE TABLE `sys_roles_menus` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   KEY `FKcngg2qadojhi3a651a5adkvbq` (`sys_role_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1195 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='角色菜单关联';
+) ENGINE=InnoDB AUTO_INCREMENT=1479 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='角色菜单关联';
 
 -- ----------------------------
 -- Records of sys_roles_menus
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_roles_menus` VALUES (280, 1, 946);
-INSERT INTO `sys_roles_menus` VALUES (281, 1, 947);
-INSERT INTO `sys_roles_menus` VALUES (282, 1, 948);
-INSERT INTO `sys_roles_menus` VALUES (283, 1, 949);
-INSERT INTO `sys_roles_menus` VALUES (284, 1, 950);
-INSERT INTO `sys_roles_menus` VALUES (1000, 1, 951);
-INSERT INTO `sys_roles_menus` VALUES (1001, 1, 952);
-INSERT INTO `sys_roles_menus` VALUES (1002, 1, 953);
-INSERT INTO `sys_roles_menus` VALUES (1003, 1, 954);
-INSERT INTO `sys_roles_menus` VALUES (1004, 1, 955);
-INSERT INTO `sys_roles_menus` VALUES (1005, 1, 956);
-INSERT INTO `sys_roles_menus` VALUES (1008, 1, 957);
-INSERT INTO `sys_roles_menus` VALUES (1009, 1, 958);
-INSERT INTO `sys_roles_menus` VALUES (1006, 1, 959);
-INSERT INTO `sys_roles_menus` VALUES (1007, 1, 960);
-INSERT INTO `sys_roles_menus` VALUES (1, 1, 961);
-INSERT INTO `sys_roles_menus` VALUES (2, 1, 962);
-INSERT INTO `sys_roles_menus` VALUES (127, 1, 963);
-INSERT INTO `sys_roles_menus` VALUES (128, 1, 964);
-INSERT INTO `sys_roles_menus` VALUES (129, 1, 965);
-INSERT INTO `sys_roles_menus` VALUES (278, 1, 966);
-INSERT INTO `sys_roles_menus` VALUES (277, 1, 967);
-INSERT INTO `sys_roles_menus` VALUES (276, 1, 968);
-INSERT INTO `sys_roles_menus` VALUES (3, 1, 969);
-INSERT INTO `sys_roles_menus` VALUES (130, 1, 970);
-INSERT INTO `sys_roles_menus` VALUES (131, 1, 971);
-INSERT INTO `sys_roles_menus` VALUES (275, 1, 972);
-INSERT INTO `sys_roles_menus` VALUES (274, 1, 973);
-INSERT INTO `sys_roles_menus` VALUES (273, 1, 974);
-INSERT INTO `sys_roles_menus` VALUES (132, 1, 975);
-INSERT INTO `sys_roles_menus` VALUES (5, 1, 976);
-INSERT INTO `sys_roles_menus` VALUES (133, 1, 977);
-INSERT INTO `sys_roles_menus` VALUES (134, 1, 978);
-INSERT INTO `sys_roles_menus` VALUES (135, 1, 979);
-INSERT INTO `sys_roles_menus` VALUES (35, 1, 980);
-INSERT INTO `sys_roles_menus` VALUES (136, 1, 981);
-INSERT INTO `sys_roles_menus` VALUES (137, 1, 982);
-INSERT INTO `sys_roles_menus` VALUES (138, 1, 983);
-INSERT INTO `sys_roles_menus` VALUES (37, 1, 984);
-INSERT INTO `sys_roles_menus` VALUES (139, 1, 985);
-INSERT INTO `sys_roles_menus` VALUES (140, 1, 986);
-INSERT INTO `sys_roles_menus` VALUES (141, 1, 987);
-INSERT INTO `sys_roles_menus` VALUES (39, 1, 988);
-INSERT INTO `sys_roles_menus` VALUES (142, 1, 989);
-INSERT INTO `sys_roles_menus` VALUES (143, 1, 990);
-INSERT INTO `sys_roles_menus` VALUES (144, 1, 991);
-INSERT INTO `sys_roles_menus` VALUES (279, 1, 992);
-INSERT INTO `sys_roles_menus` VALUES (269, 1, 993);
-INSERT INTO `sys_roles_menus` VALUES (272, 1, 994);
-INSERT INTO `sys_roles_menus` VALUES (271, 1, 995);
-INSERT INTO `sys_roles_menus` VALUES (270, 1, 996);
-INSERT INTO `sys_roles_menus` VALUES (999, 1, 997);
-INSERT INTO `sys_roles_menus` VALUES (123, 1, 998);
 INSERT INTO `sys_roles_menus` VALUES (1, 3, 1125);
 INSERT INTO `sys_roles_menus` VALUES (2, 3, 1126);
 INSERT INTO `sys_roles_menus` VALUES (127, 3, 1127);
@@ -1998,19 +2583,96 @@ INSERT INTO `sys_roles_menus` VALUES (39, 3, 1152);
 INSERT INTO `sys_roles_menus` VALUES (142, 3, 1153);
 INSERT INTO `sys_roles_menus` VALUES (143, 3, 1154);
 INSERT INTO `sys_roles_menus` VALUES (144, 3, 1155);
-INSERT INTO `sys_roles_menus` VALUES (1, 2, 1182);
-INSERT INTO `sys_roles_menus` VALUES (35, 2, 1183);
-INSERT INTO `sys_roles_menus` VALUES (136, 2, 1184);
-INSERT INTO `sys_roles_menus` VALUES (137, 2, 1185);
-INSERT INTO `sys_roles_menus` VALUES (138, 2, 1186);
-INSERT INTO `sys_roles_menus` VALUES (37, 2, 1187);
-INSERT INTO `sys_roles_menus` VALUES (139, 2, 1188);
-INSERT INTO `sys_roles_menus` VALUES (140, 2, 1189);
-INSERT INTO `sys_roles_menus` VALUES (141, 2, 1190);
-INSERT INTO `sys_roles_menus` VALUES (269, 2, 1191);
-INSERT INTO `sys_roles_menus` VALUES (272, 2, 1192);
-INSERT INTO `sys_roles_menus` VALUES (271, 2, 1193);
-INSERT INTO `sys_roles_menus` VALUES (270, 2, 1194);
+INSERT INTO `sys_roles_menus` VALUES (1, 2, 1210);
+INSERT INTO `sys_roles_menus` VALUES (35, 2, 1211);
+INSERT INTO `sys_roles_menus` VALUES (136, 2, 1212);
+INSERT INTO `sys_roles_menus` VALUES (137, 2, 1213);
+INSERT INTO `sys_roles_menus` VALUES (138, 2, 1214);
+INSERT INTO `sys_roles_menus` VALUES (37, 2, 1215);
+INSERT INTO `sys_roles_menus` VALUES (139, 2, 1216);
+INSERT INTO `sys_roles_menus` VALUES (140, 2, 1217);
+INSERT INTO `sys_roles_menus` VALUES (141, 2, 1218);
+INSERT INTO `sys_roles_menus` VALUES (269, 2, 1219);
+INSERT INTO `sys_roles_menus` VALUES (272, 2, 1220);
+INSERT INTO `sys_roles_menus` VALUES (271, 2, 1221);
+INSERT INTO `sys_roles_menus` VALUES (270, 2, 1222);
+INSERT INTO `sys_roles_menus` VALUES (280, 7, 1223);
+INSERT INTO `sys_roles_menus` VALUES (281, 7, 1224);
+INSERT INTO `sys_roles_menus` VALUES (282, 7, 1225);
+INSERT INTO `sys_roles_menus` VALUES (283, 7, 1226);
+INSERT INTO `sys_roles_menus` VALUES (284, 7, 1227);
+INSERT INTO `sys_roles_menus` VALUES (1000, 7, 1228);
+INSERT INTO `sys_roles_menus` VALUES (1001, 7, 1229);
+INSERT INTO `sys_roles_menus` VALUES (1002, 7, 1230);
+INSERT INTO `sys_roles_menus` VALUES (1003, 7, 1231);
+INSERT INTO `sys_roles_menus` VALUES (1004, 7, 1232);
+INSERT INTO `sys_roles_menus` VALUES (1005, 7, 1233);
+INSERT INTO `sys_roles_menus` VALUES (1008, 7, 1234);
+INSERT INTO `sys_roles_menus` VALUES (1009, 7, 1235);
+INSERT INTO `sys_roles_menus` VALUES (1006, 7, 1236);
+INSERT INTO `sys_roles_menus` VALUES (1007, 7, 1237);
+INSERT INTO `sys_roles_menus` VALUES (280, 1, 1417);
+INSERT INTO `sys_roles_menus` VALUES (281, 1, 1418);
+INSERT INTO `sys_roles_menus` VALUES (282, 1, 1419);
+INSERT INTO `sys_roles_menus` VALUES (283, 1, 1420);
+INSERT INTO `sys_roles_menus` VALUES (284, 1, 1421);
+INSERT INTO `sys_roles_menus` VALUES (1000, 1, 1422);
+INSERT INTO `sys_roles_menus` VALUES (1001, 1, 1423);
+INSERT INTO `sys_roles_menus` VALUES (1002, 1, 1424);
+INSERT INTO `sys_roles_menus` VALUES (1003, 1, 1425);
+INSERT INTO `sys_roles_menus` VALUES (1004, 1, 1426);
+INSERT INTO `sys_roles_menus` VALUES (1005, 1, 1427);
+INSERT INTO `sys_roles_menus` VALUES (1008, 1, 1428);
+INSERT INTO `sys_roles_menus` VALUES (1009, 1, 1429);
+INSERT INTO `sys_roles_menus` VALUES (1006, 1, 1430);
+INSERT INTO `sys_roles_menus` VALUES (1007, 1, 1431);
+INSERT INTO `sys_roles_menus` VALUES (1012, 1, 1432);
+INSERT INTO `sys_roles_menus` VALUES (1013, 1, 1433);
+INSERT INTO `sys_roles_menus` VALUES (1017, 1, 1434);
+INSERT INTO `sys_roles_menus` VALUES (1014, 1, 1435);
+INSERT INTO `sys_roles_menus` VALUES (1015, 1, 1436);
+INSERT INTO `sys_roles_menus` VALUES (1020, 1, 1437);
+INSERT INTO `sys_roles_menus` VALUES (1016, 1, 1438);
+INSERT INTO `sys_roles_menus` VALUES (1018, 1, 1439);
+INSERT INTO `sys_roles_menus` VALUES (1019, 1, 1440);
+INSERT INTO `sys_roles_menus` VALUES (1, 1, 1441);
+INSERT INTO `sys_roles_menus` VALUES (2, 1, 1442);
+INSERT INTO `sys_roles_menus` VALUES (127, 1, 1443);
+INSERT INTO `sys_roles_menus` VALUES (128, 1, 1444);
+INSERT INTO `sys_roles_menus` VALUES (129, 1, 1445);
+INSERT INTO `sys_roles_menus` VALUES (278, 1, 1446);
+INSERT INTO `sys_roles_menus` VALUES (277, 1, 1447);
+INSERT INTO `sys_roles_menus` VALUES (276, 1, 1448);
+INSERT INTO `sys_roles_menus` VALUES (3, 1, 1449);
+INSERT INTO `sys_roles_menus` VALUES (130, 1, 1450);
+INSERT INTO `sys_roles_menus` VALUES (131, 1, 1451);
+INSERT INTO `sys_roles_menus` VALUES (275, 1, 1452);
+INSERT INTO `sys_roles_menus` VALUES (274, 1, 1453);
+INSERT INTO `sys_roles_menus` VALUES (273, 1, 1454);
+INSERT INTO `sys_roles_menus` VALUES (132, 1, 1455);
+INSERT INTO `sys_roles_menus` VALUES (5, 1, 1456);
+INSERT INTO `sys_roles_menus` VALUES (133, 1, 1457);
+INSERT INTO `sys_roles_menus` VALUES (134, 1, 1458);
+INSERT INTO `sys_roles_menus` VALUES (135, 1, 1459);
+INSERT INTO `sys_roles_menus` VALUES (35, 1, 1460);
+INSERT INTO `sys_roles_menus` VALUES (136, 1, 1461);
+INSERT INTO `sys_roles_menus` VALUES (137, 1, 1462);
+INSERT INTO `sys_roles_menus` VALUES (138, 1, 1463);
+INSERT INTO `sys_roles_menus` VALUES (37, 1, 1464);
+INSERT INTO `sys_roles_menus` VALUES (139, 1, 1465);
+INSERT INTO `sys_roles_menus` VALUES (140, 1, 1466);
+INSERT INTO `sys_roles_menus` VALUES (141, 1, 1467);
+INSERT INTO `sys_roles_menus` VALUES (39, 1, 1468);
+INSERT INTO `sys_roles_menus` VALUES (142, 1, 1469);
+INSERT INTO `sys_roles_menus` VALUES (143, 1, 1470);
+INSERT INTO `sys_roles_menus` VALUES (144, 1, 1471);
+INSERT INTO `sys_roles_menus` VALUES (279, 1, 1472);
+INSERT INTO `sys_roles_menus` VALUES (269, 1, 1473);
+INSERT INTO `sys_roles_menus` VALUES (272, 1, 1474);
+INSERT INTO `sys_roles_menus` VALUES (270, 1, 1475);
+INSERT INTO `sys_roles_menus` VALUES (271, 1, 1476);
+INSERT INTO `sys_roles_menus` VALUES (999, 1, 1477);
+INSERT INTO `sys_roles_menus` VALUES (123, 1, 1478);
 COMMIT;
 
 -- ----------------------------
@@ -2037,7 +2699,7 @@ CREATE TABLE `sys_user` (
   KEY `FK5rwmryny6jthaaxkogownknqp` (`dept_id`) USING BTREE,
   KEY `FKfftoc2abhot8f2wu6cl9a5iky` (`job_id`) USING BTREE,
   KEY `FKpq2dhypk2qgt68nauh2by22jb` (`avatar`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10031 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='系统用户';
+) ENGINE=InnoDB AUTO_INCREMENT=10033 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='系统用户';
 
 -- ----------------------------
 -- Records of sys_user
@@ -2051,8 +2713,10 @@ INSERT INTO `sys_user` VALUES (6, '', '666@qq.com', 0, '$2a$10$3Vlo24eOmHHW7.3vA
 INSERT INTO `sys_user` VALUES (9992, '', '66@qq.com', 1, '$2a$04$zI7VSH/WspYF9Kea1lCMkO/0pMh.d0U72EO6T0YinOxs.d97dTImi', 'hupeng33333', 7, '18888888888', 8, NULL, 'hu', '男', '2021-11-10 17:09:21', 1);
 INSERT INTO `sys_user` VALUES (9993, '', '44@qq.com', 1, '$2a$04$IBgD8Un9Xgbi0lzbklZlC.uK1srn5w1Y5ntN1qfpzDgcipLLRp1aG', 'hupeng2', 11, '', 10, NULL, 'hu2', '男', '2021-11-10 17:09:24', 1);
 INSERT INTO `sys_user` VALUES (9996, '', '777@qq.com', 0, '$2a$04$Ep/UAK2kmJKPto6efG9qyOYlwQ5NGL0T/PkLVrUcXJxTcq6WG5Zca', 'zhang', 5, '18888888888', 11, NULL, 'zhang', '男', '2021-11-10 17:09:27', 1);
-INSERT INTO `sys_user` VALUES (9998, '', 'hu@qq.com', 1, '$2a$04$RWLjxYCIDjVweW5kKcg/B.uYvXdlaZT1NWkCJEj3EanhuB4ou4sZe', 'hupeng', 2, '15136175233', 8, '2021-11-16 15:17:05', 'hupeng', '男', '2021-11-16 15:17:05', 0);
+INSERT INTO `sys_user` VALUES (9998, '', 'hu@qq.com', 1, '$2a$04$RWLjxYCIDjVweW5kKcg/B.uYvXdlaZT1NWkCJEj3EanhuB4ou4sZe', 'hupeng', 2, '15136175233', 8, '2021-11-16 15:17:05', 'hupeng', '男', '2021-11-26 10:19:25', 0);
 INSERT INTO `sys_user` VALUES (10030, '', 'guchengwuyue@163.com', 1, '$2a$04$tkOcjauo03Fc2sWmm0aetOGl78iKOBNNiZHoTJpUiS6zWyCePU.u2', 'aaaaa111', 6, '15136175246', 8, '2021-11-10 17:53:23', 'aaa', '男', '2021-11-10 17:53:23', 1);
+INSERT INTO `sys_user` VALUES (10031, '', 'guchengwuyue@163.com', 1, '$2a$04$Ib.CqeFG8KQl/NdlSTKen.wXvIVqmN/V.2u.4mH3sAPpd8.prRpO2', 'ffffff', 2, '15136175246', 8, '2021-11-20 14:54:54', 'fff', '男', '2021-11-20 14:54:54', 1);
+INSERT INTO `sys_user` VALUES (10032, '', 'guchengwuyue@163.com', 1, '$2a$04$EUCRhfKGWRevpRe7vVpUcu1ez7b5JQEIblXsIyJYUJR9QLGkkQBHG', 'eeee888', 2, '15136175246', 10, '2021-11-20 15:02:40', 'eee', '男', '2021-12-14 15:42:44', 0);
 COMMIT;
 
 -- ----------------------------
@@ -2064,7 +2728,7 @@ CREATE TABLE `sys_users_roles` (
   `sys_role_id` bigint NOT NULL COMMENT '角色ID',
   `id` bigint NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='用户角色关联';
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='用户角色关联';
 
 -- ----------------------------
 -- Records of sys_users_roles
@@ -2073,7 +2737,9 @@ BEGIN;
 INSERT INTO `sys_users_roles` VALUES (1, 1, 1);
 INSERT INTO `sys_users_roles` VALUES (3, 2, 2);
 INSERT INTO `sys_users_roles` VALUES (4, 2, 3);
-INSERT INTO `sys_users_roles` VALUES (9998, 2, 77);
+INSERT INTO `sys_users_roles` VALUES (9998, 2, 81);
+INSERT INTO `sys_users_roles` VALUES (10032, 2, 82);
+INSERT INTO `sys_users_roles` VALUES (10032, 3, 83);
 COMMIT;
 
 -- ----------------------------
@@ -2095,18 +2761,19 @@ CREATE TABLE `yshop_store_category` (
   KEY `is_base` (`is_show`) USING BTREE,
   KEY `sort` (`sort`) USING BTREE,
   KEY `add_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='商品分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='商品分类表';
 
 -- ----------------------------
 -- Records of yshop_store_category
 -- ----------------------------
 BEGIN;
-INSERT INTO `yshop_store_category` VALUES (11, 0, '数码', 1, 'https://goapi.yixiang.co/static/upload/test3.png', 1, '2021-09-05 16:43:02', '2021-11-16 15:13:36', 0);
+INSERT INTO `yshop_store_category` VALUES (11, 0, '数码', 1, 'https://goapi.yixiang.co/static/upload/test3.png', 1, '2021-09-05 16:43:02', '2021-11-26 10:18:36', 0);
 INSERT INTO `yshop_store_category` VALUES (12, 11, '手机', 1, 'https://goapi.yixiang.co/static/upload/test3.png', 1, '2021-09-05 16:40:29', '2021-09-05 16:40:29', 0);
 INSERT INTO `yshop_store_category` VALUES (13, 0, '广告', 0, 'https://goapi.yixiang.co/static/upload/test3.png', 1, '2021-09-05 16:41:38', '2021-11-16 15:05:59', 0);
 INSERT INTO `yshop_store_category` VALUES (14, 13, '写真', 1, 'https://goapi.yixiang.co/static/upload/test3.png', 1, '2021-09-17 15:33:12', '2021-09-05 16:41:56', 0);
 INSERT INTO `yshop_store_category` VALUES (16, 0, 'tttt', 1, '', 1, '2021-11-15 10:53:39', '2021-11-15 10:54:23', 1);
 INSERT INTO `yshop_store_category` VALUES (17, 16, 'tt44466', 1, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', 1, '2021-11-15 10:53:57', '2021-11-15 10:54:18', 1);
+INSERT INTO `yshop_store_category` VALUES (18, 0, '111', 1, '', 1, '2021-09-05 16:43:02', '2021-11-19 15:46:06', 1);
 COMMIT;
 
 -- ----------------------------
@@ -2162,7 +2829,7 @@ CREATE TABLE `yshop_store_product` (
   KEY `sales` (`sales`) USING BTREE,
   KEY `add_time` (`create_time`) USING BTREE,
   KEY `is_postage` (`is_postage`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='商品表';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='商品表';
 
 -- ----------------------------
 -- Records of yshop_store_product
@@ -2181,7 +2848,9 @@ INSERT INTO `yshop_store_product` VALUES (18, 'https://goapi.yixiang.co/static/u
 INSERT INTO `yshop_store_product` VALUES (19, 'https://goapi.yixiang.co/static/upload/1.jpg', 'https://goapi.yixiang.co/static/upload/1.jpg', '照片打印', '照片打印', '打印', 12, 0.00, 0.00, 0.00, 0.00, '张', 0, 0, 0, 1, 0, 0, 0, 0, '<p>多规格</p>', '2021-10-08 14:57:57', '2021-10-07 15:55:49', 0, 0, 0.00, 0.00, 0, 0, 0, '', 0, 0, 1, 0, 0000000000);
 INSERT INTO `yshop_store_product` VALUES (20, 'https://goapi.yixiang.co/static/upload/wawa.jpeg', 'https://goapi.yixiang.co/static/upload/wawa.jpeg', '单规格4', '单规格', '单规格', 12, 1.00, 0.00, 1.00, 0.00, '个', 0, 0, 2, 1, 0, 0, 0, 0, '<p>2222444</p>', '2021-10-08 14:54:01', '2021-10-08 14:34:19', 0, 0, 0.00, 1.00, 0, 0, 0, '', 0, 0, 0, 0, 0000000000);
 INSERT INTO `yshop_store_product` VALUES (21, 'https://goapi.yixiang.co/static/upload/wawa.jpeg', 'https://goapi.yixiang.co/static/upload/wawa.jpeg,https://goapi.yixiang.co/static/upload/wawa.jpeg,https://goapi.yixiang.co/static/upload/1.jpg', '222', '22', '222', 14, 1.00, 0.00, 1.00, 0.00, '22', 0, 0, 15, 1, 0, 0, 0, 0, '<p>1111</p><p><img src=\"https://goapi.yixiang.co/static/upload/wawa.jpeg\"/></p>', '2021-11-16 10:34:48', '2021-11-16 10:34:48', 0, 1, 0.00, 1.00, 0, 0, 0, '', 0, 0, 1, 0, 0000000000);
-INSERT INTO `yshop_store_product` VALUES (22, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', 'www2', 'ww', 'www', 12, 1.00, 0.00, 1.00, 0.00, 'www', 0, 0, 110, 1, 0, 0, 0, 0, '<p>22</p>', '2021-11-16 10:31:14', '2021-11-16 10:31:14', 0, 0, 0.00, 1.00, 0, 0, 0, '', 0, 0, 1, 0, 0000000000);
+INSERT INTO `yshop_store_product` VALUES (22, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', 'www2', 'ww', 'www', 12, 1.00, 0.00, 1.00, 0.00, 'www', 0, 0, 110, 1, 0, 0, 0, 0, '<p>22</p>', '2021-11-16 10:31:14', '2021-11-19 16:11:51', 0, 0, 0.00, 1.00, 0, 0, 0, '', 0, 0, 1, 0, 0000000000);
+INSERT INTO `yshop_store_product` VALUES (23, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', 'http://127.0.0.1:8000/upload/images/884d9804999fc47a3c2694e49ad2536a.png', 'sff1', 'ff', 'fff', 12, 0.00, 0.00, 0.00, 0.00, 'f', 0, 0, 18, 1, 0, 0, 0, 0, '<p>88888</p>', '2021-11-20 15:18:50', '2021-11-26 10:19:03', 0, 0, 0.00, 0.00, 0, 0, 0, '', 0, 0, 1, 0, 0000000000);
+INSERT INTO `yshop_store_product` VALUES (24, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', 'http://127.0.0.1:8000/upload/images/884d9804999fc47a3c2694e49ad2536a.png', 'qqq1', 'qqq', 'qqq', 12, 1.00, 0.00, 1.00, 0.00, 'q', 0, 0, 0, 1, 0, 0, 0, 0, '<p>qqqq</p>', '2021-11-24 11:39:20', '2021-11-24 11:43:38', 0, 0, 0.00, 1.00, 0, 0, 0, '', 0, 0, 0, 0, 0000000000);
 COMMIT;
 
 -- ----------------------------
@@ -2195,7 +2864,7 @@ CREATE TABLE `yshop_store_product_attr` (
   `attr_values` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '属性值',
   PRIMARY KEY (`id`) USING BTREE,
   KEY `store_id` (`product_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='商品属性表';
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='商品属性表';
 
 -- ----------------------------
 -- Records of yshop_store_product_attr
@@ -2218,8 +2887,11 @@ INSERT INTO `yshop_store_product_attr` VALUES (98, 19, '颜色', '黑色,白色'
 INSERT INTO `yshop_store_product_attr` VALUES (99, 19, '尺寸', '111,112');
 INSERT INTO `yshop_store_product_attr` VALUES (102, 0, '颜色', '黑色,白色');
 INSERT INTO `yshop_store_product_attr` VALUES (103, 0, '尺寸', '111,112');
-INSERT INTO `yshop_store_product_attr` VALUES (106, 22, '颜色', '黑色,白色');
-INSERT INTO `yshop_store_product_attr` VALUES (107, 22, '尺寸', '111,112');
+INSERT INTO `yshop_store_product_attr` VALUES (114, 22, '颜色', '黑色,白色');
+INSERT INTO `yshop_store_product_attr` VALUES (115, 22, '尺寸', '111,112');
+INSERT INTO `yshop_store_product_attr` VALUES (119, 24, '规格', '默认');
+INSERT INTO `yshop_store_product_attr` VALUES (120, 23, '颜色', '黑色,白色');
+INSERT INTO `yshop_store_product_attr` VALUES (121, 23, '尺寸', '111,112');
 COMMIT;
 
 -- ----------------------------
@@ -2233,7 +2905,7 @@ CREATE TABLE `yshop_store_product_attr_result` (
   `change_time` datetime NOT NULL COMMENT '上次修改时间',
   PRIMARY KEY (`id`) USING BTREE,
   KEY `product_id` (`product_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='商品属性详情表';
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='商品属性详情表';
 
 -- ----------------------------
 -- Records of yshop_store_product_attr_result
@@ -2245,8 +2917,9 @@ INSERT INTO `yshop_store_product_attr_result` VALUES (63, 18, '{\"attr\":[{\"det
 INSERT INTO `yshop_store_product_attr_result` VALUES (67, 20, '{\"attr\":[{\"detail\":[\"默认\"],\"value\":\"规格\"}],\"value\":[{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"1\",\"postage\":\"\",\"cost\":\"1\",\"stock\":\"2\",\"pic\":\"https://goapi.yixiang.co/static/upload/wawa.jpeg\",\"value1\":\"规格\",\"value2\":\"\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"规格\":\"默认\"}}]}', '2021-10-08 14:54:01');
 INSERT INTO `yshop_store_product_attr_result` VALUES (68, 21, '{\"attr\":[{\"detail\":[\"黑色\",\"白色\",\"红色\"],\"value\":\"颜色\"},{\"detail\":[\"11\",\"111\"],\"value\":\"尺寸\"},{\"detail\":[\"a3\",\"a4\"],\"value\":\"大小\"}],\"value\":[{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"1\",\"pic\":\"https://goapi.yixiang.co/static/upload/wawa.jpeg\",\"value1\":\"黑色\",\"value2\":\"11\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"大小\":\"a3\",\"尺寸\":\"11\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"1\",\"pic\":\"https://goapi.yixiang.co/static/upload/wawa.jpeg\",\"value1\":\"黑色\",\"value2\":\"11\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"大小\":\"a4\",\"尺寸\":\"11\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"1\",\"pic\":\"https://goapi.yixiang.co/static/upload/wawa.jpeg\",\"value1\":\"黑色\",\"value2\":\"111\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"大小\":\"a3\",\"尺寸\":\"111\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"1\",\"pic\":\"https://goapi.yixiang.co/static/upload/wawa.jpeg\",\"value1\":\"黑色\",\"value2\":\"111\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"大小\":\"a4\",\"尺寸\":\"111\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"2\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"2\",\"pic\":\"https://goapi.yixiang.co/static/upload/wawa.jpeg\",\"value1\":\"白色\",\"value2\":\"11\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"大小\":\"a3\",\"尺寸\":\"11\",\"颜色\":\"白色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"4\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"3\",\"pic\":\"https://goapi.yixiang.co/static/upload/wawa.jpeg\",\"value1\":\"白色\",\"value2\":\"11\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"大小\":\"a4\",\"尺寸\":\"11\",\"颜色\":\"白色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"1\",\"pic\":\"https://goapi.yixiang.co/static/upload/wawa.jpeg\",\"value1\":\"白色\",\"value2\":\"111\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"大小\":\"a3\",\"尺寸\":\"111\",\"颜色\":\"白色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"1\",\"pic\":\"https://goapi.yixiang.co/static/upload/wawa.jpeg\",\"value1\":\"白色\",\"value2\":\"111\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"大小\":\"a4\",\"尺寸\":\"111\",\"颜色\":\"白色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"1\",\"pic\":\"https://goapi.yixiang.co/static/upload/wawa.jpeg\",\"value1\":\"红色\",\"value2\":\"11\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"大小\":\"a3\",\"尺寸\":\"11\",\"颜色\":\"红色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"1\",\"pic\":\"https://goapi.yixiang.co/static/upload/wawa.jpeg\",\"value1\":\"红色\",\"value2\":\"11\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"大小\":\"a4\",\"尺寸\":\"11\",\"颜色\":\"红色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"1\",\"pic\":\"https://goapi.yixiang.co/static/upload/wawa.jpeg\",\"value1\":\"红色\",\"value2\":\"111\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"大小\":\"a3\",\"尺寸\":\"111\",\"颜色\":\"红色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"1\",\"pic\":\"https://goapi.yixiang.co/static/upload/wawa.jpeg\",\"value1\":\"红色\",\"value2\":\"111\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"大小\":\"a4\",\"尺寸\":\"111\",\"颜色\":\"红色\"}}]}', '2021-10-08 14:56:06');
 INSERT INTO `yshop_store_product_attr_result` VALUES (69, 19, '{\"attr\":[{\"detail\":[\"黑色\",\"白色\"],\"value\":\"颜色\"},{\"detail\":[\"111\",\"112\"],\"value\":\"尺寸\"}],\"value\":[{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"\",\"pic\":\"https://goapi.yixiang.co/static/upload/1.jpg\",\"value1\":\"黑色\",\"value2\":\"111\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"尺寸\":\"111\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"\",\"pic\":\"https://goapi.yixiang.co/static/upload/1.jpg\",\"value1\":\"黑色\",\"value2\":\"112\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"尺寸\":\"112\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"\",\"pic\":\"https://goapi.yixiang.co/static/upload/1.jpg\",\"value1\":\"白色\",\"value2\":\"111\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"尺寸\":\"111\",\"颜色\":\"白色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"\",\"ot_price\":\"\",\"postage\":\"\",\"cost\":\"\",\"stock\":\"\",\"pic\":\"https://goapi.yixiang.co/static/upload/1.jpg\",\"value1\":\"白色\",\"value2\":\"112\",\"weight\":\"\",\"volume\":\"\",\"detail\":{\"尺寸\":\"112\",\"颜色\":\"白色\"}}]}', '2021-10-08 14:57:57');
-INSERT INTO `yshop_store_product_attr_result` VALUES (70, 0, '{\"attr\":[{\"detail\":[\"黑色\",\"白色\"],\"value\":\"颜色\"},{\"detail\":[\"111\",\"112\"],\"value\":\"尺寸\"}],\"value\":[{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"1\",\"postage\":\"\",\"cost\":\"1\",\"stock\":\"11\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"黑色\",\"value2\":\"111\",\"weight\":\"1\",\"volume\":\"1\",\"detail\":{\"尺寸\":\"111\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"2\",\"ot_price\":\"1\",\"postage\":\"\",\"cost\":\"1\",\"stock\":\"22\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"黑色\",\"value2\":\"112\",\"weight\":\"1\",\"volume\":\"1\",\"detail\":{\"尺寸\":\"112\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"3\",\"ot_price\":\"1\",\"postage\":\"\",\"cost\":\"1\",\"stock\":\"33\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"白色\",\"value2\":\"111\",\"weight\":\"1\",\"volume\":\"1\",\"detail\":{\"尺寸\":\"111\",\"颜色\":\"白色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"4\",\"ot_price\":\"1\",\"postage\":\"\",\"cost\":\"1\",\"stock\":\"44\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"白色\",\"value2\":\"112\",\"weight\":\"1\",\"volume\":\"1\",\"detail\":{\"尺寸\":\"112\",\"颜色\":\"白色\"}}]}', '2021-11-16 09:45:34');
-INSERT INTO `yshop_store_product_attr_result` VALUES (72, 22, '{\"attr\":[{\"detail\":[\"黑色\",\"白色\"],\"value\":\"颜色\"},{\"detail\":[\"111\",\"112\"],\"value\":\"尺寸\"}],\"value\":[{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"1\",\"postage\":\"\",\"cost\":\"0\",\"stock\":\"11\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"黑色\",\"value2\":\"111\",\"weight\":\"0\",\"volume\":\"0\",\"detail\":{\"尺寸\":\"111\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"2\",\"ot_price\":\"2\",\"postage\":\"\",\"cost\":\"0\",\"stock\":\"22\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"黑色\",\"value2\":\"112\",\"weight\":\"0\",\"volume\":\"0\",\"detail\":{\"尺寸\":\"112\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"3\",\"ot_price\":\"3\",\"postage\":\"\",\"cost\":\"0\",\"stock\":\"33\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"白色\",\"value2\":\"111\",\"weight\":\"0\",\"volume\":\"0\",\"detail\":{\"尺寸\":\"111\",\"颜色\":\"白色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"4\",\"ot_price\":\"4\",\"postage\":\"\",\"cost\":\"0\",\"stock\":\"44\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"白色\",\"value2\":\"112\",\"weight\":\"0\",\"volume\":\"0\",\"detail\":{\"尺寸\":\"112\",\"颜色\":\"白色\"}}]}', '2021-11-16 10:13:37');
+INSERT INTO `yshop_store_product_attr_result` VALUES (73, 22, '{\"attr\":[{\"detail\":[\"黑色\",\"白色\"],\"value\":\"颜色\"},{\"detail\":[\"111\",\"112\"],\"value\":\"尺寸\"}],\"value\":[{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"1\",\"ot_price\":\"1\",\"postage\":\"\",\"cost\":\"0\",\"stock\":\"11\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"黑色\",\"value2\":\"111\",\"weight\":\"0\",\"volume\":\"0\",\"detail\":{\"尺寸\":\"111\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"2\",\"ot_price\":\"2\",\"postage\":\"\",\"cost\":\"0\",\"stock\":\"22\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"黑色\",\"value2\":\"112\",\"weight\":\"0\",\"volume\":\"0\",\"detail\":{\"尺寸\":\"112\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"3\",\"ot_price\":\"3\",\"postage\":\"\",\"cost\":\"0\",\"stock\":\"33\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"白色\",\"value2\":\"111\",\"weight\":\"0\",\"volume\":\"0\",\"detail\":{\"尺寸\":\"111\",\"颜色\":\"白色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"4\",\"ot_price\":\"4\",\"postage\":\"\",\"cost\":\"0\",\"stock\":\"44\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"白色\",\"value2\":\"112\",\"weight\":\"0\",\"volume\":\"0\",\"detail\":{\"尺寸\":\"112\",\"颜色\":\"白色\"}}]}', '2021-11-19 16:11:51');
+INSERT INTO `yshop_store_product_attr_result` VALUES (76, 24, '{\"attr\":[{\"detail\":[\"默认\"],\"value\":\"规格\"}],\"value\":[{\"brokerage\":\"0\",\"brokerage_two\":\"0\",\"price\":\"1\",\"ot_price\":\"0\",\"postage\":\"\",\"cost\":\"0\",\"stock\":\"0\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"规格\",\"value2\":\"\",\"weight\":\"0\",\"volume\":\"0\",\"detail\":{\"规格\":\"默认\"}}]}', '2021-11-24 11:43:38');
+INSERT INTO `yshop_store_product_attr_result` VALUES (77, 23, '{\"attr\":[{\"detail\":[\"黑色\",\"白色\"],\"value\":\"颜色\"},{\"detail\":[\"111\",\"112\"],\"value\":\"尺寸\"}],\"value\":[{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"0\",\"ot_price\":\"0\",\"postage\":\"\",\"cost\":\"1\",\"stock\":\"3\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"黑色\",\"value2\":\"111\",\"weight\":\"0\",\"volume\":\"0\",\"detail\":{\"尺寸\":\"111\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"0\",\"ot_price\":\"0\",\"postage\":\"\",\"cost\":\"1\",\"stock\":\"4\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"黑色\",\"value2\":\"112\",\"weight\":\"0\",\"volume\":\"0\",\"detail\":{\"尺寸\":\"112\",\"颜色\":\"黑色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"0\",\"ot_price\":\"0\",\"postage\":\"\",\"cost\":\"1\",\"stock\":\"5\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"白色\",\"value2\":\"111\",\"weight\":\"0\",\"volume\":\"0\",\"detail\":{\"尺寸\":\"111\",\"颜色\":\"白色\"}},{\"brokerage\":\"\",\"brokerage_two\":\"\",\"price\":\"0\",\"ot_price\":\"0\",\"postage\":\"\",\"cost\":\"1\",\"stock\":\"6\",\"pic\":\"http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png\",\"value1\":\"白色\",\"value2\":\"112\",\"weight\":\"0\",\"volume\":\"0\",\"detail\":{\"尺寸\":\"112\",\"颜色\":\"白色\"}}]}', '2021-11-26 10:19:03');
 COMMIT;
 
 -- ----------------------------
@@ -2277,7 +2950,7 @@ CREATE TABLE `yshop_store_product_attr_value` (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `unique` (`unique`,`sku`) USING BTREE,
   KEY `store_id` (`product_id`,`sku`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='商品属性值表';
+) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='商品属性值表';
 
 -- ----------------------------
 -- Records of yshop_store_product_attr_value
@@ -2307,10 +2980,15 @@ INSERT INTO `yshop_store_product_attr_value` VALUES (165, 0, '111,黑色', 11, 0
 INSERT INTO `yshop_store_product_attr_value` VALUES (166, 0, '112,黑色', 22, 0, 2.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '20yqNNDsM7w8PFwuHlxA0QANYkK', 1.00, '', 1.00, 1.00, 1.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
 INSERT INTO `yshop_store_product_attr_value` VALUES (167, 0, '111,白色', 33, 0, 3.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '20yqNJg0davoTOsD5ebZGHEBwod', 1.00, '', 1.00, 1.00, 1.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
 INSERT INTO `yshop_store_product_attr_value` VALUES (168, 0, '112,白色', 44, 0, 4.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '20yqNKflhkO8gkwPEdYicMxirL8', 1.00, '', 1.00, 1.00, 1.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
-INSERT INTO `yshop_store_product_attr_value` VALUES (173, 22, '111,黑色', 11, 0, 1.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '20ytmmj2gS2YuOBXukmbEYJOLnS', 0.00, '', 1.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
-INSERT INTO `yshop_store_product_attr_value` VALUES (174, 22, '112,黑色', 22, 0, 2.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '20ytmmo6ZRt5NH0kEv513CzhsoE', 0.00, '', 2.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
-INSERT INTO `yshop_store_product_attr_value` VALUES (175, 22, '111,白色', 33, 0, 3.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '20ytmrWb73BfBVjyzYjhUNTDlBX', 0.00, '', 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
-INSERT INTO `yshop_store_product_attr_value` VALUES (176, 22, '112,白色', 44, 0, 4.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '20ytmoPouTuXMiWoemHqHyCkyZK', 0.00, '', 4.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
+INSERT INTO `yshop_store_product_attr_value` VALUES (189, 22, '111,黑色', 11, 0, 1.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '2184irC7LuiV0FeZEfZcg8UzhkT', 0.00, '', 1.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
+INSERT INTO `yshop_store_product_attr_value` VALUES (190, 22, '112,黑色', 22, 0, 2.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '2184ipDlLuPPajGb5qf2Maf69KN', 0.00, '', 2.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
+INSERT INTO `yshop_store_product_attr_value` VALUES (191, 22, '111,白色', 33, 0, 3.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '2184iwWynWL8rmYkNpeFatRYMY9', 0.00, '', 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
+INSERT INTO `yshop_store_product_attr_value` VALUES (192, 22, '112,白色', 44, 0, 4.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '2184ipZJ2UlgwdFVvUgS952yL0u', 0.00, '', 4.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
+INSERT INTO `yshop_store_product_attr_value` VALUES (198, 24, '默认', 0, 0, 1.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '21LfimtqZixXor4yEKiuWh8Fv4i', 0.00, '', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
+INSERT INTO `yshop_store_product_attr_value` VALUES (199, 23, '111,黑色', 3, 0, 0.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '21R9gKA6I8Ay2rGLddDtrP7p2uT', 1.00, '', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
+INSERT INTO `yshop_store_product_attr_value` VALUES (200, 23, '112,黑色', 4, 0, 0.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '21R9gHeTiAj5UTF6F9D5zlbPYHm', 1.00, '', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
+INSERT INTO `yshop_store_product_attr_value` VALUES (201, 23, '111,白色', 5, 0, 0.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '21R9gKKi3IwBhq9DKmgnGbwc1Ha', 1.00, '', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
+INSERT INTO `yshop_store_product_attr_value` VALUES (202, 23, '112,白色', 6, 0, 0.00, 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '21R9gMH3V2zO6qoC8QUwmqEXA99', 1.00, '', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0.00, 0, 0000000000);
 COMMIT;
 
 -- ----------------------------
@@ -2342,8 +3020,106 @@ INSERT INTO `yshop_store_product_rule` VALUES (33, '规格20', '[{\"detail\":[\"
 INSERT INTO `yshop_store_product_rule` VALUES (34, '规格211', '[{\"detail\":[\"黑色\",\"白色\"],\"value\":\"颜色\"},{\"detail\":[\"111\",\"112\"],\"value\":\"尺寸\"}]', '2021-09-11 13:32:14', '2021-09-11 13:31:31', 0);
 INSERT INTO `yshop_store_product_rule` VALUES (35, '一个规格', '[{\"detail\":[\"11\",\"30\",\"40\"],\"value\":\"尺寸\"}]', '2021-10-05 13:41:11', '2021-10-05 13:41:11', 0);
 INSERT INTO `yshop_store_product_rule` VALUES (36, '三个规格', '[{\"detail\":[\"黑色\",\"白色\",\"红色\"],\"value\":\"颜色\"},{\"detail\":[\"11\",\"111\"],\"value\":\"尺寸\"},{\"detail\":[\"a3\",\"a4\"],\"value\":\"大小\"}]', '2021-10-05 13:42:09', '2021-10-05 13:42:09', 0);
-INSERT INTO `yshop_store_product_rule` VALUES (37, '四个规格', '[{\"detail\":[\"110\",\"119\"],\"value\":\"长度\"},{\"detail\":[\"110h\"],\"value\":\"高度\"},{\"detail\":[\"99hou\"],\"value\":\"厚度\"},{\"detail\":[\"77shen\"],\"value\":\"深度\"}]', '2021-10-05 15:06:53', '2021-10-05 15:06:53', 0);
+INSERT INTO `yshop_store_product_rule` VALUES (37, '四个规格1', '[{\"detail\":[\"110\",\"119\"],\"value\":\"长度\"},{\"detail\":[\"110h\"],\"value\":\"高度\"},{\"detail\":[\"99hou\"],\"value\":\"厚度\"},{\"detail\":[\"77shen\"],\"value\":\"深度\"}]', '2021-10-05 15:06:53', '2021-11-26 10:18:46', 0);
 INSERT INTO `yshop_store_product_rule` VALUES (38, 'test24', '[{\"detail\":[\"黑色\"],\"value\":\"颜色\"},{\"detail\":[\"aaa\"],\"value\":\"尺寸\"}]', '2021-11-15 14:53:17', '2021-11-15 14:55:44', 1);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for yshop_user
+-- ----------------------------
+DROP TABLE IF EXISTS `yshop_user`;
+CREATE TABLE `yshop_user` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '用户id',
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '用户账户(跟accout一样)',
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '用户密码（跟pwd）',
+  `real_name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '真实姓名',
+  `birthday` int DEFAULT '0' COMMENT '生日',
+  `card_id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '身份证号码',
+  `mark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '用户备注',
+  `nickname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '用户昵称',
+  `avatar` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '用户头像',
+  `phone` char(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '手机号码',
+  `add_ip` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '添加ip',
+  `create_time` datetime DEFAULT NULL COMMENT '添加时间',
+  `update_time` datetime DEFAULT NULL COMMENT '最后一次登录时间',
+  `last_ip` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '最后一次登录ip',
+  `now_money` decimal(8,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '用户余额',
+  `brokerage_price` decimal(8,2) NOT NULL DEFAULT '0.00' COMMENT '佣金金额',
+  `integral` decimal(8,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '用户剩余积分',
+  `sign_num` int NOT NULL DEFAULT '0' COMMENT '连续签到天数',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1为正常，0为禁止',
+  `level` tinyint unsigned NOT NULL DEFAULT '0' COMMENT '等级',
+  `spread_uid` bigint unsigned DEFAULT '0' COMMENT '推广元id',
+  `spread_time` datetime DEFAULT NULL COMMENT '推广员关联时间',
+  `user_type` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户类型',
+  `pay_count` int unsigned DEFAULT '0' COMMENT '用户购买次数',
+  `spread_count` int DEFAULT '0' COMMENT '下级人数',
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '详细地址',
+  `login_type` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '用户登陆类型，h5,wechat,routine',
+  `wx_profile` json DEFAULT NULL COMMENT '微信用户json信息',
+  `is_del` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `username` (`username`) USING BTREE,
+  KEY `spreaduid` (`spread_uid`) USING BTREE,
+  KEY `level` (`level`) USING BTREE,
+  KEY `status` (`status`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='用户表';
+
+-- ----------------------------
+-- Records of yshop_user
+-- ----------------------------
+BEGIN;
+INSERT INTO `yshop_user` VALUES (1, 'oFtUC57d3HE2pS8qUAAQuq9VYz3I', '$2a$04$16GAKfCbcXAydSUHBAB2quA/vRMDjMOyhqv7mM30yPX5/0XERtqXS', 'yshop售前客服', 0, '', 'mark', 'yshop售前客服', 'http://thirdwx.qlogo.cn/mmopen/Q3auHgzwzM77hI5nnOx6gaHdpItfcnu7DdicsdXT1jgEdb8q6SuHuB4utSXM1eFreSWxdzqyuFfJn5c6Sv4hQUcTHG46HKW9lF60Bv308hrk/132', '1999999999', '81.69.103.147', '2021-12-13 14:31:13', '2021-12-14 14:29:13', '81.69.103.147', 3200.00, 0.00, 0.00, 0, 1, 0, 0, NULL, 'wechat', 0, 0, '', '', '{\"sex\": 0, \"city\": \"\", \"errmsg\": \"\", \"openid\": \"oFtUC57d3HE2pS8qUAAQuq9VYz3I\", \"remark\": \"\", \"country\": \"\", \"errcode\": 0, \"groupid\": 0, \"unionid\": \"\", \"language\": \"zh_CN\", \"nickname\": \"yshop售前客服\", \"province\": \"\", \"qr_scene\": 0, \"subscribe\": 1, \"headimgurl\": \"http://thirdwx.qlogo.cn/mmopen/Q3auHgzwzM77hI5nnOx6gaHdpItfcnu7DdicsdXT1jgEdb8q6SuHuB4utSXM1eFreSWxdzqyuFfJn5c6Sv4hQUcTHG46HKW9lF60Bv308hrk/132\", \"tagid_list\": [], \"qr_scene_str\": \"\", \"subscribe_time\": 1639377072, \"subscribe_scene\": \"ADD_SCENE_QR_CODE\"}', 0);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for yshop_wechat_article
+-- ----------------------------
+DROP TABLE IF EXISTS `yshop_wechat_article`;
+CREATE TABLE `yshop_wechat_article` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '文章管理ID',
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章标题',
+  `author` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '文章作者',
+  `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章图片',
+  `synopsis` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '文章简介',
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci,
+  `visit` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '浏览次数',
+  `sort` int unsigned DEFAULT '0' COMMENT '排序',
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '原文链接',
+  `status` tinyint unsigned DEFAULT NULL COMMENT '状态',
+  `create_time` datetime DEFAULT NULL COMMENT '添加时间',
+  `update_time` datetime DEFAULT NULL,
+  `is_del` tinyint(1) DEFAULT '0',
+  `product_id` int DEFAULT '0' COMMENT '产品关联id',
+  `media_id` varchar(255) DEFAULT '' COMMENT '素材id',
+  `is_pub` int DEFAULT '0' COMMENT '是否发布 1-已发布 0-未发布',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='文章管理表';
+
+-- ----------------------------
+-- Records of yshop_wechat_article
+-- ----------------------------
+BEGIN;
+INSERT INTO `yshop_wechat_article` VALUES (5, '1119999', '11', 'http://127.0.0.1:8000/upload/images/4f4adcbf8c6f66dcfc8a3282ac2bf10a.png', '1111', '<p>1111</p>', '0', 0, '', 0, '2021-12-14 15:20:48', '2021-12-15 17:55:05', 0, 0, 'R_zku2VsoAROsEugsIwHYiUKxHJAzhrJiJdf3GTzpX8', 1);
+INSERT INTO `yshop_wechat_article` VALUES (6, '333444', '33', 'http://127.0.0.1:8000/upload/images/899186f7879ef9f1cf011b415f548c03.png', '6666', '<p>8888</p>', '0', 0, '', 0, '2021-12-14 15:22:51', '2021-12-14 15:41:07', 1, 0, '', 0);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for yshop_wechat_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `yshop_wechat_menu`;
+CREATE TABLE `yshop_wechat_menu` (
+  `key` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `result` json DEFAULT NULL COMMENT '缓存数据',
+  `add_time` datetime DEFAULT NULL COMMENT '缓存时间',
+  PRIMARY KEY (`key`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='微信缓存表';
+
+-- ----------------------------
+-- Records of yshop_wechat_menu
+-- ----------------------------
+BEGIN;
+INSERT INTO `yshop_wechat_menu` VALUES ('wechat_menus', '[{\"key\": \"yshop\", \"name\": \"Yshop商城3\", \"type\": \"click\", \"subButtons\": [{\"url\": \"https://h5.dayouqiantu.cn\", \"name\": \"公众号演示\", \"type\": \"view\"}]}, {\"key\": \"supply\", \"name\": \"供货商城\", \"type\": \"click\", \"subButtons\": [{\"url\": \"pages/index\", \"name\": \"小程序演示\", \"type\": \"miniprogram\", \"appId\": \"wxa82b5b7fcb0ec161\", \"pagePath\": \"pages/index\"}]}, {\"key\": \"2222\", \"name\": \"88888\", \"type\": \"click\", \"subButtons\": []}]', NULL);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
