@@ -19,7 +19,6 @@ require (
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/gomodule/redigo v2.0.0+incompatible
-	github.com/jackc/pgx/v4 v4.13.0 // indirect
 	github.com/jinzhu/copier v0.3.2
 	github.com/jinzhu/now v1.1.3 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
@@ -35,6 +34,7 @@ require (
 	github.com/sagikazarmark/crypt v0.2.0 // indirect
 	github.com/segmentio/ksuid v1.0.4
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18 // indirect
+	github.com/silenceper/wechat/v2 v2.0.9
 	github.com/spf13/afero v1.6.0 // indirect
 	github.com/spf13/cast v1.4.1 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
@@ -52,9 +52,9 @@ require (
 	golang.org/x/tools v0.1.7 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/ini.v1 v1.63.2 // indirect
-	gorm.io/driver/mysql v1.2.0
-	gorm.io/driver/postgres v1.2.2 // indirect
+	gorm.io/datatypes v1.0.4
+	gorm.io/driver/mysql v1.2.1
 	gorm.io/driver/sqlserver v1.2.1 // indirect
-	gorm.io/gorm v1.22.3
+	gorm.io/gorm v1.22.4
 	gorm.io/plugin/soft_delete v1.0.4
 )

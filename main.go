@@ -13,6 +13,7 @@ import (
 	"yixiang.co/go-mall/pkg/jwt"
 	"yixiang.co/go-mall/pkg/logging"
 	"yixiang.co/go-mall/pkg/redis"
+	"yixiang.co/go-mall/pkg/wechat"
 	"yixiang.co/go-mall/routers"
 )
 
@@ -24,6 +25,7 @@ func init() {
 	redis.Setup()
 	jwt.Setup()
 	listen.Setup()
+	wechat.InitWechat()
 }
 
 // @title gin-shop  API

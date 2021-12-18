@@ -40,3 +40,9 @@ zap:
   log-info-filename: 'info'
   log-warn-filename: 'warn'
   log-fiile-ext: 'log'
+
+wechat:
+  app_id:
+  app_secret:
+  token: yshop-gin
+  encoding_aes_key:

@@ -6,6 +6,7 @@ import (
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 	"net/http"
 	"yixiang.co/go-mall/app/controllers/admin"
+	"yixiang.co/go-mall/app/controllers/front"
 	_ "yixiang.co/go-mall/docs"
 	"yixiang.co/go-mall/middleware"
 	"yixiang.co/go-mall/pkg/upload"
@@ -122,6 +123,32 @@ func InitRouter() *gin.Engine {
 		shopRouter.DELETE("/product/:id",productController.Delete)
 	}
 
+	wechatMenuController := admin.WechatMenuController{}
+	wechatUserController := admin.WechatUserController{}
+	articleController := admin.ArticleController{}
+	wechatRouter := r.Group("/weixin")
+	wechatRouter.Use(middleware.Jwt()).Use(middleware.Log())
+	{
+		wechatRouter.GET("/menu",wechatMenuController.GetAll)
+		wechatRouter.POST("/menu",wechatMenuController.Post)
+
+		wechatRouter.GET("/user",wechatUserController.GetAll)
+		wechatRouter.PUT("/user",wechatUserController.Put)
+		wechatRouter.POST("/user/money",wechatUserController.Money)
+
+		wechatRouter.GET("/article",articleController.GetAll)
+		wechatRouter.POST("/article",articleController.Post)
+		wechatRouter.PUT("/article",articleController.Put)
+		wechatRouter.DELETE("/article/:id",articleController.Delete)
+		wechatRouter.GET("/article/info/:id",articleController.Get)
+		wechatRouter.GET("/article/publish/:id",articleController.Pub)
+	}
+
+	ApiWechatController := front.WechatController{}
+    apiv1 := r.Group("/api/v1")
+    {
+    	apiv1.Any("/serve",ApiWechatController.GetAll)
+	}
 
 
 	return r
