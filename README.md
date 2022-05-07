@@ -14,10 +14,10 @@ Gin+Gorm+Casbin+Jwt+Redis+Mysql8+Vue 的前后端分离电商管理系统，权�
 
 #### 项目源码
 
-|     |   后端源码  |   后台前端源码  |  PC商城前端源码  |
-|---  |--- | --- | --- |
-|  码云  |  https://gitee.com/guchengwuyue/yshop-gin   |  https://gitee.com/guchengwuyue/yshop-gin-vue   |  https://gitee.com/guchengwuyue/yshop-gin-pc   |
-|  github   | https://github.com/guchengwuyue/yshop-gin  |  https://github.com/guchengwuyue/yshop-gin-vue | https://gitee.com/guchengwuyue/yshop-gin-pc   |
+|     |   后端源码  |   后台前端源码  | 
+|---  |--- | --- | 
+|  码云  |  https://gitee.com/guchengwuyue/yshop-gin   |  https://gitee.com/guchengwuyue/yshop-gin-vue   | 
+|  github   | https://github.com/guchengwuyue/yshop-gin  |  https://github.com/guchengwuyue/yshop-gin-vue | 
 
 #### 已经实现pc商城功能：
 - 首页轮播图
