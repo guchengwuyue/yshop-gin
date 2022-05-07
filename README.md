@@ -106,10 +106,10 @@ Gin+Gorm+Casbin+Jwt+Redis+Mysql8+Vue 的前后端分离电商管理系统，权�
 #### 功能说明
 pc端效果图：
 
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/pc1.png "suicai.png") |
+| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646055.jpg) |
 |--|
 
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/pc02.png "suicai.png") |
+| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646056.jpg) |
 |--|
 
 | ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/pc03.png "suicai.png") |
@@ -118,20 +118,20 @@ pc端效果图：
 | ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/pc04.png "suicai.png") |
 |--|
 
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/pc05.png "suicai.png") |
+| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220507164605.jpg) |
 |--|
 
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/pc06.png "suicai.png") |
+| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646051.jpg) |
 |--|
 
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/pc07.png "suicai.png") |
+| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646052.jpg) |
 |--|
 
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/pc08.png "suicai.png") |
+| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646053.jpg) |
 |--|
 
 
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/pc09.png "suicai.png") |
+| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646054.jpg) |
 |--|
 
 1、商品分类
