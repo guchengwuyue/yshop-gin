@@ -14,7 +14,7 @@ Gin+Gorm+Casbin+Jwt+Redis+Mysql8+Vue 的前后端分离电商管理系统，权�
 
 #### 项目源码
 
-|     |   后端源码  |   后台前端源码  | 
+|     |   后端源码与pc商城前端源码  |   后台前端源码  | 
 |---  |--- | --- | 
 |  码云  |  https://gitee.com/guchengwuyue/yshop-gin   |  https://gitee.com/guchengwuyue/yshop-gin-vue   | 
 |  github   | https://github.com/guchengwuyue/yshop-gin  |  https://github.com/guchengwuyue/yshop-gin-vue | 
