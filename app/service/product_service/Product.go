@@ -7,17 +7,22 @@ package product_service
 
 import (
 	"encoding/json"
+	"errors"
+	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/copier"
 	"github.com/unknwon/com"
 	"sort"
 	"strconv"
 	"strings"
 	"yixiang.co/go-mall/app/models"
-	"yixiang.co/go-mall/app/models/dto"
 	"yixiang.co/go-mall/app/models/vo"
 	"yixiang.co/go-mall/app/service/cate_service"
+	"yixiang.co/go-mall/app/service/product_relation_service"
 	"yixiang.co/go-mall/app/service/product_rule_service"
+	productDto "yixiang.co/go-mall/app/service/product_service/dto"
+	proVo "yixiang.co/go-mall/app/service/product_service/vo"
 	productEnum "yixiang.co/go-mall/pkg/enums/product"
+	"yixiang.co/go-mall/pkg/global"
 	"yixiang.co/go-mall/pkg/logging"
 	"yixiang.co/go-mall/pkg/util"
 )
@@ -35,13 +40,192 @@ type Product struct {
 
 	Ids []int64
 
-	Dto   dto.StoreProduct
+	Dto productDto.StoreProduct
 
-	SaleDto  dto.OnSale
+	SaleDto productDto.OnSale
 
 	JsonObj map[string]interface{}
 
+	Order int
+
+	News string
+	PriceOrder string
+	SalesOrder string
+	Sid string
+
+	Uid int64
+
+	Unique string
+
+	Type string
+
 }
+
+//get stock
+func (d *Product) GetStock() int{
+	var productAttrValue models.YshopStoreProductAttrValue
+	err := global.YSHOP_DB.Model(&models.YshopStoreProductAttrValue{}).
+		Where("`unique` = ?",d.Unique).
+		Where("product_id = ?",d.Id).First(&productAttrValue).Error
+	if err != nil {
+		global.YSHOP_LOG.Error(err)
+		return 0
+	}
+	return productAttrValue.Stock
+}
+
+func (d *Product) GetList() ([]proVo.Product,int,int) {
+	maps := make(map[string]interface{})
+	if d.Name != "" {
+		maps["name"] = d.Name
+	}
+	if d.Enabled >= 0 {
+		maps["is_show"] = d.Enabled
+	}
+	switch d.Order {
+	  case productEnum.STATUS_1: maps["is_best"] = 1
+	  case productEnum.STATUS_2: maps["is_new"] = 1
+	  case productEnum.STATUS_3: maps["is_benefit"] = 1
+	  case productEnum.STATUS_4: maps["is_hot"] = 1
+	}
+
+	if d.Sid != "" {
+		maps["cate_id"] = com.StrTo(d.Sid).MustInt()
+	}
+	if d.News != "" {
+		news := com.StrTo(d.News).MustInt()
+		if news == 1 {
+			maps["is_new"] = 1
+		}
+	}
+	order := ""
+	if d.SalesOrder != "" {
+		if productEnum.ASC == d.SalesOrder {
+			order = "sales asc"
+		}else if productEnum.DESC == d.SalesOrder {
+			order = "sales desc"
+		}
+	}
+	if d.PriceOrder != "" {
+		if productEnum.ASC == d.PriceOrder {
+			order = "price asc"
+		}else if productEnum.DESC == d.PriceOrder {
+			order = "price desc"
+		}
+	}
+
+	var PrductListVo []proVo.Product
+
+
+	total,list := models.GetFrontAllProduct(d.PageNum,d.PageSize,maps,order)
+	e := copier.Copy(&PrductListVo, list)
+	if e != nil {
+		global.YSHOP_LOG.Error(e)
+	}
+	totalNum := util.Int64ToInt(total)
+	totalPage := util.GetTotalPage(totalNum,d.PageSize)
+	return  PrductListVo,totalNum,totalPage
+}
+
+func (d *Product) GetDetail() (*proVo.ProductDetail,error) {
+	var (
+		storeProduct models.YshopStoreProduct
+		productVo    proVo.Product
+		err          error
+	)
+	err = global.YSHOP_DB.Model(&models.YshopStoreProduct{}).
+		Where("id = ?",d.Id).
+		Where("is_show",1).
+		First(&storeProduct).Error
+	if err != nil {
+		global.YSHOP_LOG.Error(err)
+		return nil,errors.New("获取商品失败")
+	}
+	//获取sku
+	returnMap,err := getProductAttrDetail(d.Id)
+	if err != nil {
+		global.YSHOP_LOG.Error(err)
+		return nil,errors.New("获取商品sku失败")
+	}
+	err = copier.Copy(&productVo, storeProduct)
+	productVo.SliderImageArr = strings.Split(storeProduct.SliderImage,",")
+	if err != nil {
+		global.YSHOP_LOG.Error(err)
+		return nil,errors.New("商品转化失败")
+	}
+	//此处处理登录的用户
+	//todo
+	if d.Uid > 0 {
+		isCollect := product_relation_service.IsRelation(d.Id,d.Uid)
+		productVo.UserCollect = isCollect
+	}
+
+	//此处处理已经评论的数量-移动端需要，单个评价与好评旅，好评数量
+	//todo
+	//此处处理运费模板
+	//todo
+	detail := proVo.ProductDetail{
+		StoreInfo: productVo,
+		ProductAttr: returnMap["productAttr"].([]proVo.ProductAttr),
+		ProductValue: returnMap["productValue"].(map[string]models.YshopStoreProductAttrValue),
+	}
+
+	return &detail,nil
+}
+
+//获取商品sku
+func getProductAttrDetail(productId int64) (map[string]interface{},error) {
+	var (
+		storeProductAttrs []models.YshopStoreProductAttr
+		productAttrValues []models.YshopStoreProductAttrValue
+		mapp map[string]models.YshopStoreProductAttrValue
+		storeProductAttrList []proVo.ProductAttr
+		err error
+	)
+	err = global.YSHOP_DB.Model(&models.YshopStoreProductAttr{}).
+		Where("product_id = ?",productId).
+	 	Order("attr_values asc").Find(&storeProductAttrs).Error
+	if err != nil {
+		global.YSHOP_LOG.Error(err)
+		return nil,err
+	}
+	err = global.YSHOP_DB.Model(&models.YshopStoreProductAttrValue{}).
+		Where("product_id = ?",productId).
+		Find(&productAttrValues).Error
+	if err != nil {
+		global.YSHOP_LOG.Error(err)
+		return nil,err
+	}
+	util.StructColumn(&mapp,productAttrValues,"","Sku")
+	//global.YSHOP_LOG.Info(mapp)
+
+	for _,attr := range storeProductAttrs {
+		stringList := strings.Split(attr.AttrValues, ",")
+		var attrValues []productDto.AttrValue
+		for _,str := range stringList {
+			attrValue := productDto.AttrValue{
+				Attr: str,
+			}
+			attrValues = append(attrValues, attrValue)
+		}
+		var attrVo proVo.ProductAttr
+		err = copier.Copy(&attrVo, attr)
+		if err != nil {
+			global.YSHOP_LOG.Error(err)
+			return nil,err
+		}
+		attrVo.AttrValue = attrValues
+		attrVo.AttrValueArr = stringList
+		storeProductAttrList = append(storeProductAttrList, attrVo)
+	}
+
+	returnMap := gin.H{
+		"productAttr":storeProductAttrList,
+		"productValue": mapp,
+	}
+	return returnMap,nil
+}
+
 
 func (d *Product) OnSaleByProduct() error {
 	return models.OnSaleByProduct(d.Id,d.SaleDto.Status)
@@ -80,7 +264,7 @@ func (d *Product) AddOrSaveProduct() (err error) {
 	//sku处理
 	if m.SpecType == productEnum.SEPC_TYPE_0 {
 		list1 := []string{"默认"}
-		formatDetail := dto.FormatDetail{
+		formatDetail := productDto.FormatDetail{
 			Value:  "规格",
 			Detail: list1,
 		}
@@ -89,7 +273,7 @@ func (d *Product) AddOrSaveProduct() (err error) {
 		productFormat.Detail = map[string]string{
 			"规格": "默认",
 		}
-		err = insertProductSku([]dto.FormatDetail{formatDetail}, []dto.ProductFormat{productFormat}, productId)
+		err = insertProductSku([]productDto.FormatDetail{formatDetail}, []productDto.ProductFormat{productFormat}, productId)
 	} else {
 		err = insertProductSku(m.Items, m.Attrs, productId)
 	}
@@ -101,7 +285,7 @@ func (d *Product) GetProductInfo() map[string]interface{} {
 	var (
 		mapData           = make(map[string]interface{})
 		yshopStoreProduct models.YshopStoreProduct
-		productDto        dto.StoreProductInfo
+		productDto        productDto.StoreProductInfo
 	)
 	cateService := cate_service.Cate{}
 	catList := cateService.GetProductCate()
@@ -153,7 +337,7 @@ func (d *Product) Del() error {
 	return models.DelByProduct(d.Ids)
 }
 
-func insertProductSku(items []dto.FormatDetail, attrs []dto.ProductFormat, productId int64) (err error) {
+func insertProductSku(items []productDto.FormatDetail, attrs []productDto.ProductFormat, productId int64) (err error) {
 	err = models.DelByProductttr(productId)
 	if err != nil {
 		return err
@@ -181,7 +365,7 @@ func insertProductSku(items []dto.FormatDetail, attrs []dto.ProductFormat, produ
 }
 
 //计算获取属性结果最小值
-func computeProduct(attrs []dto.ProductFormat) map[string]interface{} {
+func computeProduct(attrs []productDto.ProductFormat) map[string]interface{} {
 	returnMap := make(map[string]interface{})
 
 	var (
@@ -214,7 +398,7 @@ func computeProduct(attrs []dto.ProductFormat) map[string]interface{} {
 func getFormatAttr(id int64, jsonObj map[string]interface{}) map[string]interface{} {
 	var (
 		mapData          = make(map[string]interface{})
-		formatDetailList []dto.FormatDetail
+		formatDetailList []productDto.FormatDetail
 		headerMapList    []map[string]interface{}
 		valueMapList     []map[string]interface{}
 		align            string = "center"
@@ -395,7 +579,7 @@ func addMap(headerMapList []map[string]interface{}, align string) []map[string]i
 }
 
 //组合sku规则算法
-func attrFormat(formatDetailList []dto.FormatDetail) dto.Detail {
+func attrFormat(formatDetailList []productDto.FormatDetail) productDto.Detail {
 	var (
 		data []string
 		res  []map[string]map[string]string
@@ -465,7 +649,7 @@ func attrFormat(formatDetailList []dto.FormatDetail) dto.Detail {
 		data = append(data, s)
 	}
 
-	return dto.Detail{
+	return productDto.Detail{
 		Data: data,
 		Res:  res,
 	}

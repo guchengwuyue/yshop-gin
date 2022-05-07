@@ -10,8 +10,8 @@ import (
 	"github.com/unknwon/com"
 	"net/http"
 	"yixiang.co/go-mall/app/models"
-	"yixiang.co/go-mall/app/models/dto"
 	"yixiang.co/go-mall/app/service/user_service"
+	dto2 "yixiang.co/go-mall/app/service/user_service/dto"
 	"yixiang.co/go-mall/pkg/app"
 	"yixiang.co/go-mall/pkg/constant"
 	"yixiang.co/go-mall/pkg/jwt"
@@ -181,8 +181,8 @@ func (e *UserController) Avatar(c *gin.Context)  {
 // @router /updatePass [post]
 func (e *UserController) Pass(c *gin.Context)  {
 	var (
-		model dto.UserPass
-		appG = app.Gin{C: c}
+		model dto2.UserPass
+		appG  = app.Gin{C: c}
 	)
 	httpCode, errCode := app.BindAndValid(c,&model)
 	if errCode != constant.SUCCESS {
@@ -206,8 +206,8 @@ func (e *UserController) Pass(c *gin.Context)  {
 // @router /center [put]
 func (e *UserController) Center(c *gin.Context)  {
 	var (
-		model dto.UserPost
-		appG = app.Gin{C: c}
+		model dto2.UserPost
+		appG  = app.Gin{C: c}
 	)
 	httpCode, errCode := app.BindAndValid(c,&model)
 	if errCode != constant.SUCCESS {

@@ -7,7 +7,7 @@ package models
 
 import (
 	"encoding/json"
-	"yixiang.co/go-mall/app/models/dto"
+	dto2 "yixiang.co/go-mall/app/service/product_service/dto"
 )
 
 //
@@ -23,11 +23,11 @@ func (YshopStoreProductRule) TableName() string  {
 }
 
 // get all
-func GetAllProductRule(pageNUm int,pageSize int,maps interface{}) (int64, []dto.ProductRule) {
+func GetAllProductRule(pageNUm int,pageSize int,maps interface{}) (int64, []dto2.ProductRule) {
 	var (
 		total int64
 		data      []YshopStoreProductRule
-		retData   []dto.ProductRule
+		retData   []dto2.ProductRule
 	)
 	db.Model(&YshopStoreProductRule{}).Where(maps).Count(&total)
 	db.Where(maps).Offset(pageNUm).Limit(pageSize).Order("id desc").Find(&data)
@@ -35,7 +35,7 @@ func GetAllProductRule(pageNUm int,pageSize int,maps interface{}) (int64, []dto.
 	for _, rule := range data {
 		var value []interface{}
 		json.Unmarshal([]byte(rule.RuleValue), &value)
-		v := dto.ProductRule{
+		v := dto2.ProductRule{
 			Id:         rule.Id,
 			RuleName:   rule.RuleName,
 			RuleValue:  value,

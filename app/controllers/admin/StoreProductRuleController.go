@@ -4,8 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
 	"net/http"
-	"yixiang.co/go-mall/app/models/dto"
 	"yixiang.co/go-mall/app/service/product_rule_service"
+	dto2 "yixiang.co/go-mall/app/service/product_service/dto"
 	"yixiang.co/go-mall/pkg/app"
 	"yixiang.co/go-mall/pkg/constant"
 	"yixiang.co/go-mall/pkg/util"
@@ -43,7 +43,7 @@ func (e *StoreProductRuleController) GetAll(c *gin.Context) {
 // @router /save/:id [post]
 func (e *StoreProductRuleController) Post(c *gin.Context) {
 	var (
-		dto   dto.ProductRule
+		dto  dto2.ProductRule
 		appG = app.Gin{C: c}
 	)
 	id := com.StrTo(c.Param("id")).MustInt64()

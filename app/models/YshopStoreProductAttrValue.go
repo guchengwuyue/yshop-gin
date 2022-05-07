@@ -10,7 +10,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-	"yixiang.co/go-mall/app/models/dto"
+	dto2 "yixiang.co/go-mall/app/service/product_service/dto"
 	"yixiang.co/go-mall/pkg/util"
 )
 
@@ -48,7 +48,7 @@ func GetAttrValueByProductIdAndSku(productId int64, sku string) *YshopStoreProdu
 	return &attrValue
 }
 //
-func AddProductttrValue(attrs []dto.ProductFormat, productId int64) error {
+func AddProductttrValue(attrs []dto2.ProductFormat, productId int64) error {
 	var err error
 	tx := db.Begin()
 	defer func() {

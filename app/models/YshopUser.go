@@ -22,9 +22,9 @@ type YshopUser struct {
 	Phone          string         `json:"phone"`
 	AddIp          string         `json:"add_ip"`
 	LastIp         string         `json:"last_ip"`
-	NowMoney       string         `json:"nowMoney"`
+	NowMoney       float64         `json:"nowMoney"`
 	BrokeragePrice float64        `json:"brokeragePrice"`
-	Integral       float64        `json:"integral"`
+	Integral       int        `json:"integral"`
 	SignNum        int            `json:"sign_num"`
 	Status         int8           `json:"status"`
 	Level          int8           `json:"level"`

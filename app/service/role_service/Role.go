@@ -7,8 +7,8 @@ package role_service
 
 import (
 	"yixiang.co/go-mall/app/models"
-	"yixiang.co/go-mall/app/models/dto"
 	"yixiang.co/go-mall/app/models/vo"
+	dto2 "yixiang.co/go-mall/app/service/menu_service/dto"
 )
 
 type Role struct {
@@ -22,7 +22,7 @@ type Role struct {
 
 	Ids []int64
 
-	Dto dto.RoleMenu
+	Dto dto2.RoleMenu
 
 }
 

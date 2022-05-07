@@ -8,8 +8,8 @@ package user_service
 import (
 	"errors"
 	"yixiang.co/go-mall/app/models"
-	"yixiang.co/go-mall/app/models/dto"
 	"yixiang.co/go-mall/app/models/vo"
+	userDto "yixiang.co/go-mall/app/service/user_service/dto"
 	"yixiang.co/go-mall/pkg/util"
 )
 
@@ -27,8 +27,8 @@ type User struct {
 
 	Ids []int64
 
-	UserPost dto.UserPost
-	UserPass dto.UserPass
+	UserPost userDto.UserPost
+	UserPass userDto.UserPass
 
 	ImageUrl string
 

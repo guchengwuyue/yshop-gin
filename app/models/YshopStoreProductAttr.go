@@ -7,7 +7,7 @@ package models
 
 import (
 	"strings"
-	"yixiang.co/go-mall/app/models/dto"
+	dto2 "yixiang.co/go-mall/app/service/product_service/dto"
 )
 
 type YshopStoreProductAttr struct {
@@ -22,7 +22,7 @@ func (YshopStoreProductAttr) TableName() string  {
 }
 
 
-func AddProductAttr(items []dto.FormatDetail, productId int64) error {
+func AddProductAttr(items []dto2.FormatDetail, productId int64) error {
 	var err error
 	tx := db.Begin()
 	defer func() {

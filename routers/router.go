@@ -35,6 +35,7 @@ func InitRouter() *gin.Engine {
 	logController := admin.LogController{}
 	materialController := admin.MaterialController{}
 	materialGroupController := admin.MaterialGroupController{}
+	canvasController := admin.CanvasController{}
 	adminRouter := r.Group("/admin")
 	adminRouter.Use(middleware.Jwt()).Use(middleware.Log())
 
@@ -45,13 +46,13 @@ func InitRouter() *gin.Engine {
 		adminRouter.GET("/material",materialController.GetAll)
 		adminRouter.POST("/material",materialController.Post)
 		adminRouter.PUT("/material",materialController.Put)
-		adminRouter.DELETE("/material",materialController.Delete)
+		adminRouter.DELETE("/material/:id",materialController.Delete)
 		adminRouter.POST("/material/upload",materialController.Upload)
 
 		adminRouter.GET("/materialgroup",materialGroupController.GetAll)
 		adminRouter.POST("/materialgroup",materialGroupController.Post)
 		adminRouter.PUT("/materialgroup",materialGroupController.Put)
-		adminRouter.DELETE("/materialgroup",materialGroupController.Delete)
+		adminRouter.DELETE("/materialgroup/:id",materialGroupController.Delete)
 
 
 		adminRouter.GET("/user",userController.GetAll)
@@ -98,11 +99,16 @@ func InitRouter() *gin.Engine {
 		adminRouter.POST("/menu",menuController.Post)
 		adminRouter.PUT("/menu",menuController.Put)
 		adminRouter.DELETE("/menu",menuController.Delete)
+
+		adminRouter.GET("/canvas/getCanvas",canvasController.Get)
+		adminRouter.POST("/canvas/saveCanvas",canvasController.Post)
 	}
 
 	cateController := admin.StoreCategoryController{}
 	ruleController := admin.StoreProductRuleController{}
 	productController := admin.StoreProductController{}
+	orderController := admin.OrderController{}
+	expressController := admin.ExpressController{}
 	shopRouter := r.Group("/shop")
 	shopRouter.Use(middleware.Jwt()).Use(middleware.Log())
 	{
@@ -121,6 +127,18 @@ func InitRouter() *gin.Engine {
 		shopRouter.POST("/product/addOrSave",productController.Post)
 		shopRouter.POST("/product/onsale/:id",productController.OnSale)
 		shopRouter.DELETE("/product/:id",productController.Delete)
+
+		shopRouter.GET("/order",orderController.GetAll)
+		shopRouter.POST("/order/save/:id",orderController.Post)
+		shopRouter.DELETE("/order/:id",orderController.Delete)
+		shopRouter.POST("/order/remark",orderController.Put)
+		shopRouter.PUT("/order",orderController.Deliver)
+		shopRouter.POST("/order/express",orderController.DeliverQuery)
+
+		shopRouter.GET("/express",expressController.GetAll)
+		shopRouter.POST("/express",expressController.Post)
+		shopRouter.PUT("/express",expressController.Put)
+		shopRouter.DELETE("/express/:id",expressController.Delete)
 	}
 
 	wechatMenuController := admin.WechatMenuController{}
@@ -144,12 +162,61 @@ func InitRouter() *gin.Engine {
 		wechatRouter.GET("/article/publish/:id",articleController.Pub)
 	}
 
+
+	//用户端api-非auth
 	ApiWechatController := front.WechatController{}
+	ApiLoginController := new(front.LoginController)
+	ApiIndexController := new(front.IndexController)
+	ApiCategoryControler := new(front.CategoryController)
+	ApiProductControler := new(front.ProductController)
+	ApiAddressController := new(front.UserAddressController)
+	ApiOrderController := new(front.OrderController)
     apiv1 := r.Group("/api/v1")
     {
     	apiv1.Any("/serve",ApiWechatController.GetAll)
+    	apiv1.POST("/login",ApiLoginController.Login)
+		apiv1.POST("/register",ApiLoginController.Reg)
+		apiv1.POST("/register/verify",ApiLoginController.Verify)
+		apiv1.GET("/getCanvas",ApiIndexController.GetCanvas)
+		apiv1.GET("/category",ApiCategoryControler.GetCateList)
+		apiv1.GET("/index",ApiIndexController.GetIndex)
+		apiv1.GET("/products",ApiProductControler.GoodsList)
+    	apiv1.GET("/product/detail/:id",ApiProductControler.GoodDetail)
+		apiv1.GET("/product/hot",ApiProductControler.GoodsRecommendList)
+		apiv1.GET("/reply/list/:id",ApiProductControler.ReplyList)
+		apiv1.GET("/city_list",ApiAddressController.GetCityList)
+		apiv1.POST("/upload",ApiIndexController.Upload)
+		apiv1.Any("/order/notify",ApiOrderController.NotifyPay)
 	}
-
+	//需要授权
+	ApiUserController := new(front.UserController)
+	ApiCartController := new(front.CartController)
+	//ApiOrderController := new(front.OrderController)
+	authApiv1 := r.Group("/api/v1").Use(middleware.AppJwt())
+	{
+		authApiv1.GET("/userinfo",ApiUserController.GetUserInfo)
+		authApiv1.POST("/collect/add",ApiProductControler.AddCollect)
+		authApiv1.POST("/collect/del",ApiProductControler.DelCollect)
+		authApiv1.POST("/cart/add",ApiCartController.AddCart)
+		authApiv1.GET("/cart/count",ApiCartController.Count)
+		authApiv1.GET("/carts",ApiCartController.CartList)
+		authApiv1.POST("/cart/num",ApiCartController.CartNum)
+		authApiv1.POST("/cart/del",ApiCartController.DelCart)
+		authApiv1.POST("/address/edit",ApiAddressController.SaveAddress)
+		authApiv1.GET("/address",ApiAddressController.GetList)
+		authApiv1.POST("/address/default/set",ApiAddressController.SetDefault)
+		authApiv1.POST("/address/del",ApiAddressController.Del)
+		authApiv1.POST("/order/confirm",ApiOrderController.Confirm)
+		authApiv1.POST("/order/computed/:key",ApiOrderController.Compute)
+		authApiv1.POST("/order/create/:key",ApiOrderController.Create)
+		authApiv1.POST("/order/pay",ApiOrderController.Pay)
+		authApiv1.GET("/order/detail/:key",ApiOrderController.OrderDetail)
+		authApiv1.GET("/order",ApiOrderController.GetList)
+		authApiv1.POST("/order/take",ApiOrderController.TakeOrder)
+		authApiv1.POST("/order/comments/:key",ApiOrderController.OrderComment)
+		authApiv1.POST("/order/cancel",ApiOrderController.CancelOrder)
+		authApiv1.GET("/collect/user",ApiUserController.CollectUser)
+	}
 
 	return r
 }

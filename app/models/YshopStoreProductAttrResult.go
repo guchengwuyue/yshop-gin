@@ -8,7 +8,7 @@ package models
 import (
 	"encoding/json"
 	"time"
-	"yixiang.co/go-mall/app/models/dto"
+	dto2 "yixiang.co/go-mall/app/service/product_service/dto"
 	"yixiang.co/go-mall/pkg/logging"
 )
 
@@ -40,7 +40,7 @@ func GetProductAttrResult(productId int64) map[string]interface{} {
 	return data
 }
 
-func AddProductAttrResult(items []dto.FormatDetail, attrs []dto.ProductFormat, productId int64)  error {
+func AddProductAttrResult(items []dto2.FormatDetail, attrs []dto2.ProductFormat, productId int64)  error {
 	var err error
 	tx := db.Begin()
 	defer func() {

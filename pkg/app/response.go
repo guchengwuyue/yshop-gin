@@ -15,6 +15,14 @@ type Response struct {
 	Data interface{} `json:"data"`
 }
 
+type ResponsePage struct {
+	Code int         `json:"status"`
+	Msg  string      `json:"msg"`
+	Data interface{} `json:"data"`
+	Total int `json:"total"`
+	TotalPage int `json:"totalPage"`
+}
+
 // Response setting gin.JSON
 func (g *Gin) Response(httpCode int, errCode interface{}, data interface{}) {
 	switch errCode.(type) {
@@ -37,3 +45,15 @@ func (g *Gin) Response(httpCode int, errCode interface{}, data interface{}) {
 	return
 }
 
+// Response setting gin.JSON
+func (g *Gin) ResponsePage(httpCode int, errCode interface{}, data interface{},total,totalPage int) {
+	intCode := errCode.(int)
+	g.C.JSON(httpCode, ResponsePage{
+		Code: intCode,
+		Msg:  constant.GetMsg(intCode),
+		Data: data,
+		Total: total,
+		TotalPage: totalPage,
+	})
+	return
+}

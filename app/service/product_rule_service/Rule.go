@@ -8,8 +8,8 @@ package product_rule_service
 import (
 	"encoding/json"
 	"yixiang.co/go-mall/app/models"
-	"yixiang.co/go-mall/app/models/dto"
 	"yixiang.co/go-mall/app/models/vo"
+	dto2 "yixiang.co/go-mall/app/service/product_service/dto"
 )
 
 type Rule struct {
@@ -25,7 +25,7 @@ type Rule struct {
 
 	Ids []int64
 
-	Dto   dto.ProductRule
+	Dto dto2.ProductRule
 
 }
 

@@ -68,11 +68,13 @@ func (e *ArticleController) Post(c *gin.Context)  {
 		model models.YshopWechatArticle
 		appG = app.Gin{C: c}
 	)
-	httpCode, errCode := app.BindAndValid(c,&model)
-	if errCode != constant.SUCCESS {
-		appG.Response(httpCode,errCode,nil)
+
+	paramErr := app.BindAndValidate(c,&model)
+	if paramErr != nil {
+		appG.Response(http.StatusBadRequest,paramErr.Error(),nil)
 		return
 	}
+
 	articleService := article_service.Article{
 		M: &model,
 	}

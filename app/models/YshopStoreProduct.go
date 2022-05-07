@@ -29,7 +29,7 @@ type YshopStoreProduct struct {
 	IsNew        int8                `json:"isNew" valid:"Required;"`
 	Description  string              `json:"description" valid:"Required;"`
 	IsPostage    int8                `json:"isPostage" valid:"Required;"`
-	GiveIntegral float64             `json:"giveIntegral" valid:"Required;"`
+	GiveIntegral int             `json:"giveIntegral" valid:"Required;"`
 	Cost         float64             `json:"cost" valid:"Required;"`
 	IsGood       int8                `json:"isGood" valid:"Required;"`
 	Ficti        int                 `json:"ficti" valid:"Required;"`
@@ -51,6 +51,23 @@ func GetProduct(id int64) YshopStoreProduct {
 	db.Where("id =  ?",id).First(&product)
 
 	return product
+}
+
+// get all
+func GetFrontAllProduct(pageNUm int,pageSize int,maps interface{},order string) (int64, []YshopStoreProduct) {
+	var (
+		total int64
+		data      []YshopStoreProduct
+	)
+
+	db.Model(&YshopStoreProduct{}).Where(maps).Count(&total)
+	if order == "" {
+		order = "id desc"
+	}
+	db.Where(maps).Offset(pageNUm).Limit(pageSize).Order(order).Find(&data)
+
+
+	return total, data
 }
 
 // get all

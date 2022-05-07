@@ -4,8 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
 	"net/http"
-	"yixiang.co/go-mall/app/models/dto"
 	"yixiang.co/go-mall/app/service/product_service"
+	dto2 "yixiang.co/go-mall/app/service/product_service/dto"
 	"yixiang.co/go-mall/pkg/app"
 	"yixiang.co/go-mall/pkg/constant"
 	"yixiang.co/go-mall/pkg/util"
@@ -59,7 +59,7 @@ func (e *StoreProductController) GetInfo(c *gin.Context) {
 // @router /addOrSave [post]
 func (e *StoreProductController) Post(c *gin.Context) {
 	var (
-		dto   dto.StoreProduct
+		dto  dto2.StoreProduct
 		appG = app.Gin{C: c}
 	)
 	httpCode, errCode := app.BindAndValid(c,&dto)
@@ -86,7 +86,7 @@ func (e *StoreProductController) Post(c *gin.Context) {
 // @router /onsale/:id [post]
 func (e *StoreProductController) OnSale(c *gin.Context) {
 	var (
-		dto   dto.OnSale
+		dto  dto2.OnSale
 		appG = app.Gin{C: c}
 	)
 	id := com.StrTo(c.Param("id")).MustInt64()

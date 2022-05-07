@@ -10,8 +10,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/datatypes"
 	"yixiang.co/go-mall/app/models"
-	"yixiang.co/go-mall/app/models/dto"
 	"yixiang.co/go-mall/app/models/vo"
+	menuDto "yixiang.co/go-mall/app/service/wechat_menu_service/dto"
 	"yixiang.co/go-mall/pkg/constant"
 	"yixiang.co/go-mall/pkg/global"
 )
@@ -20,7 +20,7 @@ type Menu struct {
 	Id int64
 	Key string
 
-	Dto dto.WechatMenu
+	Dto menuDto.WechatMenu
 
 	M *models.YshopWechatMenu
 }

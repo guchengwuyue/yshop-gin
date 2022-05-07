@@ -46,3 +46,7 @@ wechat:
   app_secret:
   token: yshop-gin
   encoding_aes_key:
+
+express:
+  eBusinessId: 1607734
+  appKey: 81f43a2e-f504-45c4-9b54-2637d59f8190

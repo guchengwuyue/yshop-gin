@@ -8,8 +8,8 @@ package admin
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"yixiang.co/go-mall/app/models/dto"
 	"yixiang.co/go-mall/app/service/wechat_menu_service"
+	dto2 "yixiang.co/go-mall/app/service/wechat_menu_service/dto"
 	"yixiang.co/go-mall/pkg/app"
 	"yixiang.co/go-mall/pkg/constant"
 )
@@ -39,7 +39,7 @@ func (e *WechatMenuController) GetAll(c *gin.Context) {
 // @router / [post]
 func (e *WechatMenuController) Post(c *gin.Context)  {
 	var (
-		dto dto.WechatMenu
+		dto  dto2.WechatMenu
 		appG = app.Gin{C: c}
 	)
 	httpCode, errCode := app.BindAndValid(c,&dto)

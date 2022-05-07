@@ -14,6 +14,32 @@ import (
 
 const bearerLength = len("Bearer ")
 
+func AppJwt() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var data interface{}
+		var appG = app.Gin{C: c}
+
+		mytoken := c.Request.Header.Get("Authorization")
+		if len(mytoken) < bearerLength {
+			appG.Response(http.StatusUnauthorized,constant.ERROR_AUTH,data)
+			c.Abort()
+			return
+		}
+		token := strings.TrimSpace(mytoken[bearerLength:])
+		usr, err := jwt.ValidateToken(token)
+		if err != nil {
+			logging.Info(err)
+			appG.Response(http.StatusUnauthorized,constant.ERROR_AUTH_CHECK_TOKEN_FAIL,data)
+			c.Abort()
+			return
+		}
+
+		c.Set(constant.APP_AUTH_USER, usr)
+
+		c.Next()
+
+	}
+}
 
 func Jwt() gin.HandlerFunc {
 	return func(c *gin.Context) {

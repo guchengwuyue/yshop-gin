@@ -68,11 +68,13 @@ func Set(key string, data interface{}, time int) error {
 	if err != nil {
 		return err
 	}
-
-	_, err = conn.Do("EXPIRE", key, time)
-	if err != nil {
-		return err
+	if time > 0 {
+		_, err = conn.Do("EXPIRE", key, time)
+		if err != nil {
+			return err
+		}
 	}
+
 
 	return nil
 }
@@ -89,6 +91,20 @@ func Exists(key string) bool {
 
 	return exists
 }
+
+// Get get a key
+func GetString(key string) string {
+	conn := RedisConn.Get()
+	defer conn.Close()
+
+	reply, err := redis.String(conn.Do("GET", key))
+	if err != nil {
+		return ""
+	}
+
+	return reply
+}
+
 
 // Get get a key
 func Get(key string) ([]byte, error) {

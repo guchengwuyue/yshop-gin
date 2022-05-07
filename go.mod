@@ -15,6 +15,7 @@ require (
 	github.com/gin-gonic/gin v1.7.4
 	github.com/go-ini/ini v1.63.2
 	github.com/go-openapi/spec v0.20.4 // indirect
+	github.com/go-pay/gopay v1.5.77
 	github.com/go-playground/validator/v10 v10.9.0 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
@@ -34,6 +35,7 @@ require (
 	github.com/sagikazarmark/crypt v0.2.0 // indirect
 	github.com/segmentio/ksuid v1.0.4
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18 // indirect
+	github.com/shopspring/decimal v1.3.1
 	github.com/silenceper/wechat/v2 v2.0.9
 	github.com/spf13/afero v1.6.0 // indirect
 	github.com/spf13/cast v1.4.1 // indirect
@@ -42,10 +44,12 @@ require (
 	github.com/spf13/viper v1.7.0
 	github.com/swaggo/gin-swagger v1.2.0
 	github.com/swaggo/swag v1.7.4
+	github.com/thedevsaddam/govalidator v1.9.10
+	github.com/ttlv/kdniao v0.0.0-20220119131043-fcaba08b1873
 	github.com/ugorji/go v1.2.6 // indirect; indi rect
 	github.com/unknwon/com v1.0.1
 	go.uber.org/zap v1.19.1
-	golang.org/x/crypto v0.0.0-20211117183948-ae814b36b871
+	golang.org/x/crypto v0.0.0-20220331220935-ae2d96664a29
 	golang.org/x/image v0.0.0-20211028202545-6944b10bf410 // indirect
 	golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2 // indirect
 	golang.org/x/sys v0.0.0-20211116061358-0a5406a5449c // indirect

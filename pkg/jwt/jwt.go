@@ -37,6 +37,101 @@ func Setup() {
 	jwtSecret = []byte(global.YSHOP_CONFIG.App.JwtSecret)
 }
 
+func GenerateAppToken(m *models.YshopUser, d time.Time) (string, error) {
+	m.Password = ""
+	//m.Permissions = []string{}
+	//expireTime := time.Now().Add(d)
+	stdClaims := jwt.StandardClaims{
+		ExpiresAt: d.Unix(),
+		Id:        strconv.FormatInt(m.Id, 10),
+		Issuer:    "YshopAppGo",
+	}
+
+
+
+	var jwtUser = vo.JwtUser{
+		Id:       m.Id,
+		Avatar:   m.Avatar,
+		Username: m.Username,
+		Phone:    m.Phone,
+	}
+
+	uClaims := userStdClaims{
+		StandardClaims: stdClaims,
+		JwtUser:        jwtUser,
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, uClaims)
+	tokenString, err := token.SignedString(jwtSecret)
+	if err != nil {
+		logging.Error(err)
+	}
+	//set redis
+	var key = constant.APP_REDIS_PREFIX_AUTH + tokenString
+	json, _ := json.Marshal(m)
+	redis.SetEx(key, string(json), d.Unix())
+
+	return tokenString, err
+}
+//返回id
+func GetAppUserId(c *gin.Context) (int64, error) {
+	u, exist := c.Get(constant.APP_AUTH_USER)
+	if !exist {
+		return 0, errors.New("can't get user id")
+	}
+	user, ok := u.(*vo.JwtUser)
+
+	if ok {
+		return user.Id, nil
+	}
+	return 0, errors.New("can't convert to user struct")
+}
+
+//返回user
+func GetAppUser(c *gin.Context) (*vo.JwtUser, error) {
+	u, exist := c.Get(constant.APP_AUTH_USER)
+	if !exist {
+		return nil, errors.New("can't get user id")
+	}
+	user, ok := u.(*vo.JwtUser)
+	if ok {
+		return user, nil
+	}
+	return nil, errors.New("can't convert to user struct")
+}
+
+//返回 detail user
+func GetAppDetailUser(c *gin.Context) (*models.YshopUser,error) {
+	mytoken := c.Request.Header.Get("Authorization")
+	if mytoken == "" {
+		return nil, errors.New("user not login")
+	}
+	token := strings.TrimSpace(mytoken[bearerLength:])
+	var key = constant.APP_REDIS_PREFIX_AUTH + token
+	userMap, err := redis.GetMap(key)
+	if err != nil {
+		return nil, err
+	}
+	jsonStr := userMap[key]
+	user := &models.YshopUser{}
+	err = json.Unmarshal([]byte(jsonStr), user)
+	if err != nil {
+		return nil, err
+	}
+	return user,nil
+}
+
+func RemoveAppUser(c *gin.Context) error {
+	mytoken := c.Request.Header.Get("Authorization")
+	token := strings.TrimSpace(mytoken[bearerLength:])
+	var key = constant.APP_REDIS_PREFIX_AUTH + token
+	_, err := redis.Delete(key)
+
+	return err
+}
+
+
+
 func GenerateToken(m *models.SysUser, d time.Duration) (string, error) {
 	m.Password = ""
 	//m.Permissions = []string{}

@@ -7,14 +7,22 @@ package wechat_user_service
 
 import (
 	"encoding/json"
+	"errors"
+	"github.com/jinzhu/copier"
 	"github.com/silenceper/wechat/v2/officialaccount/user"
 	"gorm.io/datatypes"
 	"gorm.io/gorm"
+	"time"
 	"yixiang.co/go-mall/app/models"
-	"yixiang.co/go-mall/app/models/dto"
 	"yixiang.co/go-mall/app/models/vo"
+	"yixiang.co/go-mall/app/params"
+	userDto "yixiang.co/go-mall/app/service/user_service/dto"
+	wechatUserDto "yixiang.co/go-mall/app/service/wechat_user_service/dto"
+	wechatUserVo "yixiang.co/go-mall/app/service/wechat_user_service/vo"
+	"yixiang.co/go-mall/pkg/constant"
 	userEnum "yixiang.co/go-mall/pkg/enums/user"
 	"yixiang.co/go-mall/pkg/global"
+	"yixiang.co/go-mall/pkg/redis"
 	"yixiang.co/go-mall/pkg/util"
 )
 
@@ -34,12 +42,102 @@ type User struct {
 
 	Ip string
 	//M *models.YshopUser
-	Dto *dto.YshopUser
+	Dto *wechatUserDto.YshopUser
 
-	Money *dto.UserMoney
+	Money *userDto.UserMoney
 
 	Ids []int64
 
+    HLoginParam *params.HLoginParam
+	RegParam *params.RegParam
+	VerityParam *params.VerityParam
+
+	User *models.YshopUser
+
+}
+
+func (u *User) GetUserInfo() *wechatUserVo.User {
+	var (
+		userVO wechatUserVo.User
+		user models.YshopUser
+	)
+	global.YSHOP_DB.Model(&models.YshopUser{}).Where("id = ?",u.Id).First(&user)
+	copier.Copy(&userVO, user)
+
+	return &userVO
+}
+
+func (u *User) GetUserDetail() *wechatUserVo.User {
+	var user wechatUserVo.User
+
+	e := copier.Copy(&user, u.User)
+	if e != nil {
+		global.YSHOP_LOG.Error(e)
+	}
+
+	return &user
+}
+
+func (u *User) Reg() error  {
+	var (
+		user models.YshopUser
+		err error
+	)
+	err = global.YSHOP_DB.
+		Model(&models.YshopUser{}).
+		Where("username = ?",u.RegParam.Account).First(&user).Error
+	if err == nil {
+		return errors.New("用户已经存在")
+	}
+	codeKey := constant.SMS_CODE + u.RegParam.Account
+	code :=  redis.GetString(codeKey)
+	if code != u.RegParam.Captcha {
+		return errors.New("验证码不对")
+	}
+
+	uu := models.YshopUser{
+		Username: u.RegParam.Account,
+		Nickname: u.RegParam.Account,
+		Password: util.HashAndSalt([]byte(u.RegParam.Password)),
+		RealName: u.RegParam.Account,
+		Avatar: "",
+		AddIp: u.Ip,
+		LastIp: u.Ip,
+		UserType: userEnum.PC,
+		Phone:u.RegParam.Account,
+
+	}
+	err = models.AddWechatUser(&uu)
+	//注册成功删除验证码缓存
+	redis.Delete(code)
+	return err
+
+}
+
+func (u *User) Verify() (string,error) {
+	var (
+		user models.YshopUser
+		err  error
+	)
+	err = global.YSHOP_DB.
+		Model(&models.YshopUser{}).
+		Where("username = ?", u.VerityParam.Phone).First(&user).Error
+	if err == nil {
+		return "",errors.New("手机已经注册过")
+	}
+
+	codeKey := constant.SMS_CODE + u.VerityParam.Phone
+	if redis.Exists(codeKey) {
+		return "",errors.New("10分钟有效:"+ redis.GetString(codeKey))
+	}
+
+	code := util.RandomNumber(constant.SMS_LENGTH)
+	expireTime := time.Now().Add(time.Minute*10)
+	redis.SetEx(codeKey,code,expireTime.Unix())
+
+	//此处发送阿里云短信
+	//测试阶段直接把验证码返回
+	return "测试阶段验证码为："+code,nil
 
 
 }
@@ -95,14 +193,36 @@ func (u *User) Save() error {
 func (u *User) SaveMony() error {
 	var err error
 	if u.Money.Ptype == 1 {
-		err = global.YSHOP_DB.Model(&models.YshopUser{}).Where("id = ?",u.Money.Id).Update("now_money",gorm.Expr("now_money + ?",u.Money.Money)).Error
+		err = global.YSHOP_DB.
+			Model(&models.YshopUser{}).
+			Where("id = ?",u.Money.Id).
+			Update("now_money",gorm.Expr("now_money + ?",u.Money.Money)).Error
 	}else{
-		err = global.YSHOP_DB.Model(&models.YshopUser{}).Where("id = ? and now_money >= ?",u.Money.Id,u.Money.Money).Update("now_money",gorm.Expr("now_money - ?",u.Money.Money)).Error
+		err = global.YSHOP_DB.
+			Model(&models.YshopUser{}).
+			Where("id = ? and now_money >= ?",u.Money.Id,u.Money.Money).
+			Update("now_money",gorm.Expr("now_money - ?",u.Money.Money)).Error
 	}
 	return err
 }
 
-//func (u *User) Del() error {
-//	return models.DelByUser(u.Ids)
-//}
+func (u *User) HLogin() (*models.YshopUser,error)  {
+	var (
+		user models.YshopUser
+		err error
+	)
+	err = global.YSHOP_DB.
+		Model(&models.YshopUser{}).
+		Where("username = ?",u.HLoginParam.Username).First(&user).Error
+	if err != nil {
+		return nil,errors.New("用户不存在")
+	}
+	if !util.ComparePwd(user.Password, []byte(u.HLoginParam.Password)) {
+		return nil,errors.New("密码不对")
+	}
+
+	return &user,err
+
+}
+
 

@@ -6,7 +6,7 @@
 package models
 
 import (
-	"yixiang.co/go-mall/app/models/dto"
+	dto2 "yixiang.co/go-mall/app/service/menu_service/dto"
 	"yixiang.co/go-mall/pkg/constant"
 	"yixiang.co/go-mall/pkg/runtime"
 )
@@ -19,7 +19,7 @@ type SysRolesMenus struct {
 }
 
 
-func BatchRoleMenuAdd(menu dto.RoleMenu) error {
+func BatchRoleMenuAdd(menu dto2.RoleMenu) error {
 
 	var err error
 	tx := db.Begin()

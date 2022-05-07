@@ -7,4 +7,5 @@ type Config struct {
 	Server Server `mapstructure:"server" yaml:"server"`
 	Zap Zap `mapstructure:"zap" yaml:"zap"`
 	Wechat Wechat `mapstructure:"wechat" yaml:"wechat"`
+	Express Express `mapstructure:"express" yaml:"express"`
 }

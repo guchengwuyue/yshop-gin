@@ -5,7 +5,7 @@
  */
 package models
 
-
+import "github.com/astaxie/beego/validation"
 
 type YshopWechatArticle struct {
 	Title     string `json:"title"`
@@ -27,6 +27,14 @@ func (YshopWechatArticle) TableName() string {
 	return "yshop_wechat_article"
 }
 
+func (a *YshopWechatArticle) Valid(v *validation.Validation) {
+  if a.Title == "" {
+  	v.SetError("title","标题不能为空")
+  }
+	if a.Author == "" {
+		v.SetError("author","作者不能为空")
+	}
+}
 
 // get all
 func GetAllWechatArticle(pageNUm int, pageSize int, maps interface{}) (int64, []YshopWechatArticle) {

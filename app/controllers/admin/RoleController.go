@@ -10,7 +10,7 @@ import (
 	"github.com/unknwon/com"
 	"net/http"
 	"yixiang.co/go-mall/app/models"
-	"yixiang.co/go-mall/app/models/dto"
+	dto2 "yixiang.co/go-mall/app/service/menu_service/dto"
 	"yixiang.co/go-mall/app/service/role_service"
 	"yixiang.co/go-mall/pkg/app"
 	"yixiang.co/go-mall/pkg/constant"
@@ -133,8 +133,8 @@ func (e *RoleController) Delete(c *gin.Context) {
 // @router /menu [put]
 func (e *RoleController) Menu(c *gin.Context)  {
 	var (
-		model dto.RoleMenu
-		appG = app.Gin{C: c}
+		model dto2.RoleMenu
+		appG  = app.Gin{C: c}
 	)
 	httpCode, errCode := app.BindAndValid(c,&model)
 	logging.Info(model)

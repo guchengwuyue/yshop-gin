@@ -8,8 +8,9 @@ package admin
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"yixiang.co/go-mall/app/models/dto"
+	dto2 "yixiang.co/go-mall/app/service/user_service/dto"
 	"yixiang.co/go-mall/app/service/wechat_user_service"
+	dto3 "yixiang.co/go-mall/app/service/wechat_user_service/dto"
 	"yixiang.co/go-mall/pkg/app"
 	"yixiang.co/go-mall/pkg/constant"
 	"yixiang.co/go-mall/pkg/util"
@@ -53,8 +54,8 @@ func (e *WechatUserController) GetAll(c *gin.Context) {
 // @router / [put]
 func (e *WechatUserController) Put(c *gin.Context)  {
 	var (
-		model dto.YshopUser
-		appG = app.Gin{C: c}
+		model dto3.YshopUser
+		appG  = app.Gin{C: c}
 	)
 	httpCode, errCode := app.BindAndValid(c,&model)
 	if errCode != constant.SUCCESS {
@@ -80,8 +81,8 @@ func (e *WechatUserController) Put(c *gin.Context)  {
 // @router / [post]
 func (e *WechatUserController) Money(c *gin.Context)  {
 	var (
-		model dto.UserMoney
-		appG = app.Gin{C: c}
+		model dto2.UserMoney
+		appG  = app.Gin{C: c}
 	)
 	httpCode, errCode := app.BindAndValid(c,&model)
 	if errCode != constant.SUCCESS {

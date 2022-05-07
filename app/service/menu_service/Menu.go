@@ -8,7 +8,7 @@ package menu_service
 import (
 	"yixiang.co/go-mall/app/models"
 	"yixiang.co/go-mall/app/models/vo"
-	"yixiang.co/go-mall/app/models/vo/menu"
+	mVO "yixiang.co/go-mall/app/service/menu_service/vo"
 	"yixiang.co/go-mall/pkg/util"
 )
 
@@ -56,7 +56,7 @@ func (m *Menu) Del() error {
 	return models.DelByMenu(m.Ids)
 }
 
-func (m *Menu) BuildMenus() []menu.MenuVo {
+func (m *Menu) BuildMenus() []mVO.MenuVo {
     menus := models.BuildMenus(m.Uid)
 	return buildMenus(buildTree(menus))
 }
@@ -84,11 +84,11 @@ func buildTree(menus []models.SysMenu) []models.SysMenu {
 
 }
 
-func buildMenus(menus []models.SysMenu) []menu.MenuVo {
-	var list []menu.MenuVo
+func buildMenus(menus []models.SysMenu) []mVO.MenuVo {
+	var list []mVO.MenuVo
 	for _, menuO := range menus {
 		menuList := menuO.Children
-		var menuVo = new(menu.MenuVo)
+		var menuVo = new(mVO.MenuVo)
 
 		if menuO.ComponentName != "" {
 			menuVo.Name = menuO.ComponentName
@@ -120,14 +120,14 @@ func buildMenus(menus []models.SysMenu) []menu.MenuVo {
 			}
 		}
 
-		menuVo.Meta = menu.MenuMetaVo{Title: menuO.Name, Icon: menuO.Icon, NoCache: !util.IntToBool(menuO.Cache)}
+		menuVo.Meta = mVO.MenuMetaVo{Title: menuO.Name, Icon: menuO.Icon, NoCache: !util.IntToBool(menuO.Cache)}
 
 		if len(menuList) > 0 {
 			menuVo.AlwaysShow = true
 			menuVo.Redirect = "noredirect"
 			menuVo.Children = buildMenus(menuList)
 		} else if menuO.Pid == 0 {
-			var menuVo1 = new(menu.MenuVo)
+			var menuVo1 = new(mVO.MenuVo)
 			menuVo1.Meta = menuVo.Meta
 			if menuO.IFrame == 0 {
 				menuVo1.Path = "index"
@@ -137,9 +137,9 @@ func buildMenus(menus []models.SysMenu) []menu.MenuVo {
 				menuVo1.Path = menuO.Path
 			}
 			menuVo.Name = ""
-			menuVo.Meta = menu.MenuMetaVo{}
+			menuVo.Meta = mVO.MenuMetaVo{}
 			menuVo.Component = "Layout"
-			var list1 []menu.MenuVo
+			var list1 []mVO.MenuVo
 			list1 = append(list1, *menuVo1)
 			menuVo.Children = list1
 		}

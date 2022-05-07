@@ -13,6 +13,7 @@ import (
 	"yixiang.co/go-mall/app/service/material_service"
 	"yixiang.co/go-mall/pkg/app"
 	"yixiang.co/go-mall/pkg/constant"
+	"yixiang.co/go-mall/pkg/global"
 	"yixiang.co/go-mall/pkg/jwt"
 	"yixiang.co/go-mall/pkg/logging"
 	"yixiang.co/go-mall/pkg/upload"
@@ -108,10 +109,13 @@ func (e *MaterialController) Delete(c *gin.Context) {
 		ids []int64
 		appG = app.Gin{C: c}
 	)
-	c.BindJSON(&ids)
+	id := com.StrTo(c.Param("id")).MustInt64()
+	ids = append(ids, id)
+	//c.BindJSON(&ids)
 	materialService := material_service.Material{Ids: ids}
 
 	if err := materialService.Del(); err != nil {
+		global.YSHOP_LOG.Error(err)
 		appG.Response(http.StatusInternalServerError,constant.FAIL_ADD_DATA,nil)
 		return
 	}
