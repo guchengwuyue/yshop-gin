@@ -120,10 +120,10 @@ Gin+Gorm+Casbin+Jwt+Redis+Mysql8+Vue 的前后端分离电商管理系统，权�
 #### 功能说明
 pc端效果图：
 
-| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646055.jpg) |
+| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646055.jpg) |
 |--|
 
-| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646056.jpg) |
+| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646056.jpg) |
 |--|
 
 | ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/pc03.png "suicai.png") |
@@ -132,20 +132,20 @@ pc端效果图：
 | ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/pc04.png "suicai.png") |
 |--|
 
-| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220507164605.jpg) |
+| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646053.jpg) |
 |--|
 
-| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646051.jpg) |
+| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646054.jpg) |
 |--|
 
-| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646052.jpg) |
+| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646052.jpg) |
 |--|
 
-| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646053.jpg) |
+| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646053.jpg) |
 |--|
 
 
-| ![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646054.jpg) |
+| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646054.jpg) |
 |--|
 
 1、商品分类
@@ -164,7 +164,7 @@ pc端效果图：
 | ![输入图片说明](https://images.gitee.com/uploads/images/2021/1009/110938_0aee30d6_477893.png "shangpin3.png") |
 |--|
 4、微信公众号
-| ![输入图片说明](weixin00.png)  |
+| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/weixin00.png)  |
 |--|
 
 5、系统用户
