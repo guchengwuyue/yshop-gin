@@ -96,7 +96,7 @@ Gin+Gorm+Casbin+Jwt+Redis+Mysql8+Vue 的前后端分离电商管理系统，权�
 
 5、go mod tidy 安装所需依赖
 
-6、导入sql/yshop_go.sql,修改conf/app.ini 里数据库与redis配置
+6、导入sql/yshop_go.sql,修改cconfig,yml 里数据库与redis配置
 
 7、本地运行air -c .air.conf 启动即可，如果没有安装air的 直接go run main,go即可
 
