@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strings"
 	"yixiang.co/go-mall/pkg/constant"
+	"yixiang.co/go-mall/pkg/global"
 	"yixiang.co/go-mall/pkg/logging"
 )
 
@@ -15,14 +16,14 @@ import (
 func BindAndValid(c *gin.Context, form interface{}) (int, int) {
 	err := c.Bind(form)
 	if err != nil {
-		logging.Error(err)
+		global.YSHOP_LOG.Error(err)
 		return http.StatusBadRequest, constant.INVALID_PARAMS
 	}
 
 	valid := validation.Validation{}
 	check, err := valid.Valid(form)
 	if err != nil {
-		logging.Error(err)
+		global.YSHOP_LOG.Error(err)
 		return http.StatusInternalServerError, constant.ERROR
 	}
 	if !check {
@@ -68,7 +69,7 @@ func buildFormErr(errs []*validation.Error) error {
 
 		msg.WriteString(" : ")
 		if v.Value != nil {
-			b,_ := json.Marshal(v.Value)
+			b, _ := json.Marshal(v.Value)
 			msg.WriteString(string(b))
 		}
 

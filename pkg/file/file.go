@@ -1,8 +1,10 @@
 package file
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"mime/multipart"
 	"os"
 	"path"
@@ -53,6 +55,18 @@ func MkDir(src string) error {
 	}
 
 	return nil
+}
+
+func FileCreate(content bytes.Buffer, name string) {
+	file, err := os.Create(name)
+	if err != nil {
+		log.Println(err)
+	}
+	_, err = file.WriteString(content.String())
+	if err != nil {
+		log.Println(err)
+	}
+	file.Close()
 }
 
 // Open a file according to a specific mode

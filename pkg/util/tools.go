@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-//加密
+// 加密
 func HashAndSalt(pwd []byte) string {
 	hash, err := bcrypt.GenerateFromPassword(pwd, bcrypt.MinCost)
 	if err != nil {
@@ -21,7 +21,7 @@ func HashAndSalt(pwd []byte) string {
 	return string(hash)
 }
 
-//密码验证
+// 密码验证
 func ComparePwd(hashPwd string, plainPwd []byte) bool {
 	byteHash := []byte(hashPwd)
 	err := bcrypt.CompareHashAndPassword(byteHash, plainPwd)
@@ -32,7 +32,7 @@ func ComparePwd(hashPwd string, plainPwd []byte) bool {
 	return true
 }
 
-//判断array contain item
+// 判断array contain item
 func Contains(array interface{}, val interface{}) (index int) {
 	index = -1
 	switch reflect.TypeOf(array).Kind() {
@@ -50,8 +50,8 @@ func Contains(array interface{}, val interface{}) (index int) {
 	return
 }
 
-//[a] -> a -> a
-//[a b c] -> a b c -> a,b,c
+// [a] -> a -> a
+// [a b c] -> a b c -> a,b,c
 func Convert(array interface{}) string {
 	return strings.Replace(strings.Trim(fmt.Sprint(array), "[]"), " ", ",", -1)
 }
@@ -134,28 +134,28 @@ func RandomNumber(length int) string {
 }
 
 func Int64ToInt(num int64) int {
-	ss,_ := strconv.Atoi(strconv.FormatInt(num,10))
+	ss, _ := strconv.Atoi(strconv.FormatInt(num, 10))
 	return ss
 }
 
-func GetTotalPage(total ,size int) int  {
+func GetTotalPage(total, size int) int {
 
 	if total <= size {
 		return 1
 	}
-	if total % size == 0 {
+	if total%size == 0 {
 		return total / size
-	}else{
-		return total / size + 1
+	} else {
+		return total/size + 1
 	}
 
 }
 
-//实现 php 中的array_column 方法
-//@param desk [slice|map] 指针类型，方法最终的存储位置
-//@param input []struct，待转换的结构体切片
-//@param columnKey string
-//@param indexKey string
+// 实现 php 中的array_column 方法
+// @param desk [slice|map] 指针类型，方法最终的存储位置
+// @param input []struct，待转换的结构体切片
+// @param columnKey string
+// @param indexKey string
 func StructColumn(desk, input interface{}, columnKey, indexKey string) (err error) {
 	deskValue := reflect.ValueOf(desk)
 	if deskValue.Kind() != reflect.Ptr {
@@ -294,4 +294,14 @@ func findStructValByIndexKey(curVal reflect.Value, elemType reflect.Type, indexK
 		return indexVal, columnVal, errors.New(fmt.Sprintf("columnKey %s not found in %s's field", columnKey, elemType))
 	}
 	return
+}
+
+func TrimSpace(text string) string {
+	result := make([]string, 0)
+	for _, line := range strings.Split(text, "\n") {
+		if len(strings.TrimSpace(line)) != 0 {
+			result = append(result, line)
+		}
+	}
+	return strings.Join(result, "\n")
 }

@@ -2,13 +2,13 @@ package app
 
 import (
 	"github.com/astaxie/beego/validation"
-	"yixiang.co/go-mall/pkg/logging"
+	"yixiang.co/go-mall/pkg/global"
 )
 
 // MarkErrors logs error logs
 func MarkErrors(errors []*validation.Error) {
 	for _, err := range errors {
-		logging.Info(err.Key, err.Message)
+		global.YSHOP_LOG.Info(err.Key, err.Message)
 	}
 
 	return
