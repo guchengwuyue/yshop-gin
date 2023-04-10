@@ -56,7 +56,7 @@ func (e *{{.ClassName}}Controller) Post(c *gin.Context) {
 		appG.Response(httpCode, errCode, nil)
 		return
 	}
-	service := {{.BusinessName}}.{{.ClassName}}{
+	service := {{.BusinessName}}_service.{{.ClassName}}{
 		M: &model,
 	}
 
@@ -82,7 +82,7 @@ func (e *{{.ClassName}}Controller) Put(c *gin.Context) {
 		appG.Response(httpCode, errCode, nil)
 		return
 	}
-	service := {{.BusinessName}}.{{.ClassName}}{
+	service := {{.BusinessName}}_service.{{.ClassName}}{
 		M: &model,
 	}
 
@@ -103,10 +103,14 @@ func (e *{{.ClassName}}Controller) Delete(c *gin.Context) {
 		ids  []int64
 		appG = app.Gin{C: c}
 	)
-	id := com.StrTo(c.Param("id")).MustInt64()
-	ids = append(ids, id)
+	if strId := c.Param("id") ; strId != "" {
+        id := com.StrTo(strId).MustInt64()
+        ids = append(ids, id)
+    }else {
+        c.BindJSON(&ids)
+    }
 
-	service := {{.BusinessName}}.{{.ClassName}}{Ids: ids}
+	service := {{.BusinessName}}_service.{{.ClassName}}{Ids: ids}
 	if err := service.Del(); err != nil {
 		appG.Response(http.StatusInternalServerError, constant.FAIL_ADD_DATA, nil)
 		return

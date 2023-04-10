@@ -161,6 +161,7 @@ func InitRouter() *gin.Engine {
 	}
 
 	genController := admin.GenController{}
+	cronCrontroller := admin.SysCronJobController{}
 	toolsRouter := r.Group("/tools")
 	toolsRouter.Use(middleware.Jwt()).Use(middleware.Log())
 	{
@@ -173,6 +174,12 @@ func InitRouter() *gin.Engine {
 		toolsRouter.PUT("/gen/config", genController.ConfigPut)
 		toolsRouter.GET("/gen/columns", genController.GetTableColumns)
 		toolsRouter.PUT("/gen/columns", genController.ColumnsPut)
+		toolsRouter.GET("/timing", cronCrontroller.GetAll)
+		toolsRouter.POST("/timing", cronCrontroller.Post)
+		toolsRouter.PUT("/timing", cronCrontroller.Put)
+		toolsRouter.DELETE("/timing", cronCrontroller.Delete)
+		toolsRouter.PUT("/timing/exec/:id", cronCrontroller.Exec)
+		toolsRouter.PUT("/timing/stop/:id", cronCrontroller.Stop)
 	}
 
 	//用户端api-非auth

@@ -37,21 +37,20 @@ func Setup() error {
 	return nil
 }
 
-
 func SetEx(key, val string, exp int64) error {
 	conn := RedisConn.Get()
 	defer conn.Close()
-	_ , err := conn.Do("SETEX" , key , exp , val)
+	_, err := conn.Do("SETEX", key, exp, val)
 	return err
 }
 
-func GetMap(key string) (map[string]string , error) {
+func GetMap(key string) (map[string]string, error) {
 	conn := RedisConn.Get()
 	defer conn.Close()
 	rsp := make(map[string]string)
-	res , err := conn.Do("GET" , key)
+	res, err := conn.Do("GET", key)
 	rsp[key] = string(res.([]byte))
-	return rsp , err
+	return rsp, err
 }
 
 // Set a key/value
@@ -75,6 +74,28 @@ func Set(key string, data interface{}, time int) error {
 		}
 	}
 
+	return nil
+}
+
+func SetString(key string, str string, time int) error {
+	conn := RedisConn.Get()
+	defer conn.Close()
+
+	//value, err := json.Marshal(data)
+	//if err != nil {
+	//return err
+	//}
+
+	_, err := conn.Do("SET", key, str)
+	if err != nil {
+		return err
+	}
+	if time > 0 {
+		_, err = conn.Do("EXPIRE", key, time)
+		if err != nil {
+			return err
+		}
+	}
 
 	return nil
 }
@@ -104,7 +125,6 @@ func GetString(key string) string {
 
 	return reply
 }
-
 
 // Get get a key
 func Get(key string) ([]byte, error) {

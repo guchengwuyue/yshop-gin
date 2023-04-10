@@ -21,7 +21,7 @@ func ({{.ClassName}}) TableName() string {
 
 
 // get all
-func GetAll({{.ClassName}})(pageNUm int, pageSize int, maps interface{}) (int64, []{{.ClassName}}) {
+func GetAll{{.ClassName}}(pageNUm int, pageSize int, maps interface{}) (int64, []{{.ClassName}}) {
 	var (
 		total int64
 		list []{{.ClassName}}

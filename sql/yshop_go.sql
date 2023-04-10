@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 04/04/2023 16:10:00
+ Date: 10/04/2023 18:05:17
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,7 @@ CREATE TABLE `casbin_rule` (
   `v5` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_casbin_rule` (`ptype`,`v0`,`v1`,`v2`,`v3`,`v4`,`v5`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of casbin_rule
@@ -48,15 +48,15 @@ INSERT INTO `casbin_rule` VALUES (85, 'p', 'admin', '/admin/dict', 'delete', '',
 INSERT INTO `casbin_rule` VALUES (82, 'p', 'admin', '/admin/dict', 'get', '', '', '');
 INSERT INTO `casbin_rule` VALUES (83, 'p', 'admin', '/admin/dict', 'post', '', '', '');
 INSERT INTO `casbin_rule` VALUES (84, 'p', 'admin', '/admin/dict', 'put', '', '', '');
-INSERT INTO `casbin_rule` VALUES (87, 'p', 'admin', '/admin/dictDetail', 'delete', '', '', '');
-INSERT INTO `casbin_rule` VALUES (86, 'p', 'admin', '/admin/dictDetail', 'get', '', '', '');
-INSERT INTO `casbin_rule` VALUES (89, 'p', 'admin', '/admin/dictDetail', 'post', '', '', '');
-INSERT INTO `casbin_rule` VALUES (88, 'p', 'admin', '/admin/dictDetail', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (88, 'p', 'admin', '/admin/dictDetail', 'delete', '', '', '');
+INSERT INTO `casbin_rule` VALUES (87, 'p', 'admin', '/admin/dictDetail', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (90, 'p', 'admin', '/admin/dictDetail', 'post', '', '', '');
+INSERT INTO `casbin_rule` VALUES (89, 'p', 'admin', '/admin/dictDetail', 'put', '', '', '');
 INSERT INTO `casbin_rule` VALUES (81, 'p', 'admin', '/admin/job', 'delete', '', '', '');
 INSERT INTO `casbin_rule` VALUES (78, 'p', 'admin', '/admin/job', 'get', '', '', '');
 INSERT INTO `casbin_rule` VALUES (79, 'p', 'admin', '/admin/job', 'post', '', '', '');
 INSERT INTO `casbin_rule` VALUES (80, 'p', 'admin', '/admin/job', 'put', '', '', '');
-INSERT INTO `casbin_rule` VALUES (90, 'p', 'admin', '/admin/logs', 'get', '', '', '');
+INSERT INTO `casbin_rule` VALUES (86, 'p', 'admin', '/admin/logs', 'get', '', '', '');
 INSERT INTO `casbin_rule` VALUES (73, 'p', 'admin', '/admin/menu', 'delete', '', '', '');
 INSERT INTO `casbin_rule` VALUES (70, 'p', 'admin', '/admin/menu', 'get', '', '', '');
 INSERT INTO `casbin_rule` VALUES (71, 'p', 'admin', '/admin/menu', 'post', '', '', '');
@@ -95,6 +95,7 @@ INSERT INTO `casbin_rule` VALUES (94, 'p', 'admin', '/tools/gen', 'delete', '', 
 INSERT INTO `casbin_rule` VALUES (91, 'p', 'admin', '/tools/gen', 'get', '', '', '');
 INSERT INTO `casbin_rule` VALUES (92, 'p', 'admin', '/tools/gen', 'post', '', '', '');
 INSERT INTO `casbin_rule` VALUES (93, 'p', 'admin', '/tools/gen', 'put', '', '', '');
+INSERT INTO `casbin_rule` VALUES (95, 'p', 'admin', '/tools/timing', 'get', '', '', '');
 INSERT INTO `casbin_rule` VALUES (53, 'p', 'admin', '/weixin/article', 'delete', '', '', '');
 INSERT INTO `casbin_rule` VALUES (52, 'p', 'admin', '/weixin/article', 'get', '', '', '');
 INSERT INTO `casbin_rule` VALUES (54, 'p', 'admin', '/weixin/article', 'post', '', '', '');
@@ -169,7 +170,7 @@ CREATE TABLE `sys_columns` (
   `is_del` tinyint(1) DEFAULT NULL COMMENT '删除',
   PRIMARY KEY (`id`) USING BTREE,
   KEY `idx_sys_columns_deleted_at` (`is_del`)
-) ENGINE=InnoDB AUTO_INCREMENT=277 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=288 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of sys_columns
@@ -191,6 +192,45 @@ INSERT INTO `sys_columns` VALUES (273, 28, 'create_time', '创建日期', 'datet
 INSERT INTO `sys_columns` VALUES (274, 28, 'update_time', '', 'datetime', 'time.Time', 'UpdateTime', 'updateTime', '0', '', '0', '', 'EQ', 'datetime', '', 0, 0, '', 0, 0, 0, 0, NULL, 0, '', '2023-03-30 18:06:58.052', '2023-03-30 18:06:58.052', 0);
 INSERT INTO `sys_columns` VALUES (275, 28, 'is_del', '', 'tinyint(1)', 'string', 'IsDel', 'isDel', '0', '', '0', '', 'EQ', 'input', '', 0, 0, '', 0, 0, 0, 0, NULL, 0, '', '2023-03-30 18:06:58.052', '2023-03-30 18:06:58.052', 0);
 INSERT INTO `sys_columns` VALUES (276, 28, 'dict_name', '', 'varchar(255)', 'string', 'DictName', 'dictName', '0', '', '0', '', 'EQ', 'input', '', 0, 0, '', 0, 0, 0, 0, NULL, 0, '', '2023-03-30 18:06:58.052', '2023-03-30 18:06:58.052', 0);
+INSERT INTO `sys_columns` VALUES (277, 29, 'job_id', '任务ID', 'bigint', 'int', 'JobId', 'jobId', '1', '', '1', '', 'EQ', 'input', '', 0, 0, '', 1, 1, 0, 0, NULL, 0, '', '2023-04-06 11:18:11.647', '2023-04-06 11:18:11.647', 0);
+INSERT INTO `sys_columns` VALUES (278, 29, 'job_name', '任务名称', 'varchar(64)', 'string', 'JobName', 'jobName', '0', '', '0', '', 'EQ', 'input', '', 0, 0, '', 0, 0, 0, 0, NULL, 0, '', '2023-04-06 11:18:11.647', '2023-04-06 11:18:11.647', 0);
+INSERT INTO `sys_columns` VALUES (279, 29, 'job_group', '任务组名', 'varchar(64)', 'string', 'JobGroup', 'jobGroup', '0', '', '0', '', 'EQ', 'input', '', 0, 0, '', 0, 0, 0, 0, NULL, 0, '', '2023-04-06 11:18:11.647', '2023-04-06 11:18:11.647', 0);
+INSERT INTO `sys_columns` VALUES (280, 29, 'job_params', '参数', 'varchar(255)', 'string', 'JobParams', 'jobParams', '0', '', '0', '', 'EQ', 'input', '', 0, 0, '', 0, 0, 0, 0, NULL, 0, '', '2023-04-06 11:18:11.647', '2023-04-06 11:18:11.647', 0);
+INSERT INTO `sys_columns` VALUES (281, 29, 'invoke_target', '调用目标字符串', 'varchar(500)', 'string', 'InvokeTarget', 'invokeTarget', '0', '', '1', '', 'EQ', 'input', '', 0, 0, '', 0, 1, 0, 0, NULL, 0, '', '2023-04-06 11:18:11.647', '2023-04-06 11:18:11.647', 0);
+INSERT INTO `sys_columns` VALUES (282, 29, 'cron_expression', 'cron执行表达式', 'varchar(255)', 'string', 'CronExpression', 'cronExpression', '0', '', '0', '', 'EQ', 'input', '', 0, 0, '', 0, 0, 0, 0, NULL, 0, '', '2023-04-06 11:18:11.647', '2023-04-06 11:18:11.647', 0);
+INSERT INTO `sys_columns` VALUES (283, 29, 'status', '状态（0正常 1暂停）', 'char(1)', 'string', 'Status', 'status', '0', '', '0', '', 'EQ', 'input', '', 0, 0, '', 0, 0, 0, 0, NULL, 0, '', '2023-04-06 11:18:11.647', '2023-04-06 11:18:11.647', 0);
+INSERT INTO `sys_columns` VALUES (284, 29, 'create_time', '创建时间', 'datetime', 'time.Time', 'CreateTime', 'createTime', '0', '', '0', '', 'EQ', 'datetime', '', 0, 0, '', 0, 0, 0, 0, NULL, 0, '', '2023-04-06 11:18:11.647', '2023-04-06 11:18:11.647', 0);
+INSERT INTO `sys_columns` VALUES (285, 29, 'update_time', '更新时间', 'datetime', 'time.Time', 'UpdateTime', 'updateTime', '0', '', '0', '', 'EQ', 'datetime', '', 0, 0, '', 0, 0, 0, 0, NULL, 0, '', '2023-04-06 11:18:11.647', '2023-04-06 11:18:11.647', 0);
+INSERT INTO `sys_columns` VALUES (286, 29, 'remark', '备注信息', 'varchar(500)', 'string', 'Remark', 'remark', '0', '', '0', '', 'EQ', 'input', '', 0, 0, '', 0, 0, 0, 0, NULL, 0, '', '2023-04-06 11:18:11.647', '2023-04-06 11:18:11.647', 0);
+INSERT INTO `sys_columns` VALUES (287, 29, 'is_del', '', 'tinyint(1)', 'string', 'IsDel', 'isDel', '0', '', '0', '', 'EQ', 'input', '', 0, 0, '', 0, 0, 0, 0, NULL, 0, '', '2023-04-06 11:18:11.647', '2023-04-06 11:18:11.647', 0);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for sys_cron_job
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_cron_job`;
+CREATE TABLE `sys_cron_job` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '任务ID',
+  `job_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '任务名称',
+  `job_group` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'DEFAULT' COMMENT '任务组名',
+  `job_params` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '参数',
+  `invoke_target` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '调用目标字符串',
+  `cron_expression` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT 'cron执行表达式',
+  `status` tinyint(1) DEFAULT '0' COMMENT '状态（0正常 1暂停）',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '备注信息',
+  `is_del` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='定时任务调度表';
+
+-- ----------------------------
+-- Records of sys_cron_job
+-- ----------------------------
+BEGIN;
+INSERT INTO `sys_cron_job` VALUES (100, '无参数测试2', '', '', 'TestCronFun', '0/1 * * * * *', 0, '2023-04-10 12:04:39', '2023-04-10 12:09:39', '无参数测试', 0);
+INSERT INTO `sys_cron_job` VALUES (101, '参数测试', '', '{\"name\":\"yshop\",\"age\":20}', 'TestCronFun2', '0/1 * * * * *', 1, '2023-04-10 12:04:39', '2023-04-10 18:02:29', '参数测试', 0);
+INSERT INTO `sys_cron_job` VALUES (102, '无参数测试1', '', '', 'TestCronFun', '0/1 * * * * *', 0, '2023-04-10 12:04:39', '2023-04-10 12:04:39', '无参数测试', 1);
 COMMIT;
 
 -- ----------------------------
@@ -346,7 +386,7 @@ CREATE TABLE `sys_log` (
   `update_time` datetime DEFAULT NULL,
   `is_del` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3501 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='系统日志';
+) ENGINE=InnoDB AUTO_INCREMENT=3605 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='系统日志';
 
 -- ----------------------------
 -- Records of sys_log
@@ -3713,6 +3753,110 @@ INSERT INTO `sys_log` VALUES (3497, '2023-04-04 16:02:28', '商品规格', 'get'
 INSERT INTO `sys_log` VALUES (3498, '2023-04-04 16:02:30', '管理商品', 'get', '127.0.0.1', 9488, 'admin', '/shop/product', '', 0, 1, '2023-04-04 16:02:30', 0);
 INSERT INTO `sys_log` VALUES (3499, '2023-04-04 16:02:30', '管理商品', 'get', '127.0.0.1', 15461, 'admin', '/shop/product', '', 0, 1, '2023-04-04 16:02:30', 0);
 INSERT INTO `sys_log` VALUES (3500, '2023-04-04 16:06:10', '', 'get', '127.0.0.1', 1210, 'admin', '/tools/gen/systables', '', 0, 1, '2023-04-04 16:06:10', 0);
+INSERT INTO `sys_log` VALUES (3501, '2023-04-06 11:11:08', '', 'get', '127.0.0.1', 1260, 'admin', '/admin/menu/build', '', 0, 1, '2023-04-06 11:11:08', 0);
+INSERT INTO `sys_log` VALUES (3502, '2023-04-06 11:11:35', '用户个人信息', 'get', '127.0.0.1', 395, 'admin', '/admin/auth/info', '', 0, 1, '2023-04-06 11:11:35', 0);
+INSERT INTO `sys_log` VALUES (3503, '2023-04-06 11:11:35', '', 'get', '127.0.0.1', 1349, 'admin', '/admin/menu/build', '', 0, 1, '2023-04-06 11:11:35', 0);
+INSERT INTO `sys_log` VALUES (3504, '2023-04-06 11:11:42', '菜单管理', 'get', '127.0.0.1', 1631, 'admin', '/admin/menu', '', 0, 1, '2023-04-06 11:11:42', 0);
+INSERT INTO `sys_log` VALUES (3505, '2023-04-06 11:11:46', '菜单管理', 'get', '127.0.0.1', 1773, 'admin', '/admin/menu', '', 0, 1, '2023-04-06 11:11:46', 0);
+INSERT INTO `sys_log` VALUES (3506, '2023-04-06 11:12:03', '', 'get', '127.0.0.1', 2204, 'admin', '/admin/menu/listtree', '', 0, 1, '2023-04-06 11:12:03', 0);
+INSERT INTO `sys_log` VALUES (3507, '2023-04-06 11:12:08', '', 'get', '127.0.0.1', 1584, 'admin', '/admin/menu/listtree', '', 0, 1, '2023-04-06 11:12:08', 0);
+INSERT INTO `sys_log` VALUES (3508, '2023-04-06 11:14:29', '菜单新增', 'post', '127.0.0.1', 5128, 'admin', '/admin/menu', '', 0, 1, '2023-04-06 11:14:29', 0);
+INSERT INTO `sys_log` VALUES (3509, '2023-04-06 11:14:29', '菜单管理', 'get', '127.0.0.1', 1719, 'admin', '/admin/menu', '', 0, 1, '2023-04-06 11:14:29', 0);
+INSERT INTO `sys_log` VALUES (3510, '2023-04-06 11:14:46', '', 'get', '127.0.0.1', 1539, 'admin', '/admin/menu/listtree', '', 0, 1, '2023-04-06 11:14:46', 0);
+INSERT INTO `sys_log` VALUES (3511, '2023-04-06 11:14:46', '角色管理', 'get', '127.0.0.1', 3765, 'admin', '/admin/roles', '', 0, 1, '2023-04-06 11:14:46', 0);
+INSERT INTO `sys_log` VALUES (3512, '2023-04-06 11:14:46', '角色管理', 'get', '127.0.0.1', 4425, 'admin', '/admin/roles', '', 0, 1, '2023-04-06 11:14:46', 0);
+INSERT INTO `sys_log` VALUES (3513, '2023-04-06 11:14:52', '角色菜单保存', 'put', '127.0.0.1', 232546, 'admin', '/admin/roles/menu', '', 0, 1, '2023-04-06 11:14:52', 0);
+INSERT INTO `sys_log` VALUES (3514, '2023-04-06 11:14:52', '单个角色', 'get', '127.0.0.1', 327, 'admin', '/admin/roles/*', '', 0, 1, '2023-04-06 11:14:52', 0);
+INSERT INTO `sys_log` VALUES (3515, '2023-04-06 11:14:55', '用户个人信息', 'get', '127.0.0.1', 266, 'admin', '/admin/auth/info', '', 0, 1, '2023-04-06 11:14:55', 0);
+INSERT INTO `sys_log` VALUES (3516, '2023-04-06 11:14:55', '', 'get', '127.0.0.1', 2658, 'admin', '/admin/menu/build', '', 0, 1, '2023-04-06 11:14:55', 0);
+INSERT INTO `sys_log` VALUES (3517, '2023-04-06 11:14:55', '', 'get', '127.0.0.1', 1732, 'admin', '/admin/menu/listtree', '', 0, 1, '2023-04-06 11:14:55', 0);
+INSERT INTO `sys_log` VALUES (3518, '2023-04-06 11:14:55', '角色管理', 'get', '127.0.0.1', 5978, 'admin', '/admin/roles', '', 0, 1, '2023-04-06 11:14:55', 0);
+INSERT INTO `sys_log` VALUES (3519, '2023-04-06 11:14:55', '角色管理', 'get', '127.0.0.1', 4072, 'admin', '/admin/roles', '', 0, 1, '2023-04-06 11:14:55', 0);
+INSERT INTO `sys_log` VALUES (3520, '2023-04-06 11:15:03', '菜单管理', 'get', '127.0.0.1', 1795, 'admin', '/admin/menu', '', 0, 1, '2023-04-06 11:15:03', 0);
+INSERT INTO `sys_log` VALUES (3521, '2023-04-06 11:15:20', '', 'get', '127.0.0.1', 1578, 'admin', '/admin/menu/listtree', '', 0, 1, '2023-04-06 11:15:20', 0);
+INSERT INTO `sys_log` VALUES (3522, '2023-04-06 11:15:28', '', 'get', '127.0.0.1', 1550, 'admin', '/admin/menu/listtree', '', 0, 1, '2023-04-06 11:15:28', 0);
+INSERT INTO `sys_log` VALUES (3523, '2023-04-06 11:15:33', '菜单编辑', 'put', '127.0.0.1', 1306, 'admin', '/admin/menu', '', 0, 1, '2023-04-06 11:15:33', 0);
+INSERT INTO `sys_log` VALUES (3524, '2023-04-06 11:15:33', '菜单管理', 'get', '127.0.0.1', 1717, 'admin', '/admin/menu', '', 0, 1, '2023-04-06 11:15:33', 0);
+INSERT INTO `sys_log` VALUES (3525, '2023-04-06 11:15:39', '用户个人信息', 'get', '127.0.0.1', 411, 'admin', '/admin/auth/info', '', 0, 1, '2023-04-06 11:15:39', 0);
+INSERT INTO `sys_log` VALUES (3526, '2023-04-06 11:15:39', '', 'get', '127.0.0.1', 1396, 'admin', '/admin/menu/build', '', 0, 1, '2023-04-06 11:15:39', 0);
+INSERT INTO `sys_log` VALUES (3527, '2023-04-06 11:15:40', '', 'get', '127.0.0.1', 1664, 'admin', '/admin/menu/listtree', '', 0, 1, '2023-04-06 11:15:40', 0);
+INSERT INTO `sys_log` VALUES (3528, '2023-04-06 11:15:40', '角色管理', 'get', '127.0.0.1', 4512, 'admin', '/admin/roles', '', 0, 1, '2023-04-06 11:15:40', 0);
+INSERT INTO `sys_log` VALUES (3529, '2023-04-06 11:15:40', '角色管理', 'get', '127.0.0.1', 20246, 'admin', '/admin/roles', '', 0, 1, '2023-04-06 11:15:40', 0);
+INSERT INTO `sys_log` VALUES (3530, '2023-04-06 11:16:56', '用户个人信息', 'get', '127.0.0.1', 290, 'admin', '/admin/auth/info', '', 0, 1, '2023-04-06 11:16:56', 0);
+INSERT INTO `sys_log` VALUES (3531, '2023-04-06 11:16:56', '', 'get', '127.0.0.1', 4501, 'admin', '/admin/menu/build', '', 0, 1, '2023-04-06 11:16:56', 0);
+INSERT INTO `sys_log` VALUES (3532, '2023-04-06 11:16:56', '', 'get', '127.0.0.1', 3321, 'admin', '/admin/menu/listtree', '', 0, 1, '2023-04-06 11:16:56', 0);
+INSERT INTO `sys_log` VALUES (3533, '2023-04-06 11:16:56', '角色管理', 'get', '127.0.0.1', 11443, 'admin', '/admin/roles', '', 0, 1, '2023-04-06 11:16:56', 0);
+INSERT INTO `sys_log` VALUES (3534, '2023-04-06 11:16:56', '角色管理', 'get', '127.0.0.1', 5418, 'admin', '/admin/roles', '', 0, 1, '2023-04-06 11:16:56', 0);
+INSERT INTO `sys_log` VALUES (3535, '2023-04-06 11:17:49', '', 'get', '127.0.0.1', 5105, 'admin', '/tools/gen/systables', '', 0, 1, '2023-04-06 11:17:49', 0);
+INSERT INTO `sys_log` VALUES (3536, '2023-04-06 11:17:51', '', 'get', '127.0.0.1', 4226, 'admin', '/tools/gen/tables', '', 0, 1, '2023-04-06 11:17:51', 0);
+INSERT INTO `sys_log` VALUES (3537, '2023-04-06 11:18:08', '', 'get', '127.0.0.1', 3041, 'admin', '/tools/gen/tables', '', 0, 1, '2023-04-06 11:18:08', 0);
+INSERT INTO `sys_log` VALUES (3538, '2023-04-06 11:18:10', '', 'get', '127.0.0.1', 1743, 'admin', '/tools/gen/tables', '', 0, 1, '2023-04-06 11:18:10', 0);
+INSERT INTO `sys_log` VALUES (3539, '2023-04-06 11:18:12', '', 'post', '127.0.0.1', 33132, 'admin', '/tools/gen/import', '', 0, 1, '2023-04-06 11:18:12', 0);
+INSERT INTO `sys_log` VALUES (3540, '2023-04-06 11:18:12', '', 'get', '127.0.0.1', 811, 'admin', '/tools/gen/systables', '', 0, 1, '2023-04-06 11:18:12', 0);
+INSERT INTO `sys_log` VALUES (3541, '2023-04-06 11:18:24', '', 'get', '127.0.0.1', 4146, 'admin', '/tools/gen/preview/sys_cron_job', '', 0, 1, '2023-04-06 11:18:24', 0);
+INSERT INTO `sys_log` VALUES (3542, '2023-04-06 11:18:29', '', 'get', '127.0.0.1', 1387, 'admin', '/tools/gen/systables', '', 0, 1, '2023-04-06 11:18:29', 0);
+INSERT INTO `sys_log` VALUES (3543, '2023-04-06 11:18:37', '', 'get', '127.0.0.1', 3108, 'admin', '/tools/gen/code/sys_cron_job', '', 0, 1, '2023-04-06 11:18:37', 0);
+INSERT INTO `sys_log` VALUES (3544, '2023-04-10 11:29:58', '', 'get', '127.0.0.1', 2665, 'admin', '/admin/menu/build', '', 0, 1, '2023-04-10 11:29:58', 0);
+INSERT INTO `sys_log` VALUES (3545, '2023-04-10 11:35:29', '用户个人信息', 'get', '127.0.0.1', 435, 'admin', '/admin/auth/info', '', 0, 1, '2023-04-10 11:35:29', 0);
+INSERT INTO `sys_log` VALUES (3546, '2023-04-10 11:35:29', '', 'get', '127.0.0.1', 1477, 'admin', '/admin/menu/build', '', 0, 1, '2023-04-10 11:35:29', 0);
+INSERT INTO `sys_log` VALUES (3547, '2023-04-10 11:35:37', '菜单管理', 'get', '127.0.0.1', 1813, 'admin', '/admin/menu', '', 0, 1, '2023-04-10 11:35:37', 0);
+INSERT INTO `sys_log` VALUES (3548, '2023-04-10 11:40:15', '', 'get', '127.0.0.1', 1539, 'admin', '/admin/menu/listtree', '', 0, 1, '2023-04-10 11:40:15', 0);
+INSERT INTO `sys_log` VALUES (3549, '2023-04-10 11:43:00', '用户退出', 'delete', '127.0.0.1', 345, 'admin', '/admin/auth/logout', '', 0, 1, '2023-04-10 11:43:00', 0);
+INSERT INTO `sys_log` VALUES (3550, '2023-04-10 11:43:08', '', 'get', '127.0.0.1', 1894, 'admin', '/admin/menu/build', '', 0, 1, '2023-04-10 11:43:08', 0);
+INSERT INTO `sys_log` VALUES (3551, '2023-04-10 11:48:20', '定时任务', 'get', '127.0.0.1', 972, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 11:48:20', 0);
+INSERT INTO `sys_log` VALUES (3552, '2023-04-10 11:58:39', '定时任务', 'get', '127.0.0.1', 930, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 11:58:39', 0);
+INSERT INTO `sys_log` VALUES (3553, '2023-04-10 11:59:36', '定时任务', 'get', '127.0.0.1', 659, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 11:59:36', 0);
+INSERT INTO `sys_log` VALUES (3554, '2023-04-10 12:01:45', '', 'post', '127.0.0.1', 693, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:01:45', 0);
+INSERT INTO `sys_log` VALUES (3555, '2023-04-10 12:04:39', '', 'post', '127.0.0.1', 2458, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:04:39', 0);
+INSERT INTO `sys_log` VALUES (3556, '2023-04-10 12:04:39', '定时任务', 'get', '127.0.0.1', 1821, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:04:39', 0);
+INSERT INTO `sys_log` VALUES (3557, '2023-04-10 12:06:12', '定时任务', 'get', '127.0.0.1', 931, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:06:12', 0);
+INSERT INTO `sys_log` VALUES (3558, '2023-04-10 12:06:37', '', 'put', '127.0.0.1', 1307, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:06:37', 0);
+INSERT INTO `sys_log` VALUES (3559, '2023-04-10 12:06:37', '定时任务', 'get', '127.0.0.1', 1796, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:06:37', 0);
+INSERT INTO `sys_log` VALUES (3560, '2023-04-10 12:08:03', '', 'put', '127.0.0.1', 1109, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:08:03', 0);
+INSERT INTO `sys_log` VALUES (3561, '2023-04-10 12:08:03', '定时任务', 'get', '127.0.0.1', 706, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:08:03', 0);
+INSERT INTO `sys_log` VALUES (3562, '2023-04-10 12:08:12', '定时任务', 'get', '127.0.0.1', 616, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:08:12', 0);
+INSERT INTO `sys_log` VALUES (3563, '2023-04-10 12:08:46', '定时任务', 'get', '127.0.0.1', 712, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:08:46', 0);
+INSERT INTO `sys_log` VALUES (3564, '2023-04-10 12:09:39', '', 'put', '127.0.0.1', 2109, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:09:39', 0);
+INSERT INTO `sys_log` VALUES (3565, '2023-04-10 12:09:39', '定时任务', 'get', '127.0.0.1', 760, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:09:39', 0);
+INSERT INTO `sys_log` VALUES (3566, '2023-04-10 12:17:54', '', 'delete', '127.0.0.1', 2471, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:17:54', 0);
+INSERT INTO `sys_log` VALUES (3567, '2023-04-10 12:17:54', '定时任务', 'get', '127.0.0.1', 912, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 12:17:54', 0);
+INSERT INTO `sys_log` VALUES (3568, '2023-04-10 16:00:00', '定时任务', 'get', '127.0.0.1', 1960, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 16:00:00', 0);
+INSERT INTO `sys_log` VALUES (3569, '2023-04-10 17:13:50', '', 'put', '127.0.0.1', 2230, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:13:50', 0);
+INSERT INTO `sys_log` VALUES (3570, '2023-04-10 17:16:15', '', 'put', '127.0.0.1', 1405, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:16:15', 0);
+INSERT INTO `sys_log` VALUES (3571, '2023-04-10 17:17:03', '', 'put', '127.0.0.1', 1670, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:17:03', 0);
+INSERT INTO `sys_log` VALUES (3572, '2023-04-10 17:17:48', '', 'put', '127.0.0.1', 1710, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:17:48', 0);
+INSERT INTO `sys_log` VALUES (3573, '2023-04-10 17:18:32', '', 'put', '127.0.0.1', 1379, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:18:32', 0);
+INSERT INTO `sys_log` VALUES (3574, '2023-04-10 17:20:50', '', 'put', '127.0.0.1', 1822, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 17:20:50', 0);
+INSERT INTO `sys_log` VALUES (3575, '2023-04-10 17:20:50', '定时任务', 'get', '127.0.0.1', 1517, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 17:20:50', 0);
+INSERT INTO `sys_log` VALUES (3576, '2023-04-10 17:21:42', '定时任务', 'get', '127.0.0.1', 670, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 17:21:42', 0);
+INSERT INTO `sys_log` VALUES (3577, '2023-04-10 17:21:56', '', 'put', '127.0.0.1', 1349, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:21:56', 0);
+INSERT INTO `sys_log` VALUES (3578, '2023-04-10 17:22:51', '', 'put', '127.0.0.1', 1476, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:22:51', 0);
+INSERT INTO `sys_log` VALUES (3579, '2023-04-10 17:23:29', '', 'put', '127.0.0.1', 1216, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:23:29', 0);
+INSERT INTO `sys_log` VALUES (3580, '2023-04-10 17:25:45', '', 'put', '127.0.0.1', 1321, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:25:45', 0);
+INSERT INTO `sys_log` VALUES (3581, '2023-04-10 17:46:39', '', 'put', '127.0.0.1', 1976, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:46:39', 0);
+INSERT INTO `sys_log` VALUES (3582, '2023-04-10 17:54:08', '', 'put', '127.0.0.1', 1595, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:54:08', 0);
+INSERT INTO `sys_log` VALUES (3583, '2023-04-10 17:54:12', '定时任务', 'get', '127.0.0.1', 943, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 17:54:12', 0);
+INSERT INTO `sys_log` VALUES (3584, '2023-04-10 17:54:23', '', 'put', '127.0.0.1', 426, 'admin', '/tools/timing/stop/*', '', 0, 1, '2023-04-10 17:54:23', 0);
+INSERT INTO `sys_log` VALUES (3585, '2023-04-10 17:54:24', '定时任务', 'get', '127.0.0.1', 743, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 17:54:24', 0);
+INSERT INTO `sys_log` VALUES (3586, '2023-04-10 17:54:47', '', 'put', '127.0.0.1', 515, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:54:47', 0);
+INSERT INTO `sys_log` VALUES (3587, '2023-04-10 17:54:49', '定时任务', 'get', '127.0.0.1', 926, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 17:54:49', 0);
+INSERT INTO `sys_log` VALUES (3588, '2023-04-10 17:54:58', '', 'put', '127.0.0.1', 447, 'admin', '/tools/timing/stop/*', '', 0, 1, '2023-04-10 17:54:58', 0);
+INSERT INTO `sys_log` VALUES (3589, '2023-04-10 17:54:58', '定时任务', 'get', '127.0.0.1', 691, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 17:54:58', 0);
+INSERT INTO `sys_log` VALUES (3590, '2023-04-10 17:56:55', '', 'put', '127.0.0.1', 2440, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:56:55', 0);
+INSERT INTO `sys_log` VALUES (3591, '2023-04-10 17:56:57', '定时任务', 'get', '127.0.0.1', 685, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 17:56:57', 0);
+INSERT INTO `sys_log` VALUES (3592, '2023-04-10 17:58:47', '', 'put', '127.0.0.1', 2457, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 17:58:47', 0);
+INSERT INTO `sys_log` VALUES (3593, '2023-04-10 18:00:47', '', 'put', '127.0.0.1', 3595, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 18:00:47', 0);
+INSERT INTO `sys_log` VALUES (3594, '2023-04-10 18:00:49', '定时任务', 'get', '127.0.0.1', 839, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 18:00:49', 0);
+INSERT INTO `sys_log` VALUES (3595, '2023-04-10 18:01:06', '', 'put', '127.0.0.1', 3140, 'admin', '/tools/timing/stop/*', '', 0, 1, '2023-04-10 18:01:06', 0);
+INSERT INTO `sys_log` VALUES (3596, '2023-04-10 18:01:06', '定时任务', 'get', '127.0.0.1', 741, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 18:01:06', 0);
+INSERT INTO `sys_log` VALUES (3597, '2023-04-10 18:01:10', '', 'put', '127.0.0.1', 1560, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 18:01:10', 0);
+INSERT INTO `sys_log` VALUES (3598, '2023-04-10 18:01:12', '', 'put', '127.0.0.1', 1772, 'admin', '/tools/timing/stop/*', '', 0, 1, '2023-04-10 18:01:12', 0);
+INSERT INTO `sys_log` VALUES (3599, '2023-04-10 18:01:12', '定时任务', 'get', '127.0.0.1', 975, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 18:01:12', 0);
+INSERT INTO `sys_log` VALUES (3600, '2023-04-10 18:02:25', '定时任务', 'get', '127.0.0.1', 761, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 18:02:25', 0);
+INSERT INTO `sys_log` VALUES (3601, '2023-04-10 18:02:27', '', 'put', '127.0.0.1', 1647, 'admin', '/tools/timing/exec/*', '', 0, 1, '2023-04-10 18:02:27', 0);
+INSERT INTO `sys_log` VALUES (3602, '2023-04-10 18:02:27', '定时任务', 'get', '127.0.0.1', 717, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 18:02:27', 0);
+INSERT INTO `sys_log` VALUES (3603, '2023-04-10 18:02:29', '', 'put', '127.0.0.1', 2339, 'admin', '/tools/timing/stop/*', '', 0, 1, '2023-04-10 18:02:29', 0);
+INSERT INTO `sys_log` VALUES (3604, '2023-04-10 18:02:29', '定时任务', 'get', '127.0.0.1', 576, 'admin', '/tools/timing', '', 0, 1, '2023-04-10 18:02:29', 0);
 COMMIT;
 
 -- ----------------------------
@@ -3798,7 +3942,7 @@ CREATE TABLE `sys_menu` (
   `router_method` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '路由动作',
   PRIMARY KEY (`id`) USING BTREE,
   KEY `FKqcf9gem97gqa5qjm4d3elcqt5` (`pid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1038 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=1039 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -3887,6 +4031,7 @@ INSERT INTO `sys_menu` VALUES (1034, 0, '修改', '', 1032, 2, '', '', 0, 0, '',
 INSERT INTO `sys_menu` VALUES (1035, 0, '删除', '', 1032, 3, '', '', 0, 0, '', '2023-03-24 17:22:52', 'gen:del', 2, '2023-03-24 17:46:27', 0, '/tools/gen', 'delete');
 INSERT INTO `sys_menu` VALUES (1036, 0, '生成配置', 'tools/gen/config', 999, 33, 'dev', 'gen/config/:tableName', 0, 1, 'GenConfig', '2023-03-29 12:10:46', '', 1, '2023-03-29 12:21:49', 0, '', '');
 INSERT INTO `sys_menu` VALUES (1037, 0, '生成预览', 'tools/gen/preview', 999, 34, 'java', 'gen/preview/:tableName', 0, 1, 'Preview', '2023-03-29 12:13:25', '', 1, '2023-03-29 12:13:25', 0, '', '');
+INSERT INTO `sys_menu` VALUES (1038, 0, '定时任务', 'tools/timing/index', 999, 2, 'timing', 'timing', 0, 0, 'Timing', '2023-04-06 11:14:29', 'cron:list', 1, '2023-04-06 11:15:33', 0, '/tools/timing', 'get');
 COMMIT;
 
 -- ----------------------------
@@ -3947,7 +4092,7 @@ CREATE TABLE `sys_roles_menus` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   KEY `FKcngg2qadojhi3a651a5adkvbq` (`sys_role_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1971 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='角色菜单关联';
+) ENGINE=InnoDB AUTO_INCREMENT=2048 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='角色菜单关联';
 
 -- ----------------------------
 -- Records of sys_roles_menus
@@ -4012,82 +4157,83 @@ INSERT INTO `sys_roles_menus` VALUES (1008, 7, 1234);
 INSERT INTO `sys_roles_menus` VALUES (1009, 7, 1235);
 INSERT INTO `sys_roles_menus` VALUES (1006, 7, 1236);
 INSERT INTO `sys_roles_menus` VALUES (1007, 7, 1237);
-INSERT INTO `sys_roles_menus` VALUES (280, 1, 1895);
-INSERT INTO `sys_roles_menus` VALUES (281, 1, 1896);
-INSERT INTO `sys_roles_menus` VALUES (282, 1, 1897);
-INSERT INTO `sys_roles_menus` VALUES (283, 1, 1898);
-INSERT INTO `sys_roles_menus` VALUES (284, 1, 1899);
-INSERT INTO `sys_roles_menus` VALUES (1000, 1, 1900);
-INSERT INTO `sys_roles_menus` VALUES (1001, 1, 1901);
-INSERT INTO `sys_roles_menus` VALUES (1002, 1, 1902);
-INSERT INTO `sys_roles_menus` VALUES (1003, 1, 1903);
-INSERT INTO `sys_roles_menus` VALUES (1004, 1, 1904);
-INSERT INTO `sys_roles_menus` VALUES (1005, 1, 1905);
-INSERT INTO `sys_roles_menus` VALUES (1008, 1, 1906);
-INSERT INTO `sys_roles_menus` VALUES (1009, 1, 1907);
-INSERT INTO `sys_roles_menus` VALUES (1006, 1, 1908);
-INSERT INTO `sys_roles_menus` VALUES (1007, 1, 1909);
-INSERT INTO `sys_roles_menus` VALUES (1023, 1, 1910);
-INSERT INTO `sys_roles_menus` VALUES (1024, 1, 1911);
-INSERT INTO `sys_roles_menus` VALUES (1027, 1, 1912);
-INSERT INTO `sys_roles_menus` VALUES (1028, 1, 1913);
-INSERT INTO `sys_roles_menus` VALUES (1025, 1, 1914);
-INSERT INTO `sys_roles_menus` VALUES (1029, 1, 1915);
-INSERT INTO `sys_roles_menus` VALUES (1030, 1, 1916);
-INSERT INTO `sys_roles_menus` VALUES (1031, 1, 1917);
-INSERT INTO `sys_roles_menus` VALUES (1026, 1, 1918);
-INSERT INTO `sys_roles_menus` VALUES (1012, 1, 1919);
-INSERT INTO `sys_roles_menus` VALUES (1013, 1, 1920);
-INSERT INTO `sys_roles_menus` VALUES (1017, 1, 1921);
-INSERT INTO `sys_roles_menus` VALUES (1014, 1, 1922);
-INSERT INTO `sys_roles_menus` VALUES (1015, 1, 1923);
-INSERT INTO `sys_roles_menus` VALUES (1020, 1, 1924);
-INSERT INTO `sys_roles_menus` VALUES (1018, 1, 1925);
-INSERT INTO `sys_roles_menus` VALUES (1019, 1, 1926);
-INSERT INTO `sys_roles_menus` VALUES (1, 1, 1927);
-INSERT INTO `sys_roles_menus` VALUES (2, 1, 1928);
-INSERT INTO `sys_roles_menus` VALUES (127, 1, 1929);
-INSERT INTO `sys_roles_menus` VALUES (128, 1, 1930);
-INSERT INTO `sys_roles_menus` VALUES (129, 1, 1931);
-INSERT INTO `sys_roles_menus` VALUES (278, 1, 1932);
-INSERT INTO `sys_roles_menus` VALUES (277, 1, 1933);
-INSERT INTO `sys_roles_menus` VALUES (276, 1, 1934);
-INSERT INTO `sys_roles_menus` VALUES (3, 1, 1935);
-INSERT INTO `sys_roles_menus` VALUES (130, 1, 1936);
-INSERT INTO `sys_roles_menus` VALUES (131, 1, 1937);
-INSERT INTO `sys_roles_menus` VALUES (275, 1, 1938);
-INSERT INTO `sys_roles_menus` VALUES (274, 1, 1939);
-INSERT INTO `sys_roles_menus` VALUES (273, 1, 1940);
-INSERT INTO `sys_roles_menus` VALUES (132, 1, 1941);
-INSERT INTO `sys_roles_menus` VALUES (5, 1, 1942);
-INSERT INTO `sys_roles_menus` VALUES (133, 1, 1943);
-INSERT INTO `sys_roles_menus` VALUES (134, 1, 1944);
-INSERT INTO `sys_roles_menus` VALUES (135, 1, 1945);
-INSERT INTO `sys_roles_menus` VALUES (35, 1, 1946);
-INSERT INTO `sys_roles_menus` VALUES (136, 1, 1947);
-INSERT INTO `sys_roles_menus` VALUES (137, 1, 1948);
-INSERT INTO `sys_roles_menus` VALUES (138, 1, 1949);
-INSERT INTO `sys_roles_menus` VALUES (37, 1, 1950);
-INSERT INTO `sys_roles_menus` VALUES (139, 1, 1951);
-INSERT INTO `sys_roles_menus` VALUES (140, 1, 1952);
-INSERT INTO `sys_roles_menus` VALUES (141, 1, 1953);
-INSERT INTO `sys_roles_menus` VALUES (39, 1, 1954);
-INSERT INTO `sys_roles_menus` VALUES (142, 1, 1955);
-INSERT INTO `sys_roles_menus` VALUES (143, 1, 1956);
-INSERT INTO `sys_roles_menus` VALUES (144, 1, 1957);
-INSERT INTO `sys_roles_menus` VALUES (269, 1, 1958);
-INSERT INTO `sys_roles_menus` VALUES (272, 1, 1959);
-INSERT INTO `sys_roles_menus` VALUES (271, 1, 1960);
-INSERT INTO `sys_roles_menus` VALUES (270, 1, 1961);
-INSERT INTO `sys_roles_menus` VALUES (279, 1, 1962);
-INSERT INTO `sys_roles_menus` VALUES (999, 1, 1963);
-INSERT INTO `sys_roles_menus` VALUES (1032, 1, 1964);
-INSERT INTO `sys_roles_menus` VALUES (1033, 1, 1965);
-INSERT INTO `sys_roles_menus` VALUES (1034, 1, 1966);
-INSERT INTO `sys_roles_menus` VALUES (1035, 1, 1967);
-INSERT INTO `sys_roles_menus` VALUES (123, 1, 1968);
-INSERT INTO `sys_roles_menus` VALUES (1036, 1, 1969);
-INSERT INTO `sys_roles_menus` VALUES (1037, 1, 1970);
+INSERT INTO `sys_roles_menus` VALUES (280, 1, 1971);
+INSERT INTO `sys_roles_menus` VALUES (281, 1, 1972);
+INSERT INTO `sys_roles_menus` VALUES (282, 1, 1973);
+INSERT INTO `sys_roles_menus` VALUES (283, 1, 1974);
+INSERT INTO `sys_roles_menus` VALUES (284, 1, 1975);
+INSERT INTO `sys_roles_menus` VALUES (1000, 1, 1976);
+INSERT INTO `sys_roles_menus` VALUES (1001, 1, 1977);
+INSERT INTO `sys_roles_menus` VALUES (1002, 1, 1978);
+INSERT INTO `sys_roles_menus` VALUES (1003, 1, 1979);
+INSERT INTO `sys_roles_menus` VALUES (1004, 1, 1980);
+INSERT INTO `sys_roles_menus` VALUES (1005, 1, 1981);
+INSERT INTO `sys_roles_menus` VALUES (1008, 1, 1982);
+INSERT INTO `sys_roles_menus` VALUES (1009, 1, 1983);
+INSERT INTO `sys_roles_menus` VALUES (1006, 1, 1984);
+INSERT INTO `sys_roles_menus` VALUES (1007, 1, 1985);
+INSERT INTO `sys_roles_menus` VALUES (1023, 1, 1986);
+INSERT INTO `sys_roles_menus` VALUES (1024, 1, 1987);
+INSERT INTO `sys_roles_menus` VALUES (1027, 1, 1988);
+INSERT INTO `sys_roles_menus` VALUES (1028, 1, 1989);
+INSERT INTO `sys_roles_menus` VALUES (1025, 1, 1990);
+INSERT INTO `sys_roles_menus` VALUES (1029, 1, 1991);
+INSERT INTO `sys_roles_menus` VALUES (1030, 1, 1992);
+INSERT INTO `sys_roles_menus` VALUES (1031, 1, 1993);
+INSERT INTO `sys_roles_menus` VALUES (1026, 1, 1994);
+INSERT INTO `sys_roles_menus` VALUES (1012, 1, 1995);
+INSERT INTO `sys_roles_menus` VALUES (1013, 1, 1996);
+INSERT INTO `sys_roles_menus` VALUES (1017, 1, 1997);
+INSERT INTO `sys_roles_menus` VALUES (1014, 1, 1998);
+INSERT INTO `sys_roles_menus` VALUES (1015, 1, 1999);
+INSERT INTO `sys_roles_menus` VALUES (1020, 1, 2000);
+INSERT INTO `sys_roles_menus` VALUES (1018, 1, 2001);
+INSERT INTO `sys_roles_menus` VALUES (1019, 1, 2002);
+INSERT INTO `sys_roles_menus` VALUES (1, 1, 2003);
+INSERT INTO `sys_roles_menus` VALUES (2, 1, 2004);
+INSERT INTO `sys_roles_menus` VALUES (127, 1, 2005);
+INSERT INTO `sys_roles_menus` VALUES (128, 1, 2006);
+INSERT INTO `sys_roles_menus` VALUES (129, 1, 2007);
+INSERT INTO `sys_roles_menus` VALUES (278, 1, 2008);
+INSERT INTO `sys_roles_menus` VALUES (277, 1, 2009);
+INSERT INTO `sys_roles_menus` VALUES (276, 1, 2010);
+INSERT INTO `sys_roles_menus` VALUES (3, 1, 2011);
+INSERT INTO `sys_roles_menus` VALUES (130, 1, 2012);
+INSERT INTO `sys_roles_menus` VALUES (131, 1, 2013);
+INSERT INTO `sys_roles_menus` VALUES (275, 1, 2014);
+INSERT INTO `sys_roles_menus` VALUES (274, 1, 2015);
+INSERT INTO `sys_roles_menus` VALUES (273, 1, 2016);
+INSERT INTO `sys_roles_menus` VALUES (132, 1, 2017);
+INSERT INTO `sys_roles_menus` VALUES (5, 1, 2018);
+INSERT INTO `sys_roles_menus` VALUES (133, 1, 2019);
+INSERT INTO `sys_roles_menus` VALUES (134, 1, 2020);
+INSERT INTO `sys_roles_menus` VALUES (135, 1, 2021);
+INSERT INTO `sys_roles_menus` VALUES (35, 1, 2022);
+INSERT INTO `sys_roles_menus` VALUES (136, 1, 2023);
+INSERT INTO `sys_roles_menus` VALUES (137, 1, 2024);
+INSERT INTO `sys_roles_menus` VALUES (138, 1, 2025);
+INSERT INTO `sys_roles_menus` VALUES (37, 1, 2026);
+INSERT INTO `sys_roles_menus` VALUES (139, 1, 2027);
+INSERT INTO `sys_roles_menus` VALUES (140, 1, 2028);
+INSERT INTO `sys_roles_menus` VALUES (141, 1, 2029);
+INSERT INTO `sys_roles_menus` VALUES (39, 1, 2030);
+INSERT INTO `sys_roles_menus` VALUES (142, 1, 2031);
+INSERT INTO `sys_roles_menus` VALUES (143, 1, 2032);
+INSERT INTO `sys_roles_menus` VALUES (144, 1, 2033);
+INSERT INTO `sys_roles_menus` VALUES (279, 1, 2034);
+INSERT INTO `sys_roles_menus` VALUES (269, 1, 2035);
+INSERT INTO `sys_roles_menus` VALUES (272, 1, 2036);
+INSERT INTO `sys_roles_menus` VALUES (271, 1, 2037);
+INSERT INTO `sys_roles_menus` VALUES (270, 1, 2038);
+INSERT INTO `sys_roles_menus` VALUES (999, 1, 2039);
+INSERT INTO `sys_roles_menus` VALUES (1032, 1, 2040);
+INSERT INTO `sys_roles_menus` VALUES (1033, 1, 2041);
+INSERT INTO `sys_roles_menus` VALUES (1034, 1, 2042);
+INSERT INTO `sys_roles_menus` VALUES (1035, 1, 2043);
+INSERT INTO `sys_roles_menus` VALUES (123, 1, 2044);
+INSERT INTO `sys_roles_menus` VALUES (1036, 1, 2045);
+INSERT INTO `sys_roles_menus` VALUES (1037, 1, 2046);
+INSERT INTO `sys_roles_menus` VALUES (1038, 1, 2047);
 COMMIT;
 
 -- ----------------------------
@@ -4116,7 +4262,7 @@ CREATE TABLE `sys_tables` (
   `is_del` tinyint(1) DEFAULT NULL COMMENT '删除',
   PRIMARY KEY (`id`) USING BTREE,
   KEY `idx_sys_tables_deleted_at` (`is_del`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of sys_tables
@@ -4124,6 +4270,7 @@ CREATE TABLE `sys_tables` (
 BEGIN;
 INSERT INTO `sys_tables` VALUES (27, 'sys_dept', '部门', 'SysDept', 'crud', 'admin', 'SysDept', '', 'dept', '部门', 'yshop', 0, '', 0, 0, 0, '2023-03-30 18:06:36.472', '2023-03-30 18:06:36.472', 0);
 INSERT INTO `sys_tables` VALUES (28, 'sys_dict_detail', '数据字典详情', 'SysDictDetail', 'crud', 'admin', 'SysDictDetail', '', 'dict_detail', '数据字典详情', 'yshop', 0, '', 0, 0, 0, '2023-03-30 18:06:58.050', '2023-03-30 18:06:58.050', 0);
+INSERT INTO `sys_tables` VALUES (29, 'sys_cron_job', '定时任务调度表', 'SysCronJob', 'crud', 'admin', 'SysCronJob', '', 'cron_job', '定时任务调度表', 'yshop', 0, '', 0, 0, 0, '2023-04-06 11:18:11.643', '2023-04-06 11:18:11.643', 0);
 COMMIT;
 
 -- ----------------------------
