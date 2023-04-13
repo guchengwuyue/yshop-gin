@@ -8,3 +8,5 @@ yshop.tar.gz
 go-mall.iml
 tmp/
 pc-vue/
+routers/api/
+app/controllers/front/

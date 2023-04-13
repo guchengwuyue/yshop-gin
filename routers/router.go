@@ -9,7 +9,6 @@ import (
 	"yixiang.co/go-mall/middleware"
 	"yixiang.co/go-mall/pkg/upload"
 	"yixiang.co/go-mall/routers/admin"
-	"yixiang.co/go-mall/routers/api"
 )
 
 func InitRouter() *gin.Engine {
@@ -28,7 +27,7 @@ func InitRouter() *gin.Engine {
 	admin.RegisterWeixinRouters(r)
 
 	//注册api 路由
-	api.RegisterApiRouters(r)
+	//api.RegisterApiRouters(r)
 
 	return r
 }
