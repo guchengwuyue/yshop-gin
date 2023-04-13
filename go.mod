@@ -28,6 +28,7 @@ require (
 	github.com/mitchellh/mapstructure v1.4.2 // indirect
 	github.com/mojocn/base64Captcha v1.3.1
 	github.com/pelletier/go-toml v1.9.4 // indirect
+	github.com/redis/go-redis/v9 v9.0.3 // indirect
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/segmentio/ksuid v1.0.4
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18 // indirect
