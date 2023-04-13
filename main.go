@@ -2,24 +2,23 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"log"
-	"net/http"
-	"time"
+	"github.com/spf13/cobra"
+	"os"
 	"yixiang.co/go-mall/app/listen"
 	"yixiang.co/go-mall/app/models"
-	"yixiang.co/go-mall/pkg/base"
+	"yixiang.co/go-mall/cmd"
+	"yixiang.co/go-mall/pkg/config"
+	"yixiang.co/go-mall/pkg/console"
 	"yixiang.co/go-mall/pkg/global"
 	"yixiang.co/go-mall/pkg/jwt"
 	"yixiang.co/go-mall/pkg/logging"
 	"yixiang.co/go-mall/pkg/redis"
 	"yixiang.co/go-mall/pkg/wechat"
-	"yixiang.co/go-mall/routers"
 )
 
 func init() {
-	global.YSHOP_VP = base.Viper()
-	global.YSHOP_LOG = base.SetupLogger()
+	global.YSHOP_VP = config.Viper()
+	global.YSHOP_LOG = logging.SetupLogger()
 	models.Setup()
 	logging.Setup()
 	redis.Setup()
@@ -34,26 +33,27 @@ func init() {
 // @termsOfService https://gitee.com/guchengwuyue/gin-shop
 // @license.name apache2
 func main() {
-	gin.SetMode(global.YSHOP_CONFIG.Server.RunMode)
+	var rootCmd = &cobra.Command{
+		Use:   "yshop=gin",
+		Short: "gin商城系统r",
+		Long:  "will run serve command",
 
-	routersInit := routers.InitRouter()
-	endPoint := fmt.Sprintf(":%d", global.YSHOP_CONFIG.Server.HttpPort)
-	maxHeaderBytes := 1 << 20
+		PersistentPreRun: func(cmd *cobra.Command, args []string) {
 
-	server := &http.Server{
-		Addr:           endPoint,
-		Handler:        routersInit,
-		ReadTimeout:    10 * time.Second,
-		WriteTimeout:   10 * time.Second,
-		MaxHeaderBytes: maxHeaderBytes,
+		},
 	}
 
+	rootCmd.AddCommand(cmd.CmdServe)
 
-	global.YSHOP_LOG.Info("[info] start http server listening %s",endPoint)
-	log.Printf("[info] start http server listening %s", endPoint)
-	fmt.Printf("欢迎使用yshop-gin,官网地址：https://www.yixiang.co\n")
+	// 配置默认运行 Web 服务
+	cmd.RegisterDefaultCmd(rootCmd, cmd.CmdServe)
 
+	// 注册全局参数，--env
+	cmd.RegisterGlobalFlags(rootCmd)
 
-	server.ListenAndServe()
+	// 执行主命令
+	if err := rootCmd.Execute(); err != nil {
+		console.Exit(fmt.Sprintf("Failed to run app with %v: %s", os.Args, err.Error()))
+	}
 
 }

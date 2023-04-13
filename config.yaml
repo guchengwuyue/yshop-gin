@@ -1,5 +1,5 @@
 server:
-  run-mode: 'debug'
+  run-mode: 'release'
   http-port: 8000
   read-timeout: 60
   write-timeout: 60

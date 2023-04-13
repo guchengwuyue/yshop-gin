@@ -19,7 +19,7 @@ Gin+Gorm+Casbin+Jwt+Redis+Mysql8+Vue 的前后端分离电商管理系统，权�
 |  码云  |  https://gitee.com/guchengwuyue/yshop-gin   |  https://gitee.com/guchengwuyue/yshop-gin-vue   | 
 |  github   | https://github.com/guchengwuyue/yshop-gin  |  https://github.com/guchengwuyue/yshop-gin-vue | 
 
-#### 已经实现pc商城功能：
+#### 已经实现api商城功能：
 - 登录注册
 - 首页轮播图
 - 首页商品展示
@@ -67,6 +67,7 @@ Gin+Gorm+Casbin+Jwt+Redis+Mysql8+Vue 的前后端分离电商管理系统，权�
       - product_serive 商品服务
       - wechat_menu_serive 微信公众号菜单服务
       ......
+- cmd  命令模块
 - conf 公共配置
 - docs swagger
 - middleware 中间件
@@ -80,8 +81,13 @@ Gin+Gorm+Casbin+Jwt+Redis+Mysql8+Vue 的前后端分离电商管理系统，权�
   - jwt
   - redis
   - wechat
+  - limiter
+  - config
   .....
 - routere 路由
+  - router.go
+  - api
+  - admin
 - logs 日志存放
 - runtime 资源目录
 - config.yml yml配置
@@ -200,6 +206,8 @@ pc端效果图：
     * 1.13 zap
     * 1.14 wecchat
     * 1.15 gopay
+    * 1.16 limiter
+    * 1.17 cron
         
 * 前端使用技术
     * 2.1 Vue 全家桶
