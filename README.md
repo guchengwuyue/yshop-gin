@@ -126,35 +126,7 @@ Gin+Gorm+Casbin+Jwt+Redis+Mysql8+Vue 的前后端分离电商管理系统，权�
 
 ```
 #### 功能说明
-pc端效果图：
 
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646055.jpg) |
-|--|
-
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646056.jpg) |
-|--|
-
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/pc03.png "suicai.png") |
-|--|
-
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/pc04.png "suicai.png") |
-|--|
-
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646053.jpg) |
-|--|
-
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646054.jpg) |
-|--|
-
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646052.jpg) |
-|--|
-
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646053.jpg) |
-|--|
-
-
-| ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202205071646054.jpg) |
-|--|
 
 1、商品分类
 | ![输入图片说明](https://images.gitee.com/uploads/images/2021/1009/110639_af31d4e3_477893.png "shop1.png") |
@@ -186,6 +158,12 @@ pc端效果图：
 |--|
 8、订单
 | ![输入图片说明](https://gitee.com/guchengwuyue/yshop-gin-book/raw/master/h1.png "caidan1.png") |
+|--|
+9、代码生成器
+|  ![输入图片说明](gen.png) |
+|--|
+10、定时任务
+| ![输入图片说明](cron.png) |
 |--|
 
 
