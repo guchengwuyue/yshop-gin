@@ -3,13 +3,9 @@
 
 
 
-#### 项目简介（QQ交流群：544263002）
+#### 项目简介（亲支持下star进群获取最新文档哦，QQ交流群：544263002）
 yshop-gin基于当前流行技术组合的前后端商城系统(目前版本v1.3)基于当前流行技术组合的前后端商城管理系统：
 Gin+Gorm+Casbin+Jwt+Redis+Mysql8+Vue 的前后端分离电商管理系统，权限控制采用RBAC，支持商城商品加入购物车、下单、评价、支付（微信支付与余额支付）、搜索、地址管理、快递鸟查询、多级分类，商品管理、商品sku、图片素材、数据字典与数据权限管理，支持动态路由等
-
-#### 项目文档（还在完善中...，小伙伴记得star）
-
- 文档地址：[https://gitee.com/guchengwuyue/yshop-gin/wikis/pages](http://gitee.com/guchengwuyue/yshop-gin/wikis/pages)
 
 
 #### 项目源码
